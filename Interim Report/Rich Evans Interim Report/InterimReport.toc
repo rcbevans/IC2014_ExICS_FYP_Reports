@@ -12,6 +12,13 @@
 \contentsline {subsection}{\numberline {2.3.1}Server Hosting}{9}
 \contentsline {subsection}{\numberline {2.3.2}Network Communication}{9}
 \contentsline {subsection}{\numberline {2.3.3}System Security}{10}
-\contentsline {chapter}{\numberline {3}Project Plan}{11}
-\contentsline {chapter}{\numberline {4}Evaluation Plan}{12}
-\contentsline {chapter}{\numberline {A}Web Survey Results}{13}
+\contentsline {section}{\numberline {2.4}Implementation Technologies}{10}
+\contentsline {subsection}{\numberline {2.4.1}Web Server}{10}
+\contentsline {subsection}{\numberline {2.4.2}Data Store}{11}
+\contentsline {subsection}{\numberline {2.4.3}Network Application Layer Protocols}{12}
+\contentsline {section}{\numberline {2.5}Initial Design Concept}{14}
+\contentsline {subsection}{\numberline {2.5.1}System Block Diagram}{14}
+\contentsline {subsection}{\numberline {2.5.2}Android Client GUI}{14}
+\contentsline {chapter}{\numberline {3}Project Plan}{21}
+\contentsline {chapter}{\numberline {4}Evaluation Plan}{22}
+\contentsline {chapter}{\numberline {A}Web Survey Results}{23}

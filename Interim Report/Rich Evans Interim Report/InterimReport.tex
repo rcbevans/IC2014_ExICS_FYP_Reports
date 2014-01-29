@@ -3,6 +3,8 @@
 \usepackage{amsfonts} % if you want blackboard bold symbols e.g. for real numbers
 \usepackage{graphicx} % if you want to include jpeg or pdf pictures
 \usepackage{pdfpages}
+\usepackage{url}
+\usepackage{listings}
 
 \title{Exam Invigilator Communications System\\
 Interim Report} % change this
@@ -179,20 +181,204 @@ As previously stated, the exam scheduling, seating plans and invigilator informa
 \subsection{Server Hosting}
 As it is necessary to centralise access to the existing APIs offering information about the exam timetables and other information, it will be necessary to make use of a server to which clients can connect and which hosts the information about ongoing exams.  Use a central server will also avoid complexities associated with peer to peer network discovery and communication.
 
-Imperial College offers a Virtual Cloud Server Hosting service providing the ability for staff and members of research groups to provision their own virtual servers on demand for hosting their specialised applications.
+CSG (Computer support group) at Imperial offer the cloudstack virtual server service which allows students to provision and administer their own virtual servers hosted on shared server hardware. The servers can be instantiated with a number of preconfigured template systems such as Ubuntu 12.04 and CentOS 6.4.
 
-The servers can be provisioned with either Windows Server or Redhat Enterprise Linux distributions.  Full administrative privileges are granted to the user providing complete control over the install and configuration of the system as required. 
+After the provisioning, the user has full root access to the server to customise as required.
 
 \subsection{Network Communication}
 
-The Department of Computing is already fitted with a widely accessible wireless local area network which interfaces the Virtual Cloud Server hosting.  Client server connection will therefore be possible via connection to the Imperial-WPA wifi connection, or via VPN.
+The Department of Computing is already fitted with a widely accessible wireless local area network which interfaces the Virtual Cloud Server hosting.  Client server connection will therefore be possible via connection to the Imperial-WPA wifi connection, or via VPN from outside the college network.
 
 \subsection{System Security}
 
-Given the nature of the information to be made available in the exam invigilator communication system, it is necessary that the system features restricted access to only authorised members of the college faculty involved with the invigilation or examination of the exams.
+Given the nature of the information to be made available in the exam invigilator communication system, it is necessary that the system features restricted access to only authorised members of the college faculty involved with the invigilation or examination of the papers.
+
+Imperial offers two authentication services, LDAP (Lightweight Directory Access Protocol) Active Directory which supports single signon via Kerberos.  Having discussed with the college ICT Service Desk, it will be possible to make use of these authentication methods to authenticate client access to the system backend server.  It will be possible to create a system access alias against which any connecting clients can be checked.
+
+The downside of this approach is that any invigilator or examiner must be added to this alias before the system will grant them access, however, this is unavoidable and much preferred to the overhead of implementing a security policy within the backend system itself.  ICT have indicated that given some criteria, it would be possible to create a policy rule which will automatically populate the user list from corporate data, keeping it up to date.
+
+Kerberos and LDAP are widely supported authentication standards and so implementation of either with a major web server distribution should be highly feasible.
+
+\section{Implementation Technologies}
+
+In this section I will discuss the potential technologies which will be have been or will be investigated for use in the implementation of the system.
+
+\subsection{Web Server}
+
+Whilst I have previous experience with Apache web servers, a highly recommended implementation with good support for the websocket standard is Node.JS.  It has a number of high quality libraries quickly available for install using the node package manager, including libraries adding support for WebSockets such as socket.IO, a kerberos support library and all big database systems, MongoDB, CouchDB and various SQL implementations included.
+
+Node.JS's event driven design and javascript based object oriented style makes it a very nice system to development with and so will be my web server of choice for this project.  If any major setbacks are experienced during the early stages of development I may reconsider this choice for an alternative such as Apache.
+
+\subsection{Data Store}
+
+There any many database software implementations with drivers available for Node.JS servers, both SQL and NoSQL.  Both SQL and noSQL implementations have their merits, but the great thing about noSQL is they work with objects as opposed to direct manipulation of data tables.  In JavaScript environments, such as with Node.JS this allows for easy data object traversal using natural JavaScript language such as shown in listing 2.1. 
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[captionpos=b,caption=MongoDB Data Creation and Insertion, tabsize=2,
+    breaklines=true]
+
+// Retrieve
+var MongoClient = require('mongodb').MongoClient;
+
+// Connect to the db
+MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+  if(err) { return console.dir(err); }
+
+  var collection = db.collection('test');
+  var doc1 = {'hello':'doc1'};
+  var doc2 = {'hello':'doc2'};
+  var lotsOfDocs = [{'hello':'doc3'}, {'hello':'doc4'}];
+
+  collection.insert(doc1);
+
+  collection.insert(doc2, {w:1}, function(err, result) {});
+
+  collection.insert(lotsOfDocs, {w:1}, function(err, result) {});
+
+});
+
+\end{lstlisting}
+\end{minipage}
+
+Since the APIs providing data from the existing college systems (will eventually) provide their results in JSON format, the mongoDB document format for data is a perfect fit for purpose.  For this reason MongoDB shall be my database implementation of choice for this project unless, as with the choice of web server, any major setbacks are experienced.  Unlike migrating web server, the switch to an alternative database implementation should prove less troublesome.
+
+Given the document driven nature of MongoDB I intend to investigate implementation of the base data for the system using a number of documents using a number collections, each containing a document for the given collection base type.  For example, in JSON style format:
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[captionpos=b,caption=Example MongoDB Storage Structure for Exam information, tabsize=2,
+    breaklines=true]
+
+"Collection" : "exams",
+"Documents" :
+	{
+		"528" : 
+			{
+				"name" : "Concurrent Programming",
+				"date" : "2014-03-17",
+				"sched_time" : "11:00:00",
+				"duration" : "01:30:00",
+				"extra_time" : "00:30:00",
+				"rooms" : "144,145"
+			},
+		"C526" : 
+			{
+				...
+			}
+	}
+
+\end{lstlisting}
+\end{minipage}
+
+A similar style can be implemented for seating plans and any other data that it is decided is needed.  This will work incredibly well if the DoC APIs do indeed provide JSON as is desired, however, even if it is not, it would be feasible to write a wrapper around the API call to convert the returned data to the required JSON format for storage.
+
+\subsection{Network Application Layer Protocols}
+
+WebSocket was developed as part of the HTML5 initiative and introduced the WebSocket JavaScript interface, defining a full-duplex single socket connection over which messages can be sent between client and server.
+
+HTTP was designed as a request/response protocol bringing great complexities in cases where bi-directional communication was required.  The protocol was designed such that a client sends a request to the server and when and only when the request has been completely received, the server sends its response. As a result there are many techniques, or some may say 'hacks'\cite{httpabuse}, which have been employed to provide the illusion of full-duplex communication between client and server such as long-polling using AJAX\cite{lpAjax}.
+
+WebSocket is purposefully designed to provide the functionality designed by modern real-time web applications and so makes perfect sense for use in this project.
+
+By design, WebSocket is designed with a subscription model.  Any clients connecting subscribe to the Socket and the WebSocket server simply re-emits any received messages to all users.  This is not optimal behaviour though as in some cases, such as when a message has a specific intended recipient, bandwidth is wasted in transmitting to all users.  This is not disasterous as it is possible to simply process the received message payload on the client device and establish in the client-side software if the current device is the intended recipient.
+
+I intend to implement a system where upon connection a user is assigned an ID in a hashmap structure of usernames and websocket connections and make use of my own JSON based API to communicate between devices.  JSON is fully supported in both Java, for the client application, and in JavaScript apps running on Node.JS, and so information can be encoded and parsed by both clients and server to establish the nature of the transmitted message.
+
+An initial design for an API is as shown in listing 2.3.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[captionpos=b,caption=Proposed WebSocket API for System Communication, tabsize=2, breaklines=true]
+
+{
+    "type" : "message",
+    "payload" : {
+        "to" : "someone",
+        "message" : {
+          "from" : "me",
+          "message_type" : "request",
+          "message" : "A Student needs the bathroom"
+        }
+    }
+}
+\end{lstlisting}
+\end{minipage}
+
+With this API the server can parse the received message and check the message type.  This could be a message, a first contact (to establish username for the sending socket with the server), a request for application data such as rooms, exams etc.  The extensible nature of a JSON style API means extension of the API to support new message types is incredibly simple.  The payload of the message can then be processed, in this case, the "message" element of the payload will be forwarded to the intended recipient, identified by the "to" value.
+
+\section{Initial Design Concept}
+
+In this section I will show initial implementation design proposals for both the system as a whole, and the GUI of the Android client application.
+
+\subsection{System Block Diagram}
+
+\includegraphics[width=\textwidth]{"System Diagram/System Block Diagram"}
+
+\subsection{Android Client GUI}
+
+For and Android client GUI concept designs I decided to use a traditional pen and paper rapid prototype methodology.  By using pen and paper I was able to focus more on the general design of the application rather than beautifying or concentrating on details.
+
+The client application designs are based upon the screen size and resolution of a Google Nexus 7 tablet and are drawn to scale.  Since the department of computing is already in possession of primarily tablets, this is the form factor I will be primarily designing for.  The code will be implemented using Android fragments\cite{fragments} such that, if there is sufficient time, it should be a relatively trivial task to create a usable layout design for phone form factors.  To simplify development, the application will also enforce landscape device rotation.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Main Overview Cropped"}
+
+The main overview page for the application will consist of a dual pane android layout using fragments.  2/3 of the screen will be dedicated to overview information, with the remaining 1/3 containing the log of most recent system communication activity.
+
+The main overview content will be divided again roughly in two.  The top panel will contain a horizontally scrollable list of the rooms currently containing examinations, the invigilators/examiners currently linked to that room, and the rooms status; ok, stopped, or pending help, along with a traffic light icon reflecting the status.  The rooms are selectable, shown by highlighting which updates the information shown in the lower panel.
+
+The initial concept for the lower panel of the main overview content is that it will contain another horizontally scrollable panel containing an entry for each exam taking place in that room.  Each entry will show the name of the room, and timing information depending upon the state of the exam.  Before the exam is started, the scheduled start time will be shown, with this changing to show the actual start time, time remaining, finish time, and extra time finish time.  If an exams time is extended, this can be reflected also, by appending an extra time flag to the finish time, for example
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[captionpos=b,caption=Representation of Examination Timings, tabsize=4, breaklines=true]
+
+ 12:01							 12:02
+  1:35			becomes			  1:44
+ 14:01							 14:11 (+0:10)
+(14:31)							(14:41)(+0:10)
+
+\end{lstlisting}
+\end{minipage}
+
+The exact method of enhanced functionality, such as how to extend the time of an exam for example are yet to be decided pending evaluation of the initial concept sketches.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Side Menu View Cropped"}
+
+The client application will feature an always available side bar menu available to the left hand side of the screen.  This will contain the navigation buttons to move to different activities within the android application.
+
+The slide in menu may be implemented using either the inbuilt Navigation Drawer\cite{navdrawer} or using a third party library such as slidingPaneLayout\cite{spl}.  The main differences between these two implementation techniques are that the android Navigation Drawer overlaps the screen content, leaving the log visible at all times, whereas with the SlidingPaneLayout, it would be possible to achieve the effect shown in the sketch where the log is slid off the right side of the screen, with the menu taking up the left 1/3 of the screen.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Help Request Window Cropped"}
+
+The request help screen will allow the user to send a message requesting assistance to other users on the system.  They will be able to select send to all, send to examiners or send to specific users, with send to all the default choice.  They can then select the nature of the message whether it is a generic assistance needed message, a preset advanced message such as request for more paper or a toilet escort, or a manually typed specific message.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Message Notification Cropped"}
+
+Received messages when received by the client will be buffered for notification purposes.  One at a time a notification will be displayed on screen and the device will optionally vibrate to alert the user.  The message and the sender will be displayed, along with a time stamp.
+
+The alert window will feature a number of responses which the user can make use of which will vary by nature of the alert being displayed.  The user can optionally choose to dismiss the message with no action being taken, in which case no response will be sent to the sender except for announcement requests, in which case even if dismissed the sender will be notified that the message has been seen.  If an announcement is positively responded to, such as by saying that the user is on their way to help, the message will be dismissed or removed from the queue on all other devices to prevent over servicing of requests.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Seating Plan Cropped"}
+
+The seating plan part of the system will allow a user to view the seating plan for a selected room giving the student names, CID (College ID) numbers and seat numbers.  This list will be sortable by name or by seat number and there will be a search functionality for looking up seating positions based on name/CID or a reverse lookup to identify missing students based on seat number.
 
 \chapter{Project Plan}
 %
+
+The project is split into five main phases; investigative, implementation phases 1, 2, 3 and evaluation.
+
+I have already completed a large majority of the investigative phase where I establish the requirements of the system.
+
+This plan is shown in figure 3.1.  The plan is largely linear as since I am working on my own, my ability to implement multiple tasks in parallel is somewhat limited.  I have therefore made an assumption that I can only work on one thing at a time.  I can dynamically adjust my schedule to change the order of task implementation, for example switching to something else if I reach a point where I am making little progress on a task and need a break.
+
+\begin{figure}[h]
+\begin{center}
+\begin{minipage}{1.4\textwidth}
+
+\hspace{-1.1in}
+\centerline{\includegraphics[width=\textwidth]{"Project Plan/PP"}}
+
+\end{minipage}
+\end{center}
+\caption{Project Plan for ExICS}
+\end{figure}
 
 \chapter{Evaluation Plan}
 %
@@ -202,20 +388,7 @@ Given the nature of the information to be made available in the exam invigilator
 
 \includepdf[pages=-]{surveyResult.pdf}
 
-%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%
-\chapter*{Bibliography}
-%
-\begin{description}
-
-\item Author, I. (Year). \emph{Book Title}, Publisher; Place of publication.
-
-\item Lamport, L. (1986), \emph{\LaTeX: A Document Preparation System}, Addison-Wesley; Reading, MA.
-
-\item Author, I. (Year). `Journal article title', \emph{Journal}, \textbf{Vol}, pp.first--last.
-
-\item Smith, A.D.A.C. and Wand, M.P. (2008). `Streamlined variance calculations for semiparametric
-mixed models', \emph{Statistics in Medicine}, \textbf{27}, pp.435--48.
-
-\end{description}
+\bibliographystyle{plain}
+\bibliography{ref}
 
 \end{document}
