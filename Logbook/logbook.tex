@@ -1,0 +1,219 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Daily Laboratory Book
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Frank Kuster (http://www.ctan.org/tex-archive/macros/latex/contrib/labbook/)
+%
+% Important note:
+% This template requires the labbook.cls file to be in the same directory as the
+% .tex file. The labbook.cls file provides the necessary structure to create the
+% lab book.
+%
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing lab book content.
+%
+% HOW TO USE THIS TEMPLATE 
+% Each day in the lab consists of three main things:
+%
+% 1. LABDAY: The first thing to put is the \labday{} command with a date in 
+% curly brackets, this will make a new page and put the date in big letters 
+% at the top.
+%
+% 2. EXPERIMENT: Next you need to specify what experiment(s) you are 
+% working on with an \experiment{} command with the experiment shorthand 
+% in the curly brackets. The experiment shorthand is defined in the 
+% 'DEFINITION OF EXPERIMENTS' section below, this means you can 
+% say \experiment{pcr} and the actual text written to the PDF will be what 
+% you set the 'pcr' experiment to be. If the experiment is a one off, you can 
+% just write it in the bracket without creating a shorthand. Note: if you don't 
+% want to have an experiment, just leave this out and it won't be printed.
+%
+% 3. CONTENT: Following the experiment is the content, i.e. what progress 
+% you made on the experiment that day.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[idxtotoc,hyperref,openany]{labbook} % 'openany' here removes the gap page between days, erase it to restore this gap; 'oneside' can also be added to remove the shift that odd pages have to the right for easier reading
+
+\usepackage[ 
+  backref=page,
+  pdfpagelabels=true,
+  plainpages=false,
+  colorlinks=true,
+  bookmarks=true,
+  pdfview=FitB]{hyperref} % Required for the hyperlinks within the PDF
+  
+\usepackage{booktabs} % Required for the top and bottom rules in the table
+\usepackage{float} % Required for specifying the exact location of a figure or table
+\usepackage{graphicx} % Required for including images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Command to make the lines in the title page
+% \setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DEFINITION OF EXPERIMENTS
+%----------------------------------------------------------------------------------------
+
+\newexperiment{introduction}{Introduction to logbook}
+\newexperiment{prior_work}{Prior Work}
+\newexperiment{technology_investigation}{Technology Investigation}
+\newexperiment{day_heading}{Days Work}
+\newexperiment{auth}{System Authentication}
+
+%---------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\frontmatter % Use Roman numerals for page numbers
+\title{
+\begin{center}
+\HRule \\[0.4cm]
+{\Huge \bfseries Final Year Project Logbook \\[0.5cm] \Large MEng EIE}\\[0.4cm] % Degree
+\HRule \\[1.5cm]
+\end{center}
+}
+\author{\Huge Richard Evans \\ \\ \LARGE rce10@ic.ac.uk \\[2cm]} % Your name and email address
+\date{Beginning 31 Mar 2014} % Beginning date
+\maketitle
+
+\tableofcontents
+
+\mainmatter % Use Arabic numerals for page numbers
+
+%----------------------------------------------------------------------------------------
+%	LAB BOOK CONTENTS
+%----------------------------------------------------------------------------------------
+
+% Blank template to use for new days:
+
+%\labday{Day, Date Month Year}
+
+%\experiment{}
+
+%Text
+
+%----------------------------------------------------------------------------------------
+
+\labday{Monday, 31 March 2014}
+
+\experiment{introduction}
+
+I know that I actually began work on my FYP a lot sooner that the date shown here, but I was a bit lazy and didn't begin to keep a log book before now.  I haven't done a lot over the past term as I had a huge amount of coursework ongoing non-stop.  I will progress from now keeping proper record of what I do to make the writing of the final report easier.
+
+\experiment{prior_work}
+
+I have already completed a number of investigative steps for this coursework which I will quickly run over here.
+
+I have already completed an investigation into the requirements of this project to compile a list of aims and objectives of what features the system implemented should have.  For this I conducted a number of face to face interviews with exam invigilators and head examiners.  I then created a simple surver which was completed by a number of staff involved with the examination process in both the Department of Computing and Electronic and Electrical engineering at Imperial.
+
+With a list of aims and objective for feature implementation rated according to usefulness by the people that will use the system, I then prioritised the features into three distinct functionality goals, basic, necessary for the project to be considered successful, advanced, for desirable features and stretch goals which will be implemented should there be sufficient time.
+
+With goals decided, I then created some initial design sketches of the application drawn to scale to give an idea of how the application could look and how the layout would look.
+
+I then began experimenting with different technologies that could be used to see how to progress with implentation.
+
+\experiment{technology_investigation}
+
+There were multiple ways I could have implemented inter client communication including HTTP Long-polling, AJAX or technologies such as XMPP.  When I looked into these technologies, I realised that they were inefficient or did not provide the functionality required for the system.  Even XMPP, designed for chat clients, did not offer the features for communication the system would require.
+
+I decided that I would make use of a (relatively) new technology, websockets.  Initially I thought I would make use of Socket.IO, running on Node.JS, an implementation of websockets wrapped with a protocol layer which would be useful and make my work simpler.  I found, however, that Socket.IO did not have any compatible android implementations.  It was therefore necessary to find a more basic websockets implementation and implement a higher level protocol myself.
+
+I installed the following packages on a CloudStack Ubuntu 12.04 server:
+
+\begin{itemize}
+\item Node.JS v0.10.26
+\item Node Package Manager (npm) v1.4.3
+\item Websockets (ws) v0.4.31
+\end{itemize}
+
+For the android counterpart app, I am using the Android-Studio to develop with the Google Nexus 7 tablet in mind as the target device.
+
+I am making use of the following libraries for the android code.
+
+\begin{itemize}
+\item targetSdkVersion 19
+\item autobahn-0.5.0
+\item jackson-core-asl-1.9.7
+\item jackson-mapper-asl-1.9.7
+\end{itemize}
+
+\experiment{day_heading}
+
+Today I have been busy catching up on where the project was left off as well as creating this log book and filling in previous work.
+
+I have updated the version of Android Studio from 0.4.4 to 0.5.6 and done the accompanying changes to the android code necessary to make it compile under the new version.
+
+I have then proceeded to look back through the existing node.JS app, and android code to refamiliarise with the code already written and to decide which direction to take next.
+
+The server can currently set up a websockets listener and respond to incoming requests.  It supports identifying multiple users and passing information between clients based upon a simple API which defines the nature of the message received from a client.  The Android app is able to connect the Websockets server, identify itself and send messages to all other users connected to the server.
+
+\experiment{auth}
+
+One of the key features of the system which I am as yet to look into is authentication of users on the system.  I had previously contacted IT and the CSG teams and discussed the various college authentication services available.
+
+Available platforms:
+
+\begin{itemize}
+\item Kerberos
+\item Active Directory
+\item LDAP
+\end{itemize}
+
+Kerberos, used for single sign on, isn't what I want, and so I was left to investigate LDAP and active directory.  Having taken a look around, I found a node.JS library called node-active directory which looks like it should do what I want.
+
+https://github.com/gheeres/node-activedirectory
+
+
+%----------------------------------------------------------------------------------------
+%	FORMULAE AND MEDIA RECIPES
+%----------------------------------------------------------------------------------------
+
+\labday{} % We don't want a date here so we make the labday blank
+
+\begin{center}
+\HRule \\[0.4cm]
+{\huge \textbf{Formulae and Media Recipes}}\\[0.4cm] % Heading
+\HRule \\[1.5cm]
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%	MEDIA RECIPES
+%----------------------------------------------------------------------------------------
+
+\newpage
+
+%-----------------------------------------
+
+%\textbf{Media 2}\\ \\
+
+%Description
+
+%----------------------------------------------------------------------------------------
+%	FORMULAE
+%----------------------------------------------------------------------------------------
+
+\newpage
+
+%-----------------------------------------
+
+%\textbf{Formula X - Description}\\ \\
+
+%Formula
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
