@@ -80,6 +80,14 @@
 
 \newexperiment{android_chat_continued}{Continuation of Android Chat App}
 
+\newexperiment{progress_meetings}{Progress Meeting}
+
+\newexperiment{exam_data_api_wrapper}{Exam Data API Wrapper}
+
+\newexperiment{rewrite_api_wrapper}{Rewriting the API Wrapper}
+
+\newexperiment{logbook_catchup}{Logbook Catchup}
+\newexperiment{improved_json_date}{Improved JSON Structure for API}
 
 %---------------------------------------------------------------------------------------
 
@@ -262,6 +270,74 @@ payload
  There are many things I could tweak which from an application perspective would make more sense, customize websocket server address in settings, save username and password, adjust the UI itself to make it better, but for now the application serves its purpose just great.
 
  I am happy with the progress that is being made.
+
+ \labday{Wednesday, 23 April 2014}
+
+ \experiment{progress_meetings}
+
+ Having been away for a couple of weeks of Easter, I came back to work on the project by arranging a progress meeting with both Mark, who had also been away for easter, and Dr Thomas following a discussion of last term's HPCE.
+
+ With Dr Thomas, I showed him my user interface sketches and discussed the principles of the system to ask his opinion.  He expressed a particular interest in the student ID barcode scanning feature proposed as a stretch goal, and the ability to do some of the admin associated with exam invigilation.  He also suggested the ability for the application to present a checklist of things TO-DO for invigilators at the various stages of the invigilation process; before, during, after etc.
+
+ Following this dicussion I then went to speak to Mark to raise some of the issues regarding data feeds which had previously been stalling my work progress.
+
+ I asked if it was possible to get a JSON version of the exam data API.  Apparently DoC is not interested in improving the data backend from a spreadsheet to a proper database, nor are they interested in rewriting the API to produce JSON instead of a CSV format.  Mark suggested that it would be nice if I could write an API wrapper which will present the data in JSON format by callingt he CSV API and parsing it.  This would also provide the ability to create multiple data views from the information which could prove useful in itself.
+
+ We also discussed server customisation and how it would be nice for the server to read a configuration file on launch to affect behavior.  For example, how often to refresh its database from the data source, which database it is connecting to, the URL for the data source etc.  This would be good to design in as it means the resulting system is more portable.
+
+
+ \labday{Thursday, 24 April 2014}
+
+ \experiment{exam_data_api_wrapper}
+
+ Following yesterdays meetings, I am writing a JSON API wrapper for the existing CSV API.  The API wrapper is being written in node.js and simply grabs the headers from the CSV and turns each row of the data set, delimited by tabs, into JSON objects which can be pushed into a JSON results array.
+
+ These results are then returned to the caller.
+
+ Having finished the API such that it can return the default view of data back to the caller, I have changed it so the data is instead prettyprinted.  This won't affect functionality when the data is being deserialized, but makes it nicer to inspect when using a browser to verify the correctness of the responses.
+
+
+ \labday{Friday, 25 April 2014}
+
+ \experiment{rewrite_api_wrapper}
+
+ The API is working and returns correct data but its horribly hacky, all done in one .js file, contains username and password baked in.  This isn't great so I'm going to re-do it properly.
+
+ I have split the functinality into multiple node.js modules which do one job and do it properly.
+
+apiServer.js
+csvWrapper.js
+requestHandlers.js
+ssl
+csvConvert.js
+examDataAPIServer.js
+requestRouter.js
+
+examDataAPIServer is the launchable app and instantiates the server specified in apiServer.  This uses the requestRouter module to parse the page requested from the server (which API in this case) and pass it to the requestHandlers module.  This module then looks at the GET variables passed, specifying the data view desired, and uses csvConvert to parse the response from the original API and create the JSON response.  This design is really flexible and permits the simple extension of the API to add more views by just adding new instances of the functions following the same template.
+
+I currently have two views, default, and by day.  The day view relies on the data provided by the CSV data to be in chronological order of consecutive dates.
+
+I then added security where the node.js server will require username and password to be provided, removing the need to have my credentials baked in to access the original API.  
+
+\labday{Monday, 28 April 2014}
+
+\experiment{logbook_catchup}
+
+I have recently started doing all my work from in Windows as I have discovered amazing tools such as win-sshfs for remotemounting linux filesystems over ssh, as I had been in Linux and been using putty to ssh onto the server.  With this setup, I haven't needed to boot into my Linux system for weeks.
+
+Unfortunately my logbook was stored on my Linux system, and whilst it was in a git repository I hadn't pushed the latest version in a couple of weeks.  Linux was broked following the last system update (*grrrr nVidia*) and so I needed to downgrade the kernel and nvidia drivers to get the system booting again.  From there I then pushed the latest versions of the codebase so I could switch back to windows.
+
+Back in windows, I went to use latexing to backdate the past week of work in the logbook, but didn't have latexing in sublime set up correctly as I was missing texLive.
+
+I set up latex on the machine properly and finished recording last weeks work so I don't fall too far behind and now here I am.
+
+\experiment{improved_json_date}
+
+With the logbook caught up on, I am now going back to work on the API wrapper.  I have a new view I want to implement at the request of Mark, by yeargroup.  And I also want to improve the structure of the date view which is already implemented.
+
+Currently the by date view relies on the original data being in ascending date order, I intend to remove this requirement.  The structure at the moment is that `dates' is a JSON array containing a series of objects containing `date' and an array of objects representing the exams.
+
+I intent to change `dates' to a JSON object containing a number of JSON Arrays, the keys to which are the exam dates.  This will allow for simple checking of ``if date in dates''.  For every exam data row parsed, I can therefore check if date is in dates, if so, push to existing array, else create and push.  This should be much better, and will also be the template for the by yeargroup api view to be finished today.
 
 %----------------------------------------------------------------------------------------
 %	FORMULAE AND MEDIA RECIPES

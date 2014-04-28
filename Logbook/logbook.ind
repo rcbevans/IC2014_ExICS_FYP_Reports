@@ -12,6 +12,11 @@
 
   \indexspace
 
+  \item Exam Data API Wrapper, \hyperpage{9}
+
+  \indexspace
+
+  \item Improved JSON Structure for API, \hyperpage{11}
   \item Initial Work on Creating an Android Chat App, \hyperpage{6}
   \item Introduction to logbook, \hyperpage{1}
 
@@ -19,6 +24,7 @@
 
   \item LDAP Authentication for websocket connection on node, 
 		\hyperpage{5}
+  \item Logbook Catchup, \hyperpage{11}
 
   \indexspace
 
@@ -27,6 +33,11 @@
   \indexspace
 
   \item Prior Work, \hyperpage{1}
+  \item Progress Meeting, \hyperpage{8}
+
+  \indexspace
+
+  \item Rewriting the API Wrapper, \hyperpage{10}
 
   \indexspace
 
