@@ -56,6 +56,7 @@
 \usepackage{float} % Required for specifying the exact location of a figure or table
 \usepackage{graphicx} % Required for including images
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{listings}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Command to make the lines in the title page
 % \setlength\parindent{0pt} % Removes all indentation from paragraphs
@@ -69,6 +70,16 @@
 \newexperiment{technology_investigation}{Technology Investigation}
 \newexperiment{day_heading}{Days Work}
 \newexperiment{auth}{System Authentication}
+
+\newexperiment{node_tutorial}{Node.JS Tutorial}
+\newexperiment{node_active_directory}{ActiveDirectory Authentication on Node.JS}
+
+\newexperiment{node_websockets_LDAP}{LDAP Authentication for websocket connection on node}
+
+\newexperiment{android_chat_initial}{Initial Work on Creating an Android Chat App}
+
+\newexperiment{android_chat_continued}{Continuation of Android Chat App}
+
 
 %---------------------------------------------------------------------------------------
 
@@ -177,6 +188,80 @@ Kerberos, used for single sign on, isn't what I want, and so I was left to inves
 
 https://github.com/gheeres/node-activedirectory
 
+%----------------------------------------------------------------------------------------
+
+\labday{Tuesday, 1 April 2014}
+
+\experiment{node_tutorial}
+
+In prior work I had rushed into quick investigations of the technologies I though would best suit the puposes of the project.  I am now going back to basics with Node.JS to begin with to get a better grasp of how it works and make sure I really understand node and how it works, and how best to use it.  The tutorials walked through writing basic console output, launching a basic HTTP server to listen on a port, through more advanced topics, async callback functions, creating node modules which can be included in apps and making use of post and get request parameters.
+
+\experiment{node_active_directory}
+
+Having got to grips with basic node.js topics, I moved on to investigate Active Exchange Authentication on Node.JS by creating a simple webpage on which you enter college credentials, and when submitted moves to a new page which does the LDAP authentication attempt and informs as to whether the LDAP auth was successful.
+
+I did this using the node-activedirectory library I found yesterday.
+
+I create an active directory object by binding to my own college credentials which are stored in their own node package to be included.  I then parse the received Post variables to extract the sent username and password, and do an LDAP authentication by attempting to bind the provided credentials.
+
+This took a couple of hours to get working but works successfully and was relatively simple.  I spent a while before realising that the credentials provided need to have a fully qualified username, i.e <uname>@IC.AC.UK.  Once I appended this to the passed username, the system worked perfectly.
+
+With the websocket aspect of the system working already following past work, and now college authentication working using LDAP, it should be possible to begin planning an implementation in greater detail.
+
+%----------------------------------------------------------------------------------------
+
+\labday{Thursday, 3 April 2014}
+
+\experiment{node_websockets_LDAP}
+
+At this point I have websockets working on both the node.js server, and in an Android application.  The behaviour of the websockets server can be verified through either a direct websockets connection such as using the chrome extension Dark WebSocket Terminal, or through a connection from an Android Application configured to connect to it.
+
+I will now attempt to create a sample hybrid application to figure out how to create a protocol handshake such that new users connecting to the server will authenticate with it and be kicked if they fail.  Only then they can proceed to communicate with other users via the server.  If they attempt to negotiate with the server without authenticating they should also be kicked.
+
+Great website for generating JSON strings easily: http://www.objgen.com/json
+
+I have designed the protocol to work with a structure such as below, where the header is defined, but the payload can vary according to the nature of the packet.
+
+\begin{lstlisting}
+header
+  type
+  sender
+  receiver
+payload
+  username
+  password
+  message
+ \end{lstlisting}
+
+ After a days work I have a server which is able to have multiple clients connect, authenticate them and kick if they misbehave.  Messages can be sent between connected users using the protocol laid out above.  Users can request to be disconnected from the server and it will be gracefully dealt with.
+
+ \labday{Wednesday, 9 April 2014}
+
+ \experiment{android_chat_initial}
+
+ Having had almost a week off through illness and being on holiday for my Birthday, I came back to uni to continue with work on the project.
+
+ With a working backend that has been verified by directly communicating using the websockets terminal in chrome, I began to work on an android application and basic user interfacce for a chat based application which allows me to pull in the work so far together to add android to the equation and see how that works out.
+
+ I am using a single android application containing a FragmentContainer that will be updated to show the user interface.  Initially I am working on being able to do the login to the system.
+
+ The user interface has two EditTexts, one for username, one for password.  When the Connect button is pressed the activity talks to the WebSocketClient class and negotiates a connection to the websocket server.  It then does the initial authentication protocol handshake, allowing it to be authenticated against the college LDAP server.
+
+ By the end of the day I have the user interface made up and the app is able to connect, authenticate (this shows on the server terminal out) and that is it.
+
+ \labday{Thursday, 10 April 2014}
+
+ \experiment{android_chat_continued}
+
+ Building on yesterday's work, I continued with the application, adding the actual chat screen itself with a simple scrollable TextView, an EditText for message input, and a submit button.  It is a very basic UI but is suitable for the purposes I need.
+
+ When the WebSocketClient connects to the node server, it authenticates the user and waits to receive a Success response from the server.  At this point the WebSocketClient makes a local broadcast that the app connection status has changed.  This is then picked up by the application UI which switches the login fragment for the chat fragment.  Whenever messages are received, the WebSocketClient processes it and pushes the new message onto the chatLog which is stored in the GlobalData class.  A local broadcast that a new message has been received is then pushed which again is picked up by the activity which triggers a refresh of the chat log text view.
+
+ When the user presses the back button, the WebSocketClient sends a disconnect request to the server and the application is closed.
+
+ There are many things I could tweak which from an application perspective would make more sense, customize websocket server address in settings, save username and password, adjust the UI itself to make it better, but for now the application serves its purpose just great.
+
+ I am happy with the progress that is being made.
 
 %----------------------------------------------------------------------------------------
 %	FORMULAE AND MEDIA RECIPES

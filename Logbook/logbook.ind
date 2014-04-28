@@ -1,10 +1,28 @@
 \begin{theindex}
 
+  \item ActiveDirectory Authentication on Node.JS, \hyperpage{4}
+
+  \indexspace
+
+  \item Continuation of Android Chat App, \hyperpage{7}
+
+  \indexspace
+
   \item Days Work, \hyperpage{2}
 
   \indexspace
 
+  \item Initial Work on Creating an Android Chat App, \hyperpage{6}
   \item Introduction to logbook, \hyperpage{1}
+
+  \indexspace
+
+  \item LDAP Authentication for websocket connection on node, 
+		\hyperpage{5}
+
+  \indexspace
+
+  \item Node.JS Tutorial, \hyperpage{4}
 
   \indexspace
 

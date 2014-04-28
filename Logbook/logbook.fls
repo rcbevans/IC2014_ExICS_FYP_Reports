@@ -67,6 +67,12 @@ INPUT /usr/share/texmf-dist/tex/latex/pdftex-def/pdftex.def
 INPUT /usr/share/texmf-dist/tex/latex/pdftex-def/pdftex.def
 INPUT /usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty
 INPUT /usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty
+INPUT /usr/share/texmf-dist/tex/latex/listings/listings.sty
+INPUT /usr/share/texmf-dist/tex/latex/listings/listings.sty
+INPUT /usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT /usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT /usr/share/texmf-dist/tex/latex/listings/listings.cfg
+INPUT /usr/share/texmf-dist/tex/latex/listings/listings.cfg
 INPUT /home/rich/FYP/FYP-Reports/Logbook/logbook.aux
 INPUT /home/rich/FYP/FYP-Reports/Logbook/logbook.aux
 OUTPUT /home/rich/FYP/FYP-Reports/Logbook/logbook.aux
