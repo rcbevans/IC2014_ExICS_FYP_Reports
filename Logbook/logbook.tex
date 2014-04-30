@@ -89,6 +89,9 @@
 \newexperiment{logbook_catchup}{Logbook Catchup}
 \newexperiment{improved_json_date}{Improved JSON Structure for API}
 
+\newexperiment{api_room_view}{Exam Data API Room View}
+\newexperiment{api_documentation}{API Documentation}
+
 %---------------------------------------------------------------------------------------
 
 \begin{document}
@@ -338,6 +341,25 @@ With the logbook caught up on, I am now going back to work on the API wrapper.  
 Currently the by date view relies on the original data being in ascending date order, I intend to remove this requirement.  The structure at the moment is that `dates' is a JSON array containing a series of objects containing `date' and an array of objects representing the exams.
 
 I intent to change `dates' to a JSON object containing a number of JSON Arrays, the keys to which are the exam dates.  This will allow for simple checking of ``if date in dates''.  For every exam data row parsed, I can therefore check if date is in dates, if so, push to existing array, else create and push.  This should be much better, and will also be the template for the by yeargroup api view to be finished today.
+
+I have rewritten the date api view already implemented such that the results are a JSON object containing a number of JSON arrays rather than a single array containing a number of exam objects.  The keys to the JSON arrays are the dates of the exam days.
+
+This new model has been carried forward to implement a new API view for `yeargroup'.  This view lists the exams grouped by the year group taking the exam based on the exam module code.
+
+\labday{Wednesday, 30 April 2014}
+
+\experiment{api_room_view}
+
+To start with I have used the same response design as year group view to implement the data in a view grouped by room.  I will now implement a view extension to the date view in which exams are subgrouped into morning or afternoon sessions.
+
+I have now implemented an API view where the exams are grouped by date, then subgrouped by morning or afternoon session with the time split between sessions defined as 13:00.
+
+\experiment{api_documentation}
+
+I decided that it would be useful to have an API documentation page which can be updated to show which API data views are available in a central location.  I implemented a new request handler for the API doc which serves up a HTML page with information regarding the API.  Should I change anything, this one page can now be updating avoiding the need to update users individually.
+
+The API documentation can be found at https://146.169.44.162:8443/examData/apidoc.
+
 
 %----------------------------------------------------------------------------------------
 %	FORMULAE AND MEDIA RECIPES

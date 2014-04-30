@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.4.28)  28 APR 2014 16:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.4.28)  30 APR 2014 16:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -295,20 +295,20 @@ Package: listings 2014/03/04 1.5c (Carsten Heinz)
 (C:/Users/Rich/Documents/FYP/FYP-Reports/Logbook/logbook.aux)
 \openout1 = `logbook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 97.
 \AtBeginShipoutBox=\box31
 (c:/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -317,7 +317,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-Package hyperref Info: Link coloring ON on input line 94.
+Package hyperref Info: Link coloring ON on input line 97.
 (c:/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (c:/texlive/2013/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -325,9 +325,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count119
 )
-LaTeX Info: Redefining \ref on input line 94.
-LaTeX Info: Redefining \pageref on input line 94.
-LaTeX Info: Redefining \nameref on input line 94.
+LaTeX Info: Redefining \ref on input line 97.
+LaTeX Info: Redefining \pageref on input line 97.
+LaTeX Info: Redefining \nameref on input line 97.
 (C:/Users/Rich/Documents/FYP/FYP-Reports/Logbook/logbook.out) (C:/Users/Rich/Do
 cuments/FYP/FYP-Reports/Logbook/logbook.out)
 \@outlinefile=\write4
@@ -361,9 +361,9 @@ e
 ))
 \c@lstlisting=\count126
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 111.
+(Font)              <14.4> on input line 114.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 111.
+(Font)              <7> on input line 114.
 [1
 
 
@@ -390,13 +390,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 ] [1
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 157.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 160.
 
 (c:/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 157.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 160.
 [2] [3] [4
 
 ] [5
@@ -413,23 +413,31 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 
 ] [11
 
-] [12
+]
+Overfull \hbox (10.9838pt too wide) in paragraph at lines 361--362
+[]\OT1/cmr/m/n/10.95 The API doc-u-men-ta-tion can be found at https://146.169.
+44.162:8443/examData/apidoc. 
+ []
+
+[12
+
+] [13
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 380.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 380.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 402.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 402.
 (C:/Users/Rich/Documents/FYP/FYP-Reports/Logbook/logbook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 380.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 380.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 402.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 402.
 Package rerunfilecheck Info: File `logbook.out' has not changed.
-(rerunfilecheck)             Checksum: 1AEE31176DD9612B290D2D881808FC8E;1671.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 380.
+(rerunfilecheck)             Checksum: 113AEFC9A6B54345FF46BCDFEF886930;1879.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 402.
  ) 
 Here is how much of TeX's memory you used:
- 8406 strings out of 493308
- 129871 string characters out of 6141367
- 352917 words of memory out of 5000000
- 11729 multiletter control sequences out of 15000+600000
+ 8420 strings out of 493308
+ 130129 string characters out of 6141367
+ 354009 words of memory out of 5000000
+ 11738 multiletter control sequences out of 15000+600000
  10330 words of font info for 36 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  41i,8n,55p,720b,852s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -441,10 +449,10 @@ e1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2013/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmssbx10.pfb><c:/texlive/2013/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb>
 Output written on C:/Users/Rich/Documents/FYP/FYP-Reports/Logbook/logbook.pdf (
-16 pages, 111856 bytes).
+17 pages, 113808 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
- 62 named destinations out of 1000 (max. 500000)
- 193 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 282 PDF objects out of 1000 (max. 8388607)
+ 253 compressed objects within 3 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 217 words of extra memory for PDF output out of 10000 (max. 10000000)
 
