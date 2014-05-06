@@ -25,3 +25,7 @@
 \contentsline {chapter}{\nonumberline Wednesday, 30 April 2014}{12}{chapter*.11}
 \contentsline {experiment}{\numberline {1}Exam Data API Room View}{12}{experiment.10.1}
 \contentsline {experiment}{\numberline {2}API Documentation}{12}{experiment.10.2}
+\contentsline {chapter}{\nonumberline Friday, 2 May 2014}{13}{chapter*.12}
+\contentsline {experiment}{\numberline {1}ExICS Exam Data View}{13}{experiment.11.1}
+\contentsline {chapter}{\nonumberline Tuesday, 6 May 2014}{14}{chapter*.13}
+\contentsline {experiment}{\numberline {1}Advanced ExICS Exam Data View}{14}{experiment.12.1}

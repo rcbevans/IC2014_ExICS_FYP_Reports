@@ -92,6 +92,10 @@
 \newexperiment{api_room_view}{Exam Data API Room View}
 \newexperiment{api_documentation}{API Documentation}
 
+\newexperiment{exics_exam_data_view}{ExICS Exam Data View}
+
+\newexperiment{exics_advanced_view}{Advanced ExICS Exam Data View}
+
 %---------------------------------------------------------------------------------------
 
 \begin{document}
@@ -360,6 +364,17 @@ I decided that it would be useful to have an API documentation page which can be
 
 The API documentation can be found at https://146.169.44.162:8443/examData/apidoc.
 
+\labday{Friday, 2 May 2014}
+
+\experiment{exics_exam_data_view}
+
+Today I extended the existing API data views to add one which is best for my system.  Returns a stright up array of all exams which are listed by the original CSV API.  The format slightly differs to the other API's, however.  Instead of giving the date and start time as they were, it creates a date object which is represented in ISO standard JSON form for compatibility in Zulu time.  It also contains an array of rooms which the exams are taking place in, and module names.
+
+\labday{Tuesday, 6 May 2014}
+
+\experiment{exics_advanced_view}
+
+Having sketched up a preliminary system design, I decided it would reduce complexity in the back end system, improving performance if it was possible to query the API for a specific session, specifying beginning and end and only having dates within that session returned.
 
 %----------------------------------------------------------------------------------------
 %	FORMULAE AND MEDIA RECIPES
