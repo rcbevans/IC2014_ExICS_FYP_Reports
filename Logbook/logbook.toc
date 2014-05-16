@@ -29,3 +29,16 @@
 \contentsline {experiment}{\numberline {1}ExICS Exam Data View}{13}{experiment.11.1}
 \contentsline {chapter}{\nonumberline Tuesday, 6 May 2014}{14}{chapter*.13}
 \contentsline {experiment}{\numberline {1}Advanced ExICS Exam Data View}{14}{experiment.12.1}
+\contentsline {chapter}{\nonumberline Thursday, 8 May 2014}{15}{chapter*.14}
+\contentsline {experiment}{\numberline {1}Exam Seating Plan API}{15}{experiment.13.1}
+\contentsline {chapter}{\nonumberline Friday, 9 May 2014}{16}{chapter*.15}
+\contentsline {experiment}{\numberline {1}Progress Meeting With Mark}{16}{experiment.14.1}
+\contentsline {experiment}{\numberline {2}Improving the Seating Plan API}{16}{experiment.14.2}
+\contentsline {experiment}{\numberline {3}Rewriting the ExICS Server Code}{17}{experiment.14.3}
+\contentsline {chapter}{\nonumberline Tuesday, 13 May 2014}{18}{chapter*.16}
+\contentsline {experiment}{\numberline {1}Further Work on the ExICS Server}{18}{experiment.15.1}
+\contentsline {chapter}{\nonumberline Wednesday, 14 May 2014}{19}{chapter*.17}
+\contentsline {experiment}{\numberline {1}Populating the ExICS System Exam Data from Data API}{19}{experiment.16.1}
+\contentsline {chapter}{\nonumberline Thursday, 15 May 2014}{20}{chapter*.18}
+\contentsline {experiment}{\numberline {1}Further work on server}{20}{experiment.17.1}
+\contentsline {experiment}{\numberline {2}Rewriting the Logger}{20}{experiment.17.2}

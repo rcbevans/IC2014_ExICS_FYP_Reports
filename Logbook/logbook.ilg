@@ -1,4 +1,6 @@
 This is makeindex, version 2.15 [TeX Live 2010] (kpathsea + Thai support).
-Scanning input file logbook.idx...done (0 entries accepted, 0 rejected).
-Nothing written in logbook.ind.
+Scanning input file logbook.idx....done (54 entries accepted, 0 rejected).
+Sorting entries....done (323 comparisons).
+Generating output file logbook.ind....done (66 lines written, 0 warnings).
+Output written in logbook.ind.
 Transcript written in logbook.ilg.

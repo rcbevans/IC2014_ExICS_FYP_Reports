@@ -96,6 +96,20 @@
 
 \newexperiment{exics_advanced_view}{Advanced ExICS Exam Data View}
 
+\newexperiment{seating_plan_api}{Exam Seating Plan API}
+
+\newexperiment{meeting_with_mark_progress}{Progress Meeting With Mark}
+\newexperiment{seating_plan_api_doc_course}{Improving the Seating Plan API}
+\newexperiment{rewriting_the_ExICS_Server}{Rewriting the ExICS Server Code}
+
+\newexperiment{further_ExICS_development}{Further Work on the ExICS Server}
+
+\newexperiment{populating_exam_data_from_backend_api}{Populating the ExICS System Exam Data from Data API}
+
+\newexperiment{further_work_15_may}{Further work on server}
+\newexperiment{rewriting_the_logger}{Rewriting the Logger}
+
+
 %---------------------------------------------------------------------------------------
 
 \begin{document}
@@ -239,13 +253,13 @@ I have designed the protocol to work with a structure such as below, where the h
 
 \begin{lstlisting}
 header
-  type
-  sender
-  receiver
+  type = 
+  sender = 
+  receiver = 
 payload
-  username
-  password
-  message
+  username = 
+  password = 
+  message = 
  \end{lstlisting}
 
  After a days work I have a server which is able to have multiple clients connect, authenticate them and kick if they misbehave.  Messages can be sent between connected users using the protocol laid out above.  Users can request to be disconnected from the server and it will be gracefully dealt with.
@@ -375,6 +389,104 @@ Today I extended the existing API data views to add one which is best for my sys
 \experiment{exics_advanced_view}
 
 Having sketched up a preliminary system design, I decided it would reduce complexity in the back end system, improving performance if it was possible to query the API for a specific session, specifying beginning and end and only having dates within that session returned.
+
+\labday{Thursday, 8 May 2014}
+
+\experiment{seating_plan_api}
+
+Mark has provided me a sample data source of seating data for last years exam session in tab separated value form.  In order to have access to this data programatically I have created an API which allows the data to be retrieved in JSON format and filtered by API parameters passed.  Currently I have implemented beginning and end of sessions and filtering by room the exam is being taken in.
+
+\labday{Friday, 9 May 2014}
+
+\experiment{meeting_with_mark_progress}
+
+Having been busy working on APIs and not seeing Mark in a while, I met him for a progress meeting to discuss what I have done so far, any improvements of changes that could be made, my plan going forward, and goals.
+
+The APIs I have created were received positively with a suggestion that for seating plans, accessing it and being able to filter by course could be useful.
+
+My plan for the backend system is to fetch data from the exam data API as required to try and ensure it is as up to date as it possibly can be.
+
+The running exams will be stored in an array or hashmap containing the exam status for the system.  As exams are started, these objects will be updated, and when finished they can be removed and pushed to a MongoDB database making the data persistent.
+
+We discussed the benefits of a having a server log which records when any status changes are made and can be used to help diagnose and potential server issues.  This will in instead of/as well as the console log which I am currently using for checking system status.
+
+Connected clients will be stored in an array as they are authenticated, allowing iteration to share updates with all clients.
+
+Last time of update will be logged to ensure the examData is fetched only once as required per session.
+
+I am currently unsure what I will do about seating plan information now I have the data available, whether to fetch it at the same time as the examData itself, or fetch on demand for whichever client wants it.
+
+With regards to taking the register for those in the exam, Mark expressed an interest in a very simple interface where the details of the student appear onscreen and if all is well, the user just swipes left to advance to the next seat.  Only if something is amiss does the user have to tap a button on screen to make a note that a student was absent etc.
+
+\experiment{seating_plan_api_doc_course}
+
+Following the meeting with Mark, when I got home I continued work on the seating plan API.  I addded an extra API parameter for specifying course name and wrote an extra apiDoc page which details the seating plan API and how to use it.
+
+\experiment{rewriting_the_ExICS_Server}
+
+I had already written a large body of code for the ExICS server which was functioning correctly.  It was, however, written in a couple of big long horrible scripts.  My first step was to break the code down into several much smaller modules responsible for individual aspects of server functionality.
+
+I broke the code down and migrated it across into the correct part of the new codebase.  I then went through and modified the existing references in the code to fit the new modular design.
+
+I then decided a few loose global scope variables were not the best way to hold the system state and so implemented a singleton object for holding and mutating such data.
+
+\labday{Tuesday, 13 May 2014}
+
+\experiment{further_ExICS_development}
+
+Having done the migration to the new codebase structure, it was necessary to test that it maintained the correct functionality from before.  To begin with I worked through a websocket terminal to directly send messages to the server and inspect the responses.
+
+Once I could verify the server behaviour using the websockets terminal, I rebuilt the original Android application I had working with the past version and updated the server URL to point to the new server port.  Again, the app worked correctly and so I could move on to implementing new functionality and restructuring the existing code.
+
+I restructured some of the existing code so it made more sense structurally, separating unathorised and authorised behaviour, and improving readability.
+
+I began to implement the data fetch and synchronization from the exam data API.  This involves three markers, morning session begin, morning session end/afternoon session begin, and afternoon session end.  There is an object which logs when the last synchronization was completed.  Using this infomation the system can track whether an update is required, and if so, update the system state accordingly.
+
+\labday{Wednesday, 14 May 2014}
+
+\experiment{populating_exam_data_from_backend_api}
+
+With the basic structure for calculating exam session and fetching data from the API accordingly, I have created a means of injecting ``Mock'' data information into the system, so that I can ensure data will be fetched from the API by forcing the system to a day and session which has exam data in the API data source.
+
+Today has been very productive.  I can now synchronize data from the feeding API to hold in the system.  I have written the code to check if synchronization is necessary, and if it is, fetch the data from the feeder API, process it and store it as an internal system state.
+
+I have extended the system protocol to add new packets for starting and stopping exams, I have changed the design so that once authenticated, you receive the current running exams and connected users, as well as their rooms.  I improved system stability, added a spin lock for receiving refreshed exam information so you can't receive it while the data is being modified.
+
+I've remoddelled some of the packet designs for what is contained within different types of message.  This is and will still be a work in progress as things progress.
+
+Modified some of the behaviour to use objects for example instead of arrays for connectedClients.  This allows me to take advantage of the hashmap structure to directly access sockets for a known user instread of traversing the array to find the socket, boosting performance.
+
+\labday{Thursday, 15 May 2014}
+
+\experiment{further_work_15_may}
+
+I have been through the source code and tidied it up, refactored slightly to improve readability and code performance, as well as removing node module files which were created but aren't actually being used.
+
+With the codebase looking tidier, I continued to add functionality to the system.
+
+I modified the examData API exics view so that exam objects use a single string for the exam/submodule tag, rather than an array of the various names a module may have, as this isn't really important for the system and removes complexity.
+
+With the API modified, I completed the code for synchronizing with the server, fixing a couple of bugs and redesigning the locking mechanism to boost performance.
+
+With this working, I implemented new functionality to start, pause, stop and add extra time to exams.
+
+I fixed some behavioural bugs with users termimating connections which was causing the server to crash by trying to send updates to sockets which had already been closed following a request from the client.  This was caused by a change in how the connectedClients object was updated to track rooms as well as sockets for connected users.
+
+I went through and improved some logging for the system to better record events happening in the system, allowing verification of intended behaviour.
+
+\experiment{rewriting_the_logger}
+
+I decided now would be a good time to polish up the system a bit more and rewrite the logger.  So far, all that was done for logging through my logger was that it would prepend a message that was to be logged with a ISO standard dateTime stamp before writing it to the console.
+
+This was fine up until now but I want to start improving the system and making it more polished.  To do this, I have completely rewritten the logger.
+
+The logger is implemented as a singleton object which when created, opens a write stream to a log file in logs/<date>/<ISO\_timestamp>.txt.  There are a number of log levels specified, and the default can be set when the object is first instantiated.
+
+A log message can be recorded using log([level], message).  With this, if a log level parameter, either numeric or in text form, it will be logged to both the console, and the log file with the timestamp and log level specified.
+
+I added some code to do some last minute processing, like closing the log gracefully before the process exits.
+
+I had a couple of bugs to fix with file permissions for creating folders, and it took me a while to figure out I couldn't open the log files on windows as files can't contain `:'.  I fixed the issue by replacing `:' characters with `.'.
 
 %----------------------------------------------------------------------------------------
 %	FORMULAE AND MEDIA RECIPES
