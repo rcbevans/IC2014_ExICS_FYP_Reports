@@ -20,8 +20,8 @@
 \contentsline {section}{\numberline {3.2}Available Implementation Technologies}{15}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Network Communication Channels}{15}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Websocket Server}{15}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Data Store}{16}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Security}{17}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.3}Data Store}{17}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Security}{18}{subsection.3.2.4}
 \contentsline {subsection}{\numberline {3.2.5}Client Application}{19}{subsection.3.2.5}
 \contentsline {chapter}{\numberline {4}Exam Data API Wrappers}{20}{chapter.4}
 \contentsline {chapter}{\numberline {5}ExICS Server}{22}{chapter.5}

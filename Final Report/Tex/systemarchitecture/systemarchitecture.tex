@@ -55,6 +55,8 @@ Node has a incredibly diverse range of libraries available through NPM (Node Pac
 
 After following a number of tutorials, and finding a number of guides on how to very quickly get up and running with Node.JS and Websockets, I decided Node.JS offered a solid, easy to use and scalable platform to work with.
 
+With this I began to investigate Websocket libraries to use with Node.JS to create the websocket server to begin building from.  There were many available throught the NPM such as websocket, nodejs-websocket and ws, all of which pass the extensive Autobahn Websockets conformance tests and offered both server and client support for testing purposes.
+
 \subsection{Data Store}
 
 After deciding that I would proceed with developing using Node.JS for server side development, I needed to investigate a database which could be used for storing persistent data in the system, for example the details of exams which are logged after completing, or student registers taken by invigilators and notes made during examinations.
@@ -89,4 +91,4 @@ Looking through the package listings available through NPM I found activedirecto
 
 As discussed in the background section of this report, it was decided during the initial investigation into the requirements and specification of the project that Android would be the chosen platform for the (initial) development of the ExICS client.
 
-Whilst 
+It was therefore necessary to find a suitable websockets library for use in the Android application.  Whilst there are a number of Websocket libraries written in Java which may have been suitable for my purposes, one which was frequently mentioned as being very compliant and easy to work with was Autobahn Android. 
