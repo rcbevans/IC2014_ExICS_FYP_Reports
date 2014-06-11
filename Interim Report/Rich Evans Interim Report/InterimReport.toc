@@ -20,5 +20,5 @@
 \contentsline {subsection}{\numberline {2.5.1}System Block Diagram}{14}
 \contentsline {subsection}{\numberline {2.5.2}Android Client GUI}{14}
 \contentsline {chapter}{\numberline {3}Project Plan}{21}
-\contentsline {chapter}{\numberline {4}Evaluation Plan}{22}
-\contentsline {chapter}{\numberline {A}Web Survey Results}{23}
+\contentsline {chapter}{\numberline {4}Evaluation Plan}{23}
+\contentsline {chapter}{\numberline {A}Web Survey Results}{24}

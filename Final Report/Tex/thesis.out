@@ -1,0 +1,31 @@
+\BOOKMARK [0][-]{Doc-Start}{Abstract}{}% 1
+\BOOKMARK [0][-]{Doc-Start}{Acknowledgements}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Motivation and Objectives}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 5
+\BOOKMARK [1][-]{section.2.1}{System Requirements}{chapter.2}% 6
+\BOOKMARK [2][-]{subsection.2.1.1}{Initial Research}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.2}{Further Research}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.3}{Research Results Analysis and Requirements}{section.2.1}% 9
+\BOOKMARK [1][-]{section.2.2}{Available Data}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.1}{Confidentiality of Data}{section.2.2}% 11
+\BOOKMARK [1][-]{section.2.3}{Existing Infrastructure}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.3.1}{Server Hosting}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.2}{Network Communication}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.3}{System Security}{section.2.3}% 15
+\BOOKMARK [0][-]{chapter.3}{System Architecture}{}% 16
+\BOOKMARK [1][-]{section.3.1}{System Diagram}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{Available Implementation Technologies}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.2.1}{Network Communication Channels}{section.3.2}% 19
+\BOOKMARK [2][-]{subsection.3.2.2}{Websocket Server}{section.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.2.3}{Data Store}{section.3.2}% 21
+\BOOKMARK [2][-]{subsection.3.2.4}{Security}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.5}{Client Application}{section.3.2}% 23
+\BOOKMARK [0][-]{chapter.4}{Exam Data API Wrappers}{}% 24
+\BOOKMARK [0][-]{chapter.5}{ExICS Server}{}% 25
+\BOOKMARK [0][-]{chapter.6}{ExICS Client}{}% 26
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 27
+\BOOKMARK [1][-]{section.7.1}{Summary of Thesis Achievements}{chapter.7}% 28
+\BOOKMARK [1][-]{section.7.2}{Applications}{chapter.7}% 29
+\BOOKMARK [1][-]{section.7.3}{Future Work}{chapter.7}% 30
+\BOOKMARK [0][-]{section.7.3}{Bibliography}{}% 31

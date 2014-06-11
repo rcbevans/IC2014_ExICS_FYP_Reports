@@ -1,0 +1,95 @@
+Title page - Done
+
+Abstract - Done
+
+Acknowledgements - Done
+
+Contents Page - Auto-generated
+	
+Introduction - To-Do
+	- Motivation and Objectives
+	
+Background - To-Do
+	- System Requirements
+		- Initial Research
+		- Further Research
+		- Research Results Analysis and Requirements
+	
+	- Available Data
+		- Confidentiality of Data
+
+	- Existing Infrastructure
+		- Server Hosting
+		- Network Communication
+		- System Security
+
+System Architecture
+	- Diagram of server
+
+	- Available technologies
+		- Web Servers
+			- Apache/Tomcat
+				- PHP
+				- HTML etc
+			- Node.JS
+		- Data Store
+			- SQL
+				- MySQL
+			- NoSQL
+				- Couch DB
+				- MongoDB
+		- Network Protocols
+			- AJAX
+			- Websockets
+				- Socket.IO
+				- Autobahn Android
+
+	- Server
+		- Node.JS
+		- Single threaded execution, 
+
+	- Security
+		- LDAP
+
+	- Database
+		- Mongo DB
+
+	- Data Feed
+		- Exams
+		- Seating plans
+		- API Wrapper, CSV to JSON
+
+	- Client-Server Communication
+		- Websockets
+		- ExICS API
+
+	- Client
+		- Android SDK
+		- Autobahn.android
+
+API Wrappers
+
+Server
+	- 
+	- 
+	- 
+
+Client
+	- Multiple device support
+	- User interface
+	- Chat log
+	- Navigation drawer
+	- Usability
+	- 
+
+Evaluation - To-Do
+
+Conclusions and Future Work - To-Do
+
+Bibliography
+
+Appendix
+	
+User Guide - To-Do
+
+-- Program Listings?

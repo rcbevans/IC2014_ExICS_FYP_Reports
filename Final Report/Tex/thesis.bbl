@@ -1,0 +1,63 @@
+\begin{thebibliography}{MIT14}
+
+\bibitem[Cap13]{whyNodeJS}
+Tomislav Capan.
+\newblock Why the hell would i use node.js? a case-by-case introduction.
+\newblock \url{http://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js},
+  2013.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[der08]{sepofconcerns}
+derekgreer.
+\newblock The art of separation of concerns.
+\newblock
+  \url{http://aspiringcraftsman.com/2008/01/03/art-of-separation-of-concerns/},
+  2008.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[ghe14]{activedirectory}
+gheeres.
+\newblock activedirectory.
+\newblock \url{https://www.npmjs.org/package/activedirectory}, 2014.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[Inc14]{nodeJS}
+Joyent Inc.
+\newblock Node {JS}.
+\newblock \url{http://nodejs.org/about/}, 2014.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[Jon12]{databaseChoice}
+Rich Jones.
+\newblock 6 tips for hiring a nodejs developer.
+\newblock \url{https://gun.io/blog/6-tips-for-hiring-a-node-js-developer/},
+  2012.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[MIT14]{whatiskerberos}
+MIT.
+\newblock What is kerberos?
+\newblock \url{http://web.mit.edu/kerberos/#what_is}, 2014.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[Roo13]{explainlikeIm5}
+Lynn Root.
+\newblock Explain like i’m 5: Kerberos.
+\newblock \url{http://www.roguelynn.com/words/explain-like-im-5-kerberos/},
+  2013.
+\newblock Accessed: 2014-06-11.
+
+\bibitem[Tsc06]{httpabuse}
+Ronald Tschalär.
+\newblock Full-duplex channel over {HTTP}.
+\newblock \url{http://www.innovation.ch/java/HTTPClient/fullduplex.html},
+  September 2006.
+\newblock Accessed: 2014-28-01.
+
+\bibitem[xPH14]{lpAjax}
+xPHP.
+\newblock Long polling with {AJAX} and {PHP}.
+\newblock \url{http://www.xphp.info/php-tutorial/long-polling/}, 2014.
+\newblock Accessed: 2014-28-01.
+
+\end{thebibliography}

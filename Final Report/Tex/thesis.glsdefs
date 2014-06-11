@@ -1,0 +1,30 @@
+\ifglsentryexists{ExICS}{}%
+{%
+\gls@defglossaryentry{ExICS}%
+{%
+name={ExICS},%
+sort={ExICS},%
+type={main},%
+first={Exam Invigilator Communication System (ExICS)},%
+firstplural={Exam Invigilator Communication Systems(ExICSs)},%
+text={ExICS},%
+plural={ExICSs},%
+description={Exam Invigilator Communication System},%
+descriptionplural={Exam Invigilator Communication System\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Exam Invigilator Communication System},%
+longplural={Exam Invigilator Communication Systems},%
+short={ExICS},%
+shortplural={ExICSs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

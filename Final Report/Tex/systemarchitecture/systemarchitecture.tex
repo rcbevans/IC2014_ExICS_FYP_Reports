@@ -1,0 +1,92 @@
+\chapter{System Architecture}
+
+\label{ch:systemarchitecture}
+
+This chapter will give an overview of the system architecture chosen to implement ExICS (Exam Invigilator Communication System) and the choices made as to which technologies would be employed to create each part of the system and the reasoning.
+
+\section{System Diagram}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"System Diagram/exics_system_diagram"}
+	\caption{System Diagram}
+	\label{fig:system_diagram}
+\end{figure}
+
+Figure \ref{fig:system_diagram} shows the system architecture used in designing ExICS.  It makes use of existing college and departmental infrastucture to simplify the system implementation.
+
+As mentioned in the background section of this report, the College offers an authentication system in the form of both Kerberos and LDAP.  It also offers a firewall protecting internal traffic from outsider snooping of traffic, as well as allowing those outside the College network to connect securely through VPN.  These existing tools are used to simplify security considerations of the system, allowing the focus of development to be on functionality and user experience.
+
+The Department of Computing departmental servers also hold the exam schedule, seating plan and other information required to power ExICS.  These existing data sets and APIs exposing information are used to simplify integration of the system such that current means of storing and sharing exam schedule information do not need to change.
+
+\FloatBarrier
+
+\section{Available Implementation Technologies}
+
+With the design of the system components decided, it was then necessary to investigate, consider and choose the technologies which would be employed to build the system.
+
+\subsection{Network Communication Channels}
+
+The most fundemental part of ExICS is the communication channel used for client-server communication.  It is the fabric that enables messages to be shared and system state to be updated.
+
+For this purpose two potential options were considered, AJAX and Websockets, with Websockets being chosen as most suitable for the needs of the system from both a functionality and performance perspective.
+
+WebSocket was developed as part of the HTML5 initiative and introduced the WebSocket JavaScript interface, defining a full-duplex single socket connection over which messages can be sent between client and server.
+
+HTTP was designed as a request/response protocol bringing great complexity in cases where bi-directional communication was required.  The protocol was designed such that a client sends a request to the server and when and only when the request has been completely received, the server sends its response. As a result there are many techniques, or some may say 'hacks'\cite{httpabuse}, which have been employed to provide the illusion of full-duplex communication between client and server such as long-polling using AJAX\cite{lpAjax}.
+
+WebSocket is purposefully designed to provide the functionality designed by modern real-time web applications and so made perfect sense for use in this project.
+% 
+% By design, WebSocket is designed with a subscription model.  Any clients connecting subscribe to the Socket and the WebSocket server simply re-emits any received messages to all users.  This is not optimal behaviour though as in some cases, such as when a message has a specific intended recipient, bandwidth is wasted in transmitting to all users.  This is not disasterous as it is possible to simply process the received message payload on the client device and establish in the client-side software if the current device is the intended recipient.
+
+\subsection{Websocket Server}
+
+There are a number of mature web socket platforms which are used in a wide range of scenarios which could have been suitable for use in ExICS.
+
+Having experience with Apache servers running PHP during my six month placement, my first instinct was to consider the platform for use in the back end server.  I began researching Apache and PHP for use with websockets and found that whilst there were a number of sources of tutorials and information on using websockets with PHP a great many recommended other technologies to implement the server with better support, functionality and more geared towards persistant connections; which PHP is not.
+
+While searching for alternatives, I found a large number of websocket implementations which were highly recommended, in a large number of languages ranging from Python and Ruby, to Java and Javascript.
+
+One such platform very highly recommended for scenarios such as that of ExICS \cite{whyNodeJS} is Node.JS, a platform built on Chrome's Javascript runtime, designed for building fast, scalable network applications.  It uses an event driven non-blocking I/O model making it lightweight and efficient and perfect for data-intensive real time applications running across distributed devices.\cite{nodeJS}
+
+Node has a incredibly diverse range of libraries available through NPM (Node Package Manager), bringing support for a huge range of additional technologies such as Websocket servers and LDAP connectors, is stable and mature with a large amount of reference material, and being written in Javascript, is incredible easy to work with and fast to develop.
+
+After following a number of tutorials, and finding a number of guides on how to very quickly get up and running with Node.JS and Websockets, I decided Node.JS offered a solid, easy to use and scalable platform to work with.
+
+\subsection{Data Store}
+
+After deciding that I would proceed with developing using Node.JS for server side development, I needed to investigate a database which could be used for storing persistent data in the system, for example the details of exams which are logged after completing, or student registers taken by invigilators and notes made during examinations.
+
+NPM gives access to an incredible range of database drivers for both relational structured database engines such as mySQL or postgresSQL, as well as non-relational noSQL such as mongoDB or couchDB.
+
+Unfamiliar with the differences between SQL and noSQL database engines, I soon found that noSQL database engines such as mongoDB and couchDB are highly praised and recommended by those who work with node on a regular basis, judging by the answers and opinions of those on StackOverflow, however they stressed that the choice is a matter of preference and, whilst there may be a \textit{wrong} choice, there is often no \textit{right} one.\cite{databaseChoice}
+
+With this in mind I looked into a number of the database drivers for Node, compared the style of writing the queries and the functionality they offered and decided I would progress making use of MongoDB thanks to its mature community and documentation, extensive functionality and incredible ease of use.
+
+MongoDB stores its data in ``collections'' of documents, rather than in tables of data, playing incredibly nicely with Javascript as it means javascript objects, such as an exam object can be directly stored, with key value pairs of properties being searchable as well as indexable.  MongoDB also offers a RESTful API allowing documents stored to be manipulated directly using HTTP from remote clients.  This would allow any data created, stored and manipulated by ExICS to be retrievable from other software wishing to access it.
+
+\subsection{Security}
+
+As mentioned in the background, College ICT offers three means of authorizing and authenticating members of the College; Kerberos, LDAP (Lightweight Directory Access Protocol) and directly using Microsoft Active Directory.
+
+Kerberos is a network authentication protocol, designed to provide strong authentication for client-server applications using cryptography.\cite{whatiskerberos}  Kerberos makes use of tickets which are issued by a trusted ticket granting server, in this case, College ICT server, which can be passed to subsequent services such as new servers or webpages within a kerberos realm and verified by the new service to be valid, thus authenticating the user as someone authrorised to access the resource.\cite{explainlikeIm5}
+
+A benefit of kerberos is that College credentials need only be shared with a trusted verifiable server; the kerberos server, not with ExICS itself.  This would simplify ExICS as all that needs to be implemented in the server is verification of authorization tickets received from connected clients referred on from the kerberos ticket server.
+
+Using kerberos, however, would require time and effort on the part of the College IT department to configure test and verify the system before it would be usable with ExICS.
+
+LDAP, in contrast is a protocol giving the means to query directory servers, a type of heirarchical NoSQL storage where data for individuals in an organisation are stored in a tree structure as an object containing a collection of name value pairs.
+
+With LDAP and Active Directory, you are able to perform a number of actions such as verifying user credentials, querying user groups and other attributes belonging to that user.
+
+Having investigated all three possibilities, I found that Node.JS provided libraries offering full functionality for all three means of authentication.  With Kerberos it would have complicated the client application with additional code necessary to negotiate and obtain authorization tickets and so decided that it would be best for my needs to have ExICS handle authentication of connecting users internally using the college LDAP or Active Directory services available.
+
+Looking through the package listings available through NPM I found activedirectory, an ldapjs client for authN (authentication) and authZ (authorization) for Microsoft Active Directory with range retrieval support for large Active Directory installations.\cite{activedirectory}  This looked like it was easy to use and offered all the functionality necessary for authenticating users with good documentation available.
+
+\subsection{Client Application}
+
+As discussed in the background section of this report, it was decided during the initial investigation into the requirements and specification of the project that Android would be the chosen platform for the (initial) development of the ExICS client.
+
+Whilst 

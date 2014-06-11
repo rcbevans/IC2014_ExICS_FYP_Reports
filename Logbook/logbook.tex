@@ -109,6 +109,12 @@
 \newexperiment{further_work_15_may}{Further work on server}
 \newexperiment{rewriting_the_logger}{Rewriting the Logger}
 
+\experiment{android_app_ui_experiment}{Investigation into Android UI}
+
+\experiment{android_app_start}{Starting work on the Android App}
+
+\experiment{android_app_continued}{Continuation of Android App}
+
 
 %---------------------------------------------------------------------------------------
 
@@ -487,6 +493,24 @@ A log message can be recorded using log([level], message).  With this, if a log 
 I added some code to do some last minute processing, like closing the log gracefully before the process exits.
 
 I had a couple of bugs to fix with file permissions for creating folders, and it took me a while to figure out I couldn't open the log files on windows as files can't contain `:'.  I fixed the issue by replacing `:' characters with `.'.
+
+\labday{Friday, 16 May 2014}
+
+\experiment{android_app_ui_experiment}
+
+The server is more or less up and running as expected for now and I am ready to begin writing the android client side app for the system.  I have ideas for how I want the android app to look involving swipe views and navigation drawers.  Before jumping into coding I have started by looking at tutorials on android development with regards to user interfaces, split pane views and gesture recognizers so that left and right swipe gestures can be recognized and the UI updated accordingly.
+
+This involved learning about fragments as these are the main UI views modern Android applications utilise.  This makes it easy to specify differing user interfaces across device types and screen orientations.
+
+\labday{Tuesday, 20 May 2014}
+
+\experiment{android_app_start}
+
+Having experimented with different user interface designs, fragments, split pane views and navigation drawers, I am now ready to start writing the ExICS app properly.  I am planning on writing from the ground up with clean code of a production standard, handling different screne orientations and device types properly.
+
+\labday{Wednesday, 21 May 2014}
+
+\experiment{android_app_continued}
 
 %----------------------------------------------------------------------------------------
 %	FORMULAE AND MEDIA RECIPES

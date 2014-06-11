@@ -1,0 +1,13 @@
+\chapter{Exam Data API Wrappers}
+
+\label{ch:apiwrappers}
+
+With the technologies making up each component of the system decided, Node.JS for back-end server, Android for the client application , it was necessary to consider how the various aspects of the exam and invigilation system would be pulled in to populate it.
+
+DoC (Department of Computing) already had an API accessible which could be queried and exposed the exam schedule for the exam session with information such as start and finish times, module codes, number of questions etc. and provided the information necessary to adequately represent system state in the server.
+
+Similarly available was a seating plan for the exam session with CIDs and seat numbers for each exam, but there was no API exposing it, partially because CID numbers and seat numbers are protected until the morning of the exam, and couldn't be shared even with the data being from a previous exam season.  As a result, what was provided to me by the department was a tab separated value file with mock data such as CIDs for each seat in the exams provided through the exam schedule API.
+
+Since all data was provided in tab separated value form, and so more obtuse to work with, and with the principle of separation of concerns \cite{sepofconcerns} in mind, I decided to implement a separate API server capable of transforming the provided TSV (Tab Separated Value) data provided to work with into a more usable JSON format with the ability to filter and refine results, such as select a period of time within which to return results, or narrow seating plans down to those in a particular room.
+
+By transforming the data into JSON and using a separate API server, also implemented in Node.JS, other systems could make use of the data, and if at a later stage the DoC servers were updated to offer a JSON API or even extended to provide more data, ExICS URLs (Uniform Resource Locator) could simply be updated to point to the new data source, without breaking any existing functionality.
