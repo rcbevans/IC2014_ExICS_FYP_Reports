@@ -1,13 +1,108 @@
-\begin{thebibliography}{MIT14}
+\begin{thebibliography}{10}
 
-\bibitem[Cap13]{whyNodeJS}
+\bibitem{designingChatRoomApp}
+Pawan Kumar~Thakur Dr. S.K~Gandhi.
+\newblock Designing a chat room application: Using peer-to-peer and
+  client-server approach of distributed systems.
+\newblock {\em Science Technology \& Management Journal By AISECT University},
+  March 2013.
+\newblock ISSN: ISSN: 2778-4187, Accessed: 2014-06-12.
+
+\bibitem{httpabuse}
+Ronald Tschalär.
+\newblock Full-duplex channel over {HTTP}.
+\newblock \url{http://www.innovation.ch/java/HTTPClient/fullduplex.html},
+  September 2006.
+\newblock Accessed: 2014-28-01.
+
+\bibitem{lpAjax}
+xPHP.
+\newblock Long polling with {AJAX} and {PHP}.
+\newblock \url{http://www.xphp.info/php-tutorial/long-polling/}, 2014.
+\newblock Accessed: 2014-28-01.
+
+\bibitem{whyNodeJS}
 Tomislav Capan.
 \newblock Why the hell would i use node.js? a case-by-case introduction.
 \newblock \url{http://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js},
   2013.
 \newblock Accessed: 2014-06-11.
 
-\bibitem[der08]{sepofconcerns}
+\bibitem{nodeJS}
+Joyent Inc.
+\newblock Node {JS}.
+\newblock \url{http://nodejs.org/about/}, 2014.
+\newblock Accessed: 2014-06-11.
+
+\bibitem{understandingNodeEventLoop}
+Mikito~``Mixu'' Takada.
+\newblock Understanding the node.js event loop.
+\newblock
+  \url{http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/},
+  February 2011.
+\newblock Accessed: 2014-06-12.
+
+\bibitem{IOperfKiller}
+Nathanael Jones.
+\newblock Performance killer: Disk i/o.
+\newblock
+  \url{http://www.nathanaeljones.com/blog/2009/performance-killer-disk-io},
+  February 2009.
+\newblock Accessed: 2014-06-12.
+
+\bibitem{diskIOlatency}
+hellerbarde.
+\newblock Latency numbers every programmer should know.
+\newblock \url{https://gist.github.com/hellerbarde/2843375}, 2012.
+\newblock Accessed: 2014-06-12.
+
+\bibitem{whichwebsocket}
+Deniz Ozger.
+\newblock Finding the right node.js websocket implementation.
+\newblock
+  \url{https://medium.com/node-js-javascript/finding-the-right-node-js-websocket-implementation-b63bfca0539},
+  January 2014.
+\newblock Accessed: 2014-06-12.
+
+\bibitem{AndroidAsync}
+Koushik Dutta.
+\newblock Androidasync.
+\newblock \url{https://github.com/koush/AndroidAsync}, 2014.
+\newblock Accessed: 2014-06-12.
+
+\bibitem{dwst}
+Toni Ruottu.
+\newblock Dark websocket terminal.
+\newblock \url{https://github.com/cyberixae/dwst}, 2012.
+\newblock Accessed: 2014-06-12.
+
+\bibitem{databaseChoice}
+Rich Jones.
+\newblock 6 tips for hiring a nodejs developer.
+\newblock \url{https://gun.io/blog/6-tips-for-hiring-a-node-js-developer/},
+  2012.
+\newblock Accessed: 2014-06-11.
+
+\bibitem{whatiskerberos}
+MIT.
+\newblock What is kerberos?
+\newblock \url{http://web.mit.edu/kerberos/#what_is}, 2014.
+\newblock Accessed: 2014-06-11.
+
+\bibitem{explainlikeIm5}
+Lynn Root.
+\newblock Explain like i’m 5: Kerberos.
+\newblock \url{http://www.roguelynn.com/words/explain-like-im-5-kerberos/},
+  2013.
+\newblock Accessed: 2014-06-11.
+
+\bibitem{activedirectory}
+gheeres.
+\newblock activedirectory.
+\newblock \url{https://www.npmjs.org/package/activedirectory}, 2014.
+\newblock Accessed: 2014-06-11.
+
+\bibitem{sepofconcerns}
 derekgreer.
 \newblock The art of separation of concerns.
 \newblock
@@ -15,49 +110,12 @@ derekgreer.
   2008.
 \newblock Accessed: 2014-06-11.
 
-\bibitem[ghe14]{activedirectory}
-gheeres.
-\newblock activedirectory.
-\newblock \url{https://www.npmjs.org/package/activedirectory}, 2014.
-\newblock Accessed: 2014-06-11.
-
-\bibitem[Inc14]{nodeJS}
-Joyent Inc.
-\newblock Node {JS}.
-\newblock \url{http://nodejs.org/about/}, 2014.
-\newblock Accessed: 2014-06-11.
-
-\bibitem[Jon12]{databaseChoice}
-Rich Jones.
-\newblock 6 tips for hiring a nodejs developer.
-\newblock \url{https://gun.io/blog/6-tips-for-hiring-a-node-js-developer/},
-  2012.
-\newblock Accessed: 2014-06-11.
-
-\bibitem[MIT14]{whatiskerberos}
-MIT.
-\newblock What is kerberos?
-\newblock \url{http://web.mit.edu/kerberos/#what_is}, 2014.
-\newblock Accessed: 2014-06-11.
-
-\bibitem[Roo13]{explainlikeIm5}
-Lynn Root.
-\newblock Explain like i’m 5: Kerberos.
-\newblock \url{http://www.roguelynn.com/words/explain-like-im-5-kerberos/},
-  2013.
-\newblock Accessed: 2014-06-11.
-
-\bibitem[Tsc06]{httpabuse}
-Ronald Tschalär.
-\newblock Full-duplex channel over {HTTP}.
-\newblock \url{http://www.innovation.ch/java/HTTPClient/fullduplex.html},
-  September 2006.
-\newblock Accessed: 2014-28-01.
-
-\bibitem[xPH14]{lpAjax}
-xPHP.
-\newblock Long polling with {AJAX} and {PHP}.
-\newblock \url{http://www.xphp.info/php-tutorial/long-polling/}, 2014.
-\newblock Accessed: 2014-28-01.
+\bibitem{understandingNode}
+Felix Geisendörfer.
+\newblock Understanding node.js.
+\newblock
+  \url{http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb},
+  April 2010.
+\newblock Accessed: 2014-06-12.
 
 \end{thebibliography}

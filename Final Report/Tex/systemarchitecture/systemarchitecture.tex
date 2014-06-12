@@ -1,12 +1,63 @@
-\chapter{System Architecture}
+\chapter{System Design and Architecture}
 
 \label{ch:systemarchitecture}
 
 This chapter will give an overview of the system architecture chosen to implement ExICS (Exam Invigilator Communication System) and the choices made as to which technologies would be employed to create each part of the system and the reasoning.
 
+\section{Consideration of System Network Architecture}
+
+\FloatBarrier
+
+With any distributed system offering communication between client applications it is necessary to choose a system network architecture to facilitate the communication.
+
+Distributed system can be physically instructed by two ways: First, fully connected network peer-to–peer approach in which each of the nodes is connected to each other. Second, partially connected network in which a direct links exist between some but not all pairs of computers. A few of the partially connected network models are star (client server) structured networks, multi-access bus networks ring structured networks, and tree-structured networks.\cite{designingChatRoomApp}
+
+The two models considered for ExICS were star (client-server) and fully connected (peer-to-peer) networks, shown in figure \ref{fig:network_models}.  With each network communication model there are pros and cons which it was important to carefully consider before beginning design of the system.
+
+Figure \ref{subfig:client-server} shows a representation of the client server model where all clients connect to only a centralised server to communicate.  In this case, the server is responsible for listening to messages from connected clients and forwarding the messages to other connected clients based upon the contents of the received message.
+
+In a peer-to-peer network, shown in figure \ref{subfig:peer-to-peer}, all clients responsible for discovering and maintaining connection to the other clients in the local network and so have the ability to directly communicate with the intended recipient for any message.
+
+
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{"System Diagram/client_server_simpler"}
+		\caption{Client-Server Model}
+		\label{subfig:client-server}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{"System Diagram/peer_to_peer"}
+		\caption{Peer-to-Peer Model}
+		\label{subfig:peer-to-peer}
+	\end{subfigure}
+	\caption{Comparison of Client-Server and Peer-to-Peer Network Models}
+	\label{fig:network_models}
+\end{figure}
+
+Use of the client-server model negates some of the complexities involved with peer-to-peer; discovering and maintaining the peer network.  By having a static central server, any clients wishing to connect can negotiate opening a connection with the static IP address, after which any messages for other clients can be routed by the central server which has access to all connections of peers.  This does however introduce a single point of failure;  if the central server becomes unavailable, no clients are able to communication, rendering the system useless.  There are, however, means to negate this threat such as running fallback servers which can be used should the main server become unavailable.
+
+A benefit of the peer-to-peer networking model is efficiency and network utilisation.  When a message needs to be sent to a peer, the packet can be directly router to that client, rather than via the central server which is then required to find the client connection itself whilst dealing with all other system traffic being routed through it.
+
+After consideration of the pros and cons of each approach the decision was made to use a client-server model in the system design.  Client-server architecture was chosen for a number of reasons:
+
+\begin{itemize}
+
+\item Firstly, simplicity.  With data that needs pulling in from back-end servers in DoC and synchronisation of system state, use of a central server means that the responsibility for such complicated actions can lie in one place.  The central server can, when necessary, do the system state synchronisation and pull in the required state data from the APIs providing it, update its own internal system state, and push this to connected clients.
+
+\item Secondly, coherency.  With the system state being controlled and maintained by the central server, it is possible to implement a request and response system with client instigated changes of system state.  If a client, for example, wishes to pause an exam at the same time as another client wishes to finish it, the central server can service the requests as they arrive, updating its own central state and pushing the new state to connected clients.  As a result, it is guaranteed that all clients will always be exposed to the same system state.  In a peer to peer network however, both clients could broadcast their state change information simultaneously, and those receiving the message could attempt to apply the changes in a different order leading to different local states for each client.
+
+\item Finally, reliability.  With a central server in control of the state of the system and responsible for making changes to that state using a request response method, it is possible for the server to log server state, changes as they are made and who requested them.  With this, it should be possible to recreate any system state from past logs.  This is beneficial in a case where the server crashes unexpectedly, in which case system state can be recreated as it was so no state information is lost.  Using a peer-to-peer network, however, if all clients were to crash, close, or disconnect mid-session, it would be far more difficult to recreate the system state and arbitrate which state is correct if multiple clients were to have differing versions.
+
+\end{itemize}
+
+\FloatBarrier
+
 \section{System Diagram}
 
 \FloatBarrier
+
+Figure \ref{fig:system_diagram} shows the client-server system architecture, discussed in the previous section, as used in ExICS.  It makes use of existing college and departmental infrastucture to simplify the system implementation and integrate with existing data sources available within the department.
 
 \begin{figure}[!htbp]
 	\centering
@@ -15,11 +66,9 @@ This chapter will give an overview of the system architecture chosen to implemen
 	\label{fig:system_diagram}
 \end{figure}
 
-Figure \ref{fig:system_diagram} shows the system architecture used in designing ExICS.  It makes use of existing college and departmental infrastucture to simplify the system implementation.
-
 As mentioned in the background section of this report, the College offers an authentication system in the form of both Kerberos and LDAP.  It also offers a firewall protecting internal traffic from outsider snooping of traffic, as well as allowing those outside the College network to connect securely through VPN.  These existing tools are used to simplify security considerations of the system, allowing the focus of development to be on functionality and user experience.
 
-The Department of Computing departmental servers also hold the exam schedule, seating plan and other information required to power ExICS.  These existing data sets and APIs exposing information are used to simplify integration of the system such that current means of storing and sharing exam schedule information do not need to change.
+The Department of Computing departmental servers also hold the exam schedule, seating plan and other information required to power ExICS.  These existing data sets and APIs exposing information are used to simplify integration of the system such that current means of storing and sharing exam schedule information do not need to change.  The implementation of the Exam Data API Wrapper server is discussed in chapter \ref{ch:apiwrappers}.
 
 \FloatBarrier
 
@@ -41,7 +90,7 @@ WebSocket is purposefully designed to provide the functionality designed by mode
 % 
 % By design, WebSocket is designed with a subscription model.  Any clients connecting subscribe to the Socket and the WebSocket server simply re-emits any received messages to all users.  This is not optimal behaviour though as in some cases, such as when a message has a specific intended recipient, bandwidth is wasted in transmitting to all users.  This is not disasterous as it is possible to simply process the received message payload on the client device and establish in the client-side software if the current device is the intended recipient.
 
-\subsection{Websocket Server}
+\subsection{Back-End Servers}
 
 There are a number of mature web socket platforms which are used in a wide range of scenarios which could have been suitable for use in ExICS.
 
@@ -51,13 +100,33 @@ While searching for alternatives, I found a large number of websocket implementa
 
 One such platform very highly recommended for scenarios such as that of ExICS \cite{whyNodeJS} is Node.JS, a platform built on Chrome's Javascript runtime, designed for building fast, scalable network applications.  It uses an event driven non-blocking I/O model making it lightweight and efficient and perfect for data-intensive real time applications running across distributed devices.\cite{nodeJS}
 
-Node has a incredibly diverse range of libraries available through NPM (Node Package Manager), bringing support for a huge range of additional technologies such as Websocket servers and LDAP connectors, is stable and mature with a large amount of reference material, and being written in Javascript, is incredible easy to work with and fast to develop.
+One of the best features of Node.JS making it perfectly suited to the problem being tackled with ExICS and its client-server design where the server is responsible for maintaining system state is it's execution model.  Node.js, being implemented entirely in Javascript, makes use of it's single-threaded event-loop design meaning the ``app'', the main server code, is only ever executed on a single thread.\cite{understandingNodeEventLoop}  In simple terms, it makes all data structures, such as exam system state, completely safe.  Unlike Apache which spawns a new thread with every connection, making any shared variables such as system state inherently dangerous, adding implementation complexity.
 
-After following a number of tutorials, and finding a number of guides on how to very quickly get up and running with Node.JS and Websockets, I decided Node.JS offered a solid, easy to use and scalable platform to work with.
+Whilst a single thread of execution is great for ensuring any shared variables are safe to access at any point, questions may be raised as to whether the performance of such a system would be sufficient to cope as the system is scaled.  At this point it was necessary to consider ExICS and its nature.  In reality, each server will serve one department or team that need to communicate; this means that, despite the potential for tens of exams to be running during a session, there is limited space and so a limited number of exams that can run concurrently.  This limits the number of concurrent users to be proportional to this limited number of concurrent exams.  Different departments will use different ExICS server hosts, keeping the load to the system sufficiently small such that the single threaded execution won't pose an issue to performance, and won't require a supercomputer to run it.
 
-With this I began to investigate Websocket libraries to use with Node.JS to create the websocket server to begin building from.  There were many available throught the NPM such as websocket, nodejs-websocket and ws, all of which pass the extensive Autobahn Websockets conformance tests and offered both server and client support for testing purposes.
+Furthermore, the biggest performance killer in systems is Disk I/O.\cite{IOperfKiller}  For example, sending 2K bytes over 1 Gbps network takes approximately 20,000 ns, compared to 20,000,000 ns to read 1MB of sequential data from a disk, 1000x slower.\cite{diskIOlatency}  ExICS however is primarily concerned with system state held in local memory with very small amounts of disk I/O. Even network communication itself is slow, however, whilst in Node.JS, the user ``app'' code is executed on a single thread, the single threaded user code can dispatch tasks, such as listening on a port or to a socket, or writing data to a disk to Node.  In these cases, separate worker threads will go and complete the task, using callbacks to further execution of the ``app'' code when complete.  This means that even when a long, slow task needs completing, such as writing an event to the log file, after the task has been scheduled, the Node main thread can return to servicing other queued event callback execution, returning to the completed task when the callback is made.  
 
-\subsection{Data Store}
+A downside to this approach is that Node makes no guarantees about when or in which order events will be processed, necessitating some error checking in the server code, for example checking that an exam has already been paused before allowing the system to resume it.  This is, however, far less of an issue or inconvenience than trying to implement the system using a truly multithreaded platform such as Apache.
+
+Node also has a incredibly diverse range of libraries available through NPM (Node Package Manager), bringing support for a huge range of additional technologies such as Websocket servers and LDAP connectors, is stable and mature with a large amount of reference material, and being written in Javascript, is incredible easy to work with and fast to develop.
+
+With this considered and having followed a number of Node.JS tutorials, I decided Node.JS offered a solid, easy to use and well-supported platform to work with.
+
+With this I began to investigate Websocket libraries to use with Node.JS to create the websocket server to begin building from.  There were many available throught the NPM such as Websocket, Socket.IO and ws, all of which pass the extensive Autobahn Websockets conformance tests and offered both server and client support for testing purposes.
+
+I scoured web resources, blogs and reference sites for recommendations and advice \cite{whichwebsocket} on choosing a websockets implementation to run with and found it a very difficult task.  All of the main websocket libraries I looked at seemed to have very positive reviews.
+
+The implementation which seemed most highly rated in terms of ease to use was Socket.IO.  Unlike most other Node.JS websocket implementations which offer only server side websockets, Socket.IO offers libraries for both server and client side use.  It can transparently select the most suitable transport mechanism, even amongst concurrently connecting clients, meaning it works on any platform or browser.  It is more than just a low-level websockets implementation, it offers a layer of abstraction above the websocket protocol, simplifying the development process for those using it.  Rather than registering events for data received, as with basic websockets, Socket.IO allows users to transparently send and receive messages assigned to ``topics'', a string tag which means messages sent with the tag will trigger the event assigned to it on the other end of the protocol.
+
+This would have been ideal for use in ExICS, as the nature of messages sent in the system means they fall into distinct topics, for example, start exam, stop exam, etc.  Unfortunately, whilst mobile libraries for Java and so Android now exist which support Socket.IO \cite{AndroidAsync}, at the time of investigating and choosing which technologies to develop ExICS with, I was unable to find a library supporting Socket.IO.  As a result I was forced to choose a more low-level websockets implementation.
+
+Unable to use Socket.IO, I returned to the more basic pure websocket implementations, ``websocket'' and ``ws''.  With both libraries claiming full specification compliance and passing all Autobahn conformance tests, I decided to experiment with both.  I created a simple echo server using each library to look at ease of use and functionality.  Both libraries were very easy to work with and soon I had what I believed to be a functional echo server.
+
+To test compatibility I used two tools, a Google Chrome WebApp ``Dark Websocket Terminal''\cite{dwst}, and wscat, a utility which comes with the ws Node library.  I attempted to connect to both echo servers using each tool to verify compatibility and test correctness.  I immediately found an issue, the ``Dark Websocket Terminal'' was unable to connect to the echo server implemented using the ``websocket'' library.
+
+With the ``ws'' library working as expected, easy to use and highly recommended, I decided that it would be a good choice moving forward.
+
+\subsection{Persistant Data Storage}
 
 After deciding that I would proceed with developing using Node.JS for server side development, I needed to investigate a database which could be used for storing persistent data in the system, for example the details of exams which are logged after completing, or student registers taken by invigilators and notes made during examinations.
 
@@ -69,7 +138,7 @@ With this in mind I looked into a number of the database drivers for Node, compa
 
 MongoDB stores its data in ``collections'' of documents, rather than in tables of data, playing incredibly nicely with Javascript as it means javascript objects, such as an exam object can be directly stored, with key value pairs of properties being searchable as well as indexable.  MongoDB also offers a RESTful API allowing documents stored to be manipulated directly using HTTP from remote clients.  This would allow any data created, stored and manipulated by ExICS to be retrievable from other software wishing to access it.
 
-\subsection{Security}
+\subsection{System Security}
 
 As mentioned in the background, College ICT offers three means of authorizing and authenticating members of the College; Kerberos, LDAP (Lightweight Directory Access Protocol) and directly using Microsoft Active Directory.
 
@@ -87,8 +156,8 @@ Having investigated all three possibilities, I found that Node.JS provided libra
 
 Looking through the package listings available through NPM I found activedirectory, an ldapjs client for authN (authentication) and authZ (authorization) for Microsoft Active Directory with range retrieval support for large Active Directory installations.\cite{activedirectory}  This looked like it was easy to use and offered all the functionality necessary for authenticating users with good documentation available.
 
-\subsection{Client Application}
+\subsection{Client Application Platform}
 
-As discussed in the background section of this report, it was decided during the initial investigation into the requirements and specification of the project that Android would be the chosen platform for the (initial) development of the ExICS client.
+As discussed in the background of this report, it was decided during the initial investigation into the requirements and specification of the project that Android would be the chosen platform for the (initial) development of the ExICS client to avoid some of the pitfalls of other implementations such as a web apps being hidden behind the invigilators other work while invigilating, and thanks to the high market penetration of the Android Operating System.
 
-It was therefore necessary to find a suitable websockets library for use in the Android application.  Whilst there are a number of Websocket libraries written in Java which may have been suitable for my purposes, one which was frequently mentioned as being very compliant and easy to work with was Autobahn Android. 
+It was therefore necessary to find a suitable websockets library for use in the Android client application.  Whilst there are a number of Websocket libraries written in Java which may have been suitable for my purposes, one which was frequently mentioned as being very compliant with Websocket standards, and easy to work with was Autobahn Android, written and maintained by Autobahn, the company behind the Autobahn Websocket compliance test suite.

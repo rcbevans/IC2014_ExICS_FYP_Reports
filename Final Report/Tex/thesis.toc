@@ -15,19 +15,24 @@
 \contentsline {subsection}{\numberline {2.3.1}Server Hosting}{10}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Network Communication}{11}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}System Security}{11}{subsection.2.3.3}
-\contentsline {chapter}{\numberline {3}System Architecture}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}System Diagram}{13}{section.3.1}
-\contentsline {section}{\numberline {3.2}Available Implementation Technologies}{15}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Network Communication Channels}{15}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Websocket Server}{15}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Data Store}{17}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Security}{18}{subsection.3.2.4}
-\contentsline {subsection}{\numberline {3.2.5}Client Application}{19}{subsection.3.2.5}
-\contentsline {chapter}{\numberline {4}Exam Data API Wrappers}{20}{chapter.4}
-\contentsline {chapter}{\numberline {5}ExICS Server}{22}{chapter.5}
-\contentsline {chapter}{\numberline {6}ExICS Client}{23}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion}{24}{chapter.7}
-\contentsline {section}{\numberline {7.1}Summary of Thesis Achievements}{24}{section.7.1}
-\contentsline {section}{\numberline {7.2}Applications}{24}{section.7.2}
-\contentsline {section}{\numberline {7.3}Future Work}{24}{section.7.3}
-\contentsline {chapter}{Bibliography}{24}{section.7.3}
+\contentsline {chapter}{\numberline {3}System Design and Architecture}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Consideration of System Network Architecture}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}System Diagram}{16}{section.3.2}
+\contentsline {section}{\numberline {3.3}Available Implementation Technologies}{17}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Network Communication Channels}{17}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Back-End Servers}{18}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Persistant Data Storage}{21}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}System Security}{22}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}Client Application Platform}{23}{subsection.3.3.5}
+\contentsline {chapter}{\numberline {4}Exam Data API Wrappers}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}API Wrapper Implementation}{26}{section.4.1}
+\contentsline {chapter}{\numberline {5}ExICS Server}{27}{chapter.5}
+\contentsline {chapter}{\numberline {6}ExICS Client}{28}{chapter.6}
+\contentsline {chapter}{\numberline {7}Evaluation}{29}{chapter.7}
+\contentsline {chapter}{\numberline {8}Conclusion}{30}{chapter.8}
+\contentsline {section}{\numberline {8.1}Summary of Thesis Achievements}{30}{section.8.1}
+\contentsline {section}{\numberline {8.2}Applications}{30}{section.8.2}
+\contentsline {section}{\numberline {8.3}Future Work}{30}{section.8.3}
+\contentsline {chapter}{Bibliography}{30}{section.8.3}
+\contentsline {chapter}{Appendix}{32}{chapter*.6}
+\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{33}{chapter.1}

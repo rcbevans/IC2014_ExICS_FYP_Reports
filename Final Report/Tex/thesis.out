@@ -13,19 +13,24 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{Server Hosting}{section.2.3}% 13
 \BOOKMARK [2][-]{subsection.2.3.2}{Network Communication}{section.2.3}% 14
 \BOOKMARK [2][-]{subsection.2.3.3}{System Security}{section.2.3}% 15
-\BOOKMARK [0][-]{chapter.3}{System Architecture}{}% 16
-\BOOKMARK [1][-]{section.3.1}{System Diagram}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.2}{Available Implementation Technologies}{chapter.3}% 18
-\BOOKMARK [2][-]{subsection.3.2.1}{Network Communication Channels}{section.3.2}% 19
-\BOOKMARK [2][-]{subsection.3.2.2}{Websocket Server}{section.3.2}% 20
-\BOOKMARK [2][-]{subsection.3.2.3}{Data Store}{section.3.2}% 21
-\BOOKMARK [2][-]{subsection.3.2.4}{Security}{section.3.2}% 22
-\BOOKMARK [2][-]{subsection.3.2.5}{Client Application}{section.3.2}% 23
-\BOOKMARK [0][-]{chapter.4}{Exam Data API Wrappers}{}% 24
-\BOOKMARK [0][-]{chapter.5}{ExICS Server}{}% 25
-\BOOKMARK [0][-]{chapter.6}{ExICS Client}{}% 26
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 27
-\BOOKMARK [1][-]{section.7.1}{Summary of Thesis Achievements}{chapter.7}% 28
-\BOOKMARK [1][-]{section.7.2}{Applications}{chapter.7}% 29
-\BOOKMARK [1][-]{section.7.3}{Future Work}{chapter.7}% 30
-\BOOKMARK [0][-]{section.7.3}{Bibliography}{}% 31
+\BOOKMARK [0][-]{chapter.3}{System Design and Architecture}{}% 16
+\BOOKMARK [1][-]{section.3.1}{Consideration of System Network Architecture}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{System Diagram}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.3}{Available Implementation Technologies}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.3.1}{Network Communication Channels}{section.3.3}% 20
+\BOOKMARK [2][-]{subsection.3.3.2}{Back-End Servers}{section.3.3}% 21
+\BOOKMARK [2][-]{subsection.3.3.3}{Persistant Data Storage}{section.3.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.4}{System Security}{section.3.3}% 23
+\BOOKMARK [2][-]{subsection.3.3.5}{Client Application Platform}{section.3.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Exam Data API Wrappers}{}% 25
+\BOOKMARK [1][-]{section.4.1}{API Wrapper Implementation}{chapter.4}% 26
+\BOOKMARK [0][-]{chapter.5}{ExICS Server}{}% 27
+\BOOKMARK [0][-]{chapter.6}{ExICS Client}{}% 28
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 29
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 30
+\BOOKMARK [1][-]{section.8.1}{Summary of Thesis Achievements}{chapter.8}% 31
+\BOOKMARK [1][-]{section.8.2}{Applications}{chapter.8}% 32
+\BOOKMARK [1][-]{section.8.3}{Future Work}{chapter.8}% 33
+\BOOKMARK [0][-]{section.8.3}{Bibliography}{}% 34
+\BOOKMARK [0][-]{chapter*.6}{Appendix}{}% 35
+\BOOKMARK [0][-]{chapter.1}{Initial Web Survey Results}{}% 36

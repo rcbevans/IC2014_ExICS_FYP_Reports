@@ -27,20 +27,30 @@
 \input{introduction/introduction}
 \input{background/background}
 
-% body of thesis comes here
-
 \input{systemarchitecture/systemarchitecture}
 \input{apiwrapper/apiwrapper}
 \input{server/exicsserver}
 \input{client/exicsclient}
 
+\input{evaluation/evaluation}
+
 \input{conclusion/conclusion}
 
 \appendix
-% appendices come here
 
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibliographystyle{alpha}
+\bibliographystyle{unsrt}
 \bibliography{bibliography/bibliography}
+
+
+\addcontentsline{toc}{chapter}{Appendix}
+\label{ch:appendix}
+
+\chapter{Initial Web Survey Results}
+\label{sec:survey_results}
+
+The following pages contain the results of the initial survey completed by both members of the Department of Computing and Electrical and Electronic Engineering.
+
+\includepdf[pages=-]{surveyresults/surveyResult.pdf}
 
 \end{document}

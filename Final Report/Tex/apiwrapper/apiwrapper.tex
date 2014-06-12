@@ -11,3 +11,7 @@ Similarly available was a seating plan for the exam session with CIDs and seat n
 Since all data was provided in tab separated value form, and so more obtuse to work with, and with the principle of separation of concerns \cite{sepofconcerns} in mind, I decided to implement a separate API server capable of transforming the provided TSV (Tab Separated Value) data provided to work with into a more usable JSON format with the ability to filter and refine results, such as select a period of time within which to return results, or narrow seating plans down to those in a particular room.
 
 By transforming the data into JSON and using a separate API server, also implemented in Node.JS, other systems could make use of the data, and if at a later stage the DoC servers were updated to offer a JSON API or even extended to provide more data, ExICS URLs (Uniform Resource Locator) could simply be updated to point to the new data source, without breaking any existing functionality.
+
+\section{API Wrapper Implementation}
+
+As mentioned in chapter \ref{ch:systemarchitecture}, it was decided based upon the research done that the back-end servers of ExICS would be implemented using Node.JS thanks to it's great performance, ease to work with and great support library availability through NPM and efficiency.\cite{understandingNode}

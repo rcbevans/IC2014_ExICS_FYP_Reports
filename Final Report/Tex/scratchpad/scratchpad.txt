@@ -1,0 +1,6 @@
+Things to insert into places and things...
+---
+
+Having reviewed the options for technologies and platforms, it was decided that the system would comprise of a central Node.JS server to which Android client applications can connect and communicate via the Websockets Protocol.
+
+The implemented system draws exam schedules and seating plans from existing data sources in the department of computing.  It processes them and shares them with the client application for visual representation and offers the ability to interact with the system such such as starting and stopping exams, pausing or adding extra time, which are immediately reflected on other client devices.  The client application also allows direct communication between connected users, and a platform to perform administrative tasks such as taking the student attendence register, or completing the post session report form, the results of which can be directly shared with the administrative staff, reducing beurocratic overhead and overlap between multiple systems, as well as reducing traditional paper based duties.
