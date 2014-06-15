@@ -1,0 +1,62 @@
+\chapter{ExICS Client}
+
+\label{ch:exicsclient}
+
+\section{Initial Design Sketches}
+
+For and Android client GUI concept designs I decided to use a traditional pen and paper rapid prototype methodology.  By using pen and paper I was able to focus more on the general design of the application rather than beautifying or concentrating on details.
+
+The client application designs are based upon the screen size and resolution of a Google Nexus 7 tablet and are drawn to scale.  Since the department of computing is already in possession of primarily tablets, this is the form factor I will be primarily designing for.  The code will be implemented using Android fragments\cite{fragments} such that, if there is sufficient time, it should be a relatively trivial task to create a usable layout design for phone form factors.  To simplify development, the application will also enforce landscape device rotation.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Main Overview Cropped"}
+
+The main overview page for the application will consist of a dual pane android layout using fragments.  2/3 of the screen will be dedicated to overview information, with the remaining 1/3 containing the log of most recent system communication activity.
+
+The main overview content will be divided again roughly in two.  The top panel will contain a horizontally scrollable list of the rooms currently containing examinations, the invigilators/examiners currently linked to that room, and the rooms status; ok, stopped, or pending help, along with a traffic light icon reflecting the status.  The rooms are selectable, shown by highlighting which updates the information shown in the lower panel.
+
+The initial concept for the lower panel of the main overview content is that it will contain another horizontally scrollable panel containing an entry for each exam taking place in that room.  Each entry will show the name of the room, and timing information depending upon the state of the exam.  Before the exam is started, the scheduled start time will be shown, with this changing to show the actual start time, time remaining, finish time, and extra time finish time.  If an exams time is extended, this can be reflected also, by appending an extra time flag to the finish time, for example
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[captionpos=b,caption=Representation of Examination Timings, tabsize=4, breaklines=true]
+
+ 12:01							 12:02
+  1:35			becomes			  1:44
+ 14:01							 14:11 (+0:10)
+(14:31)							(14:41)(+0:10)
+
+\end{lstlisting}
+\end{minipage}
+
+The exact method of enhanced functionality, such as how to extend the time of an exam for example are yet to be decided pending evaluation of the initial concept sketches.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Side Menu View Cropped"}
+
+The client application will feature an always available side bar menu available to the left hand side of the screen.  This will contain the navigation buttons to move to different activities within the android application.
+
+The slide in menu may be implemented using either the inbuilt Navigation Drawer\cite{navdrawer} or using a third party library such as slidingPaneLayout\cite{spl}.  The main differences between these two implementation techniques are that the android Navigation Drawer overlaps the screen content, leaving the log visible at all times, whereas with the SlidingPaneLayout, it would be possible to achieve the effect shown in the sketch where the log is slid off the right side of the screen, with the menu taking up the left 1/3 of the screen.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Help Request Window Cropped"}
+
+The request help screen will allow the user to send a message requesting assistance to other users on the system.  They will be able to select send to all, send to examiners or send to specific users, with send to all the default choice.  They can then select the nature of the message whether it is a generic assistance needed message, a preset advanced message such as request for more paper or a toilet escort, or a manually typed specific message.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Message Notification Cropped"}
+
+Received messages when received by the client will be buffered for notification purposes.  One at a time a notification will be displayed on screen and the device will optionally vibrate to alert the user.  The message and the sender will be displayed, along with a time stamp.
+
+The alert window will feature a number of responses which the user can make use of which will vary by nature of the alert being displayed.  The user can optionally choose to dismiss the message with no action being taken, in which case no response will be sent to the sender except for announcement requests, in which case even if dismissed the sender will be notified that the message has been seen.  If an announcement is positively responded to, such as by saying that the user is on their way to help, the message will be dismissed or removed from the queue on all other devices to prevent over servicing of requests.
+
+\includegraphics[width=\textwidth]{"GUI Sketches/Seating Plan Cropped"}
+
+The seating plan part of the system will allow a user to view the seating plan for a selected room giving the student names, CID (College ID) numbers and seat numbers.  This list will be sortable by name or by seat number and there will be a search functionality for looking up seating positions based on name/CID or a reverse lookup to identify missing students based on seat number.
+
+\section{ExICS Client Architecture}
+
+\subsection{Software Design Patterns}
+
+ExICS Data Singleton holding state
+
+WsClient Class Singleton.
+
+Login Activity
+
+Main Activity comprising of a navigation draw\cite{navdrawer} activity using fragments\cite{fragments}.

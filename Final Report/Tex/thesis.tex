@@ -29,8 +29,9 @@
 
 \input{systemarchitecture/systemarchitecture}
 \input{apiwrapper/apiwrapper}
-\input{server/exicsserver}
-\input{client/exicsclient}
+\input{exicsapi/exicsapi}
+\input{exicsserver/exicsserver}
+\input{exicsclient/exicsclient}
 
 \input{evaluation/evaluation}
 
@@ -42,15 +43,5 @@
 \bibliographystyle{unsrt}
 \bibliography{bibliography/bibliography}
 
-
-\addcontentsline{toc}{chapter}{Appendix}
-\label{ch:appendix}
-
-\chapter{Initial Web Survey Results}
-\label{sec:survey_results}
-
-The following pages contain the results of the initial survey completed by both members of the Department of Computing and Electrical and Electronic Engineering.
-
-\includepdf[pages=-]{surveyresults/surveyResult.pdf}
-
+\input{appendix/appendix}
 \end{document}

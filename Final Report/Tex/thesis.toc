@@ -25,14 +25,42 @@
 \contentsline {subsection}{\numberline {3.3.4}System Security}{22}{subsection.3.3.4}
 \contentsline {subsection}{\numberline {3.3.5}Client Application Platform}{23}{subsection.3.3.5}
 \contentsline {chapter}{\numberline {4}Exam Data API Wrappers}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}API Wrapper Implementation}{26}{section.4.1}
-\contentsline {chapter}{\numberline {5}ExICS Server}{27}{chapter.5}
-\contentsline {chapter}{\numberline {6}ExICS Client}{28}{chapter.6}
-\contentsline {chapter}{\numberline {7}Evaluation}{29}{chapter.7}
-\contentsline {chapter}{\numberline {8}Conclusion}{30}{chapter.8}
-\contentsline {section}{\numberline {8.1}Summary of Thesis Achievements}{30}{section.8.1}
-\contentsline {section}{\numberline {8.2}Applications}{30}{section.8.2}
-\contentsline {section}{\numberline {8.3}Future Work}{30}{section.8.3}
-\contentsline {chapter}{Bibliography}{30}{section.8.3}
-\contentsline {chapter}{Appendix}{32}{chapter*.6}
-\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{33}{chapter.1}
+\contentsline {section}{\numberline {4.1}Input Data}{26}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Exam Data}{26}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Seating Plan Information}{27}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Exam Wrapper API Server Design}{27}{section.4.2}
+\contentsline {subsubsection}{Exam Data Request Handler}{29}{section*.8}
+\contentsline {subsubsection}{Seating Plan Request Handler}{31}{section*.10}
+\contentsline {subsubsection}{API Documentation Request Handler}{32}{section*.11}
+\contentsline {subsection}{\numberline {4.2.1}Output Data}{33}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Documentation}{35}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Security}{36}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}SSL}{36}{subsection.4.3.1}
+\contentsline {chapter}{\numberline {5}ExICS API}{38}{chapter.5}
+\contentsline {section}{\numberline {5.1}API Design}{38}{section.5.1}
+\contentsline {section}{\numberline {5.2}ExICS API Message Types}{39}{section.5.2}
+\contentsline {section}{\numberline {5.3}ExICS Objects}{47}{section.5.3}
+\contentsline {chapter}{\numberline {6}ExICS Server}{50}{chapter.6}
+\contentsline {section}{\numberline {6.1}ExICS Server Architecture}{50}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}ExICS Logic}{50}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}ExICS System State Class - ``ExICSData''}{52}{subsection.6.1.2}
+\contentsline {subsubsection}{Javascript Singleton Pattern}{53}{section*.19}
+\contentsline {subsubsection}{Data Synchronisation}{57}{section*.23}
+\contentsline {subsection}{\numberline {6.1.3}Activity Logging}{60}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}User Authentication}{61}{subsection.6.1.4}
+\contentsline {chapter}{\numberline {7}ExICS Client}{62}{chapter.7}
+\contentsline {section}{\numberline {7.1}Initial Design Sketches}{62}{section.7.1}
+\contentsline {section}{\numberline {7.2}ExICS Client Architecture}{68}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Software Design Patterns}{68}{subsection.7.2.1}
+\contentsline {chapter}{\numberline {8}Evaluation}{69}{chapter.8}
+\contentsline {section}{\numberline {8.1}Self-Evaluation}{69}{section.8.1}
+\contentsline {section}{\numberline {8.2}Peer Review Feedback}{69}{section.8.2}
+\contentsline {section}{\numberline {8.3}Staff Invigilator Feedback}{69}{section.8.3}
+\contentsline {chapter}{\numberline {9}Conclusion}{70}{chapter.9}
+\contentsline {section}{\numberline {9.1}Summary of Achievements}{70}{section.9.1}
+\contentsline {section}{\numberline {9.2}Applications}{71}{section.9.2}
+\contentsline {section}{\numberline {9.3}Future Work}{71}{section.9.3}
+\contentsline {chapter}{Bibliography}{71}{section.9.3}
+\contentsline {chapter}{Appendix}{74}{chapter*.25}
+\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{75}{chapter.1}
+\contentsline {chapter}{\numberline {B}User Guide}{81}{chapter.2}

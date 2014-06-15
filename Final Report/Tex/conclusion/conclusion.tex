@@ -5,16 +5,36 @@
 
 A number of ways in which the current system could be expanded and extended in future are considered, as well as ways in which the current implementation could be refined or improved.
 
-\section{Summary of Thesis Achievements}
+\section{Summary of Achievements}
 
-Summary.
+Managed to make a system that fulfills all of the expected goals of the project.
 
+Showed Node.JS is a great choice from small scale distributed systems of this, massively simplifying implementation as shared data is naturally safe to access from anywhere in scope.  No concurrency issues.
+
+Showed Websockets to be a stable and reliable protocol for use in even mobile real-time distributed systems.
+
+Implemented a simple API on top of Websockets using JSON which could easily be shared enabling third party developers to create their own apps which plug into the system.  This could speed up cross-platform availability.
+
+Allows simple, reliable communication of messages and exam state information between users.
+
+Remote control of system from client devices with instant update reflected in peer clients.
 
 \section{Applications}
 
-Applications.
-
+Any small scale cross-platfrom real-time distributed system.
 
 \section{Future Work}
 
-Future Work.
+Make server more customizable.  For example use a config file, possibly formatted in JSON to specify number of sessions, session start, stop times, URL of data sources etc.
+
+Implement means to take seating register and submit to system, eliminating the existing paper recording and later submission.  Potentially add barcode scanning support so they system will automatically deal with the checking process with minimal user oversight.
+
+Ability to submit all necessary ``paperwork'' through the app.
+
+Add cross-platform support from both iOS and Windows Phone so users aren't restricted to just Android.
+
+Add new data sources for head examiner of exam etc, so they can be contacted for example if there is a question about a paper.
+
+Implement ability for server to recover from crashes by recreated state from last incomplete log.
+
+Add extra accessibility features, changing font size based upon setting etc.

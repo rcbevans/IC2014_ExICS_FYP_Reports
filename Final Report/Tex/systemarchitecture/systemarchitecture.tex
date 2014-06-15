@@ -18,7 +18,6 @@ Figure \ref{subfig:client-server} shows a representation of the client server mo
 
 In a peer-to-peer network, shown in figure \ref{subfig:peer-to-peer}, all clients responsible for discovering and maintaining connection to the other clients in the local network and so have the ability to directly communicate with the intended recipient for any message.
 
-
 \begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}[b]{0.4\textwidth}
@@ -91,6 +90,7 @@ WebSocket is purposefully designed to provide the functionality designed by mode
 % By design, WebSocket is designed with a subscription model.  Any clients connecting subscribe to the Socket and the WebSocket server simply re-emits any received messages to all users.  This is not optimal behaviour though as in some cases, such as when a message has a specific intended recipient, bandwidth is wasted in transmitting to all users.  This is not disasterous as it is possible to simply process the received message payload on the client device and establish in the client-side software if the current device is the intended recipient.
 
 \subsection{Back-End Servers}
+\label{subs:exics_backend_server}
 
 There are a number of mature web socket platforms which are used in a wide range of scenarios which could have been suitable for use in ExICS.
 
@@ -159,5 +159,9 @@ Looking through the package listings available through NPM I found activedirecto
 \subsection{Client Application Platform}
 
 As discussed in the background of this report, it was decided during the initial investigation into the requirements and specification of the project that Android would be the chosen platform for the (initial) development of the ExICS client to avoid some of the pitfalls of other implementations such as a web apps being hidden behind the invigilators other work while invigilating, and thanks to the high market penetration of the Android Operating System.
+
+Whilst researching libraries and resources that would be of use in developing the mobile client application I came across Xamarin, a development platform allowing core application code written in C\# to run across a wide range of platforms, including Android, iOS and Windows Phone, as well as Mac OSX and Windows.\cite{xamarin}  Xamarin allows native platform user interface layers to be built upon shared C\# user interface code, built upon shared C\# app logic, giving native performance of the application from a common code base.  It allows developers to focus on user experience, not worry about constantly reimplementing the code powering the UI underneath.  Furthermore, with Xamarin, support libraries written in Java, objective C, or C\# can be linked and used seamlessly, giving the best of all worlds.
+
+Interested in the possibility of not only being able to offer an Android client application, but and iOS, I downloaded Xamarin and looked at some tutorials on how to get started.  I soon found that licensing was going to be an issue and that without an iOS device or any developer licenses from Apple, working on an iOS project was going to be virtually impossible.  With very little experience working with C\# I also found the change in language and ways of doing things challenging.  Despite being in regular contact with Xamarin support engineers in San Francisco, after a period spent evaluating the platform, I decided that, given the relatively short duration of the project and the amount there was to do, that I would be safer sticking with just Android; a platform with which I had past experience using Java, a language with which I was more familiar.
 
 It was therefore necessary to find a suitable websockets library for use in the Android client application.  Whilst there are a number of Websocket libraries written in Java which may have been suitable for my purposes, one which was frequently mentioned as being very compliant with Websocket standards, and easy to work with was Autobahn Android, written and maintained by Autobahn, the company behind the Autobahn Websocket compliance test suite.

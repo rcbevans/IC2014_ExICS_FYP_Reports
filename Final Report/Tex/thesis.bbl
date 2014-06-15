@@ -102,6 +102,12 @@ gheeres.
 \newblock \url{https://www.npmjs.org/package/activedirectory}, 2014.
 \newblock Accessed: 2014-06-11.
 
+\bibitem{xamarin}
+Xamarin Inc.
+\newblock Xamarin.
+\newblock \url{https://xamarin.com/}, 2014.
+\newblock Accessed: 2014-06-13.
+
 \bibitem{sepofconcerns}
 derekgreer.
 \newblock The art of separation of concerns.
@@ -117,5 +123,74 @@ Felix Geisendörfer.
   \url{http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb},
   April 2010.
 \newblock Accessed: 2014-06-12.
+
+\bibitem{iso8601}
+et~al. Wolf.
+\newblock Data elements and interchange formats - information interchange -
+  representation of dates and times.
+\newblock \url{http://www.w3.org/TR/NOTE-datetime}, 1997.
+\newblock Accessed: 2014-06-14.
+
+\bibitem{csvVsJSON}
+Eric~D Rowell.
+\newblock Csv vs xml vs json - which is the best response data format?
+\newblock
+  \url{http://ezinearticles.com/?CSV-vs-XML-vs-JSON---Which-is-the-Best-Response-Data-Format?&id=4073117},
+  2010.
+\newblock Accessed: 2014-06-14.
+
+\bibitem{basicAuth}
+et~al. Franks.
+\newblock Http authentication: Basic and digest access authentication.
+\newblock \url{http://tools.ietf.org/html/rfc2617#section-2}, 1999.
+\newblock Accessed: 2014-06-14.
+
+\bibitem{intheclear}
+W3C Consortium.
+\newblock Passwords in the clear.
+\newblock \url{http://www.w3.org/2001/tag/doc/passwordsInTheClear-52}, 2008.
+\newblock Accessed: 2014-06-14.
+
+\bibitem{einarosWS}
+einaros.
+\newblock ws: a node.js websocket library.
+\newblock \url{https://github.com/einaros/ws}, 2013.
+\newblock Accessed: 2014-06-15.
+
+\bibitem{jsswitch}
+w3schools.com.
+\newblock The javascript switch statement.
+\newblock \url{http://www.w3schools.com/js/js_switch.asp}, 2014.
+\newblock Accessed: 2014-06-15.
+
+\bibitem{jsClasses}
+Stoyan Stefanov.
+\newblock 3 ways to define a javascript class.
+\newblock \url{http://www.phpied.com/3-ways-to-define-a-javascript-class/},
+  2006.
+\newblock Accessed: 2014-06-15.
+
+\bibitem{fragments}
+Google Inc.
+\newblock {UI} components - fragments.
+\newblock \url{http://developer.android.com/guide/components/fragments.html},
+  2013.
+\newblock Accessed: 2014-29-01.
+
+\bibitem{navdrawer}
+Google Inc.
+\newblock Navigation drawer.
+\newblock
+  \url{http://developer.android.com/design/patterns/navigation-drawer.html},
+  2013.
+\newblock Accessed: 2014-29-01.
+
+\bibitem{spl}
+{JFrankie}.
+\newblock {Android SlidingPaneLayout: Tutorial}.
+\newblock
+  \url{http://www.survivingwithandroid.com/2013/10/android-slidingpanelayout-tutorial.html},
+  October 2013.
+\newblock Accessed: 2014-29-01.
 
 \end{thebibliography}

@@ -1,0 +1,342 @@
+\chapter{ExICS Server}
+
+\label{ch:exicsserver}
+
+Having designed a the API to be used to communicate between server and client, and implemented the API server capable of providing the exam status and seating plan information, it was neccesary to begin implementing the main ExICS server.
+
+\section{ExICS Server Architecture}
+
+The design of the ExICS server is relatively simple with four main components; The main client-facing server logic to handle events, a ``class'' holding system state, a ``class'' offering and handling logging capabilities, and authentication logic.
+
+\subsection{ExICS Logic}
+
+The ExICS server uses the ``ws'' Node.JS package\cite{einarosWS} to provide the fundemental low-level websockets used to communicate between server and clients.
+
+When the ExICS server ``app'' is run, a websockets server is started and a callback function to be executed by Node when a client connects is assigned.
+
+Node.JS, built on Chrome's JavaScript runtime means that it makes full use of the event driven callback design of javascript, requiring and enabling full use of closures in the code.
+
+The callback function registered for callback upon connection of a client to the websocket server, when called, creates a closure capturing the state of that connection, allowing all variables used, such as the ``authenticated'' boolean and string holding the username that was authenticated can be accessed seamlessly within the closure and modified safely, as they are unique to that specific client's callback closure and inaccessible from other client code.
+
+The ``onConnection'' callback function for each client connection contains a number of members, the ``auth'' boolean as well as a string containing the authenticated user's username.  It also overrides the websocket server methods, ``onMessage'' and ``onClose''.
+
+When a user first connects, the closure defining ``their'' callbacks is created by Node.JS creating the context for all future interactions with that user.  Initially ``auth'' is false and there is no string for the users authorised username, and the event is logged in the ExICS system log, explained in section \ref{subs:exics_logging}.
+
+When the user sends a message to the server over the established socket, the ``onMessage'' callback is invoked to process the message.  If the user is not authenticated, i.e ``auth'' is false, the message's header and the type parameter is checked.  The only valid message to be received when not authorised is a PROTOCOL\_HANDSHAKE message, as defined in section \ref{sec:api_design}.  If any other message type, or an unknown message type is received, the server forcibly closes the websocket connection, disconnecting the user.
+
+If the received message is a PROTOCOL\_HANDSHAKE message, the server executes the ``ldapAuthenticate'' function with the provided credentials, as explained in section \ref{subs:exics_auth}.  Providing authentication of credentials with the college LDAP server is successful, the server updates the connection's closure's ``auth'' and username variables to reflect the successful authentication.  Should authentication fail, the server closes the connection to the user.
+
+Given the the user is now authenticated, they are added to the main system state in the ``exICSData'' class, as explained in section \ref{subs:exics_data}, and shared with other connected clients. Any subsequent messages received are then handled in the ``onMessage'' callback of the code, where again the message header type is switched upon \cite{jsswitch} to select the correct method of the ``exICSData'' object to call.
+
+When the user sends a TERMINATE\_CONNECTION message, or disconnects manually, the ``onClose'' callback is executed and the user is removed from the system list of clients and the closure containing the client's socket is cleaned up, ending their interaction with the server.
+
+\subsection{ExICS System State Class - ``ExICSData''}
+\label{subs:exics_data}
+
+The ``ExICSData'' class of the ExICS server is used to store and manipulate the system state.  Because of the way every new connection invokes a new instance of the ``onConnected'' callback and creates its own closure, data defined in and belonging to that closer, is out of scope for all other instances of the callback, and so all other connections.
+
+As a result, it is necessary to store all data which is shared between all clients, the state of the overall system in a globally accessible way, such that all client contexts can read from and modify it.
+
+For this reason, the system state of ExICS is stored in a standalone ``singleton'' instance which can be fetched and mutated from anywhere, by any connection context.  Each ``onConnection'' instance belonging to a client's socket on the server obtains a reference to the ExICSData object, and so when a change is made, it is visible to all other connection contexts.  The Javascript singleton pattern differs substantially from other language implementations such as Java or C++, and is explained in more detail in section \ref{subsubs:jsSingleton}.
+
+The ExICSData singleton object contains all the members necessary to represent and allow manipulation of the system state.
+
+There is a ``clientsConnected'' counter which holds the integer value of the number of clients currently connected to the server, even if unauthenticated.
+
+In order to send data to all connected clients, there is an object representing connected clients.  The object features key value pairs, where the client's username is the key and the value is another object holding the socket instance through which data can be pushed, and the room in which the user is based.
+
+Javascript objects behave much as a Hashmap or Map object in other languages such as Java behave, where the key is a hashable object itself, such as an int or string, mapping to a value object which could be an array, string, int etc., or another object itself.
+
+Examinations scheduled for the current exam session period, the morning or afternoon of the day are stored in a Javascript object.  The room numbers exams are taking place in act as the keys with an array of exam objects, as explained in section \ref{sec:exics_objs}, as the value.
+
+The objects and variables holding the state of the system are private members of the singleton object, along with some private methods used in maintaining the system state and for debugging purposes such as generating static date objects.
+
+The singleton then offers a large number of publicly callable methods which can be called to perform actions upon the system state such as to start and exam, find the number of connected clients in a particular room, or invoke a system data refresh.
+
+\subsubsection{Javascript Singleton Pattern}
+\label{subsubs:jsSingleton}
+
+\FloatBarrier
+
+Whilst Javascript is an incredibly flexible and dynamic object oriented language, it is class-less meaning that ``classes'' in a traditional sense cannot be defined and instantiated.
+
+Everything is in object and so can behave as if it was the instance of a class, and yet nothing is instantiated from class definitions.  Whilst it is not possible to define a ``class'' per-se, it is possible to create objects which \textit{behave} as you would expect a traditional class, with callable methods\cite{jsClasses}.
+
+Due to the flexibility of the language there are many ways to create such objects.  Consider the code in figure \ref{fig:jsObjectInst};  this code creates an object called apple with properties ``type'', and ``colour'', as well as a callable function which returns the type and colour of the apple.  With this code, you don't need to and in fact \textit{can't} create an instance of this apple ``class'', it already exists and can be used, as shown in figure \ref{fig:usingAppleClass}.
+
+\begin{figure}
+\lstset{language=JavaScript}
+\begin{lstlisting}[tabsize=2,breaklines=true]
+	var apple = {
+			type: "macintosh",
+			colour: "red",
+			getInfo: function () {
+					return this.colour + ' ' + this.type + ' apple';
+			}
+	}
+	\end{lstlisting}
+	\caption{Instantiation of an Object in Javascript}
+	\label{fig:jsObjectInst}
+\end{figure}
+
+\begin{figure}
+\lstset{language=JavaScript}
+\begin{lstlisting}[tabsize=2,breaklines=true]
+	//Changes apple colour to ``reddish''
+	apple.colour = "reddish";
+	//Prints ``reddish macintosh apple''
+	console.log(apple.getInfo());
+	\end{lstlisting}
+	\caption{Use of the Created ``Class''}
+	\label{fig:usingAppleClass}
+\end{figure}
+
+Objects such as this apple are also known as a singleton; only one instance of this ``class'' can ever exist.  You can't create more of them without redefining a whole new instance as with figure \ref{fig:jsObjectInst}.  With Javascript having no classes, the notion of singleton's no longer makes sense, as everything is inherently a singleton to begin with.
+
+With the method shown in figure \ref{fig:jsObjectInst}, everything defined is accessible though; for example the ``colour'' property of the apple can be changed by directly accessing the property and assigning it.  This is not good object-oriented design as the property of abstraction and encapsulation are violated.  As a result, a different design pattern, as shown in figure \ref{fig:nodeJSsingleton}, can be used to instantiate an object, accessible from anywhere which has both public and private members.
+
+\begin{figure}
+	\lstset{language=JavaScript}
+	\begin{lstlisting}[tabsize=2,
+			breaklines=true]
+	//Node.JS singleton
+	var mySingleton = (function () {
+		// Instance stores a reference to the Singleton
+		var instance;
+
+		function init() {
+			// Singleton
+			// Private methods and variables
+			var foo = true;
+
+		bar: function bar(arg){
+			...
+		}
+		...
+			return {
+					// Public methods and variables
+					publicBar: function publicBar(){
+				...
+			},	
+			};
+		};
+		return {
+			getInstance: function () {
+				if ( !instance ) {
+					instance = init();
+				}
+				return instance;
+			}
+		};
+	})();
+
+	exports.mySingleton = mySingleton;
+	\end{lstlisting}
+	\caption{Singleton Pattern in Javascript (Node.JS)}
+	\label{fig:nodeJSsingleton}
+\end{figure}
+
+This design pattern makes use of Javascript's closure and variable scoping properties to generate what would be recognised as a traditional ``class'' as found in other programming languages in the way it behaves.
+
+\FloatBarrier
+
+Importing ``mySingleton'' into another Node.JS using the statement
+
+\FloatBarrier
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[tabsize=2,
+		breaklines=true]
+	var ExICSData = require('./ExICSSystemData').ExICSData;
+\end{lstlisting}
+
+\FloatBarrier
+
+exposes the ``getInstance()'' method of the ``class'' which can be called with
+
+\FloatBarrier
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[tabsize=2,
+		breaklines=true]
+	var systemData = ExICSData.getInstance();
+\end{lstlisting}
+
+\FloatBarrier
+
+to return the actual instance, the object which holds the methods and private members we want associated with the ExICSData ``singleton''.
+
+This returned instance has all of the publicly callable methods defined, allowing the calling code to call such methods to modify system state such as
+
+\FloatBarrier
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[tabsize=2,
+		breaklines=true]
+switch (parseInt(parsedMessage["header"]["type"])) {
+	case PACKET_TYPE.SYSTEM_STATE:
+		serverUtils.log("Received request for Current System State from " + username);
+		systemData.pushSystemState(socket);
+		break;
+
+	case PACKET_TYPE.CHANGE_ROOM:
+		serverUtils.log("Received Change Room Request from User " + username + " to room " + parsedMessage["payload"]["room"]);
+		systemData.changeRoom(username, parsedMessage["payload"]["room"]);
+		break;
+
+	...
+\end{lstlisting}
+
+\FloatBarrier
+
+Private members such as the data structures holding the state information are not accessible due to the Javascript scoping restrictions, but \textit{are} accessible from within the code defining the public methods themselves.
+
+Due to the single-threaded execution model used by Node.JS, it is not neccessary to define threadsafe state mutators such as start or stop exam, as the execution model makes all data structures inherently safe, as explained in section \ref{subs:exics_backend_server}.
+
+\subsubsection{Data Synchronisation}
+
+\FloatBarrier
+
+The ExICSData object is designed to provide an easy and safe way to share system state between all connected clients, but when the server starts, there is no data populated.
+
+Whilst system state, such as connected clients and client rooms are populated and updated at runtime as users connect and disconnect, the exams running during a period of time need to be populated from the exam data API explained in section \ref{ch:apiwrappers}.
+
+It is necessary for the ExICS server to determine whether the state data needs updating
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[captionpos=b,caption=Exam Data Syncronization Method, tabsize=2,
+		breaklines=true]
+
+synchronizeServerState: function synchronizeServerState(socket){
+		//	s1Begin 						s2Begin								s2End
+		//	|-------------------------------|--------------------------------------|
+			if(!syncLock){
+				syncLock = true;
+				serverUtils.log("Beginning to synchronize server state");
+				// var timeNow = new Date();
+				var timeNow = getMockTime();
+				refreshSessionTimes(timeNow);
+				if ((lastSynchronized < s1Begin) || (lastSynchronized < s2Begin && timeNow > s2Begin)){
+					serverUtils.log("Synchronization necessary");
+					var request = require('request');
+					var credentials = require('./AD_CONFIG');
+
+					if(timeNow < s2Begin){
+						var examDataURL = "https://146.169.44.162:8443/examData?view=exics&sessionStart="+s1Begin.toJSON()+"&sessionEnd="+s2Begin.toJSON();
+					} else {
+						var examDataURL = "https://146.169.44.162:8443/examData?view=exics&sessionStart="+s2Begin.toJSON()+"&sessionEnd="+s2End.toJSON();
+					}
+
+					serverUtils.log("DEBUG", examDataURL);
+
+					// serverUtils.log(examDataURL);
+
+					var options = {
+							url : examDataURL,
+								headers : {
+										'Authorization': 'Basic ' + new Buffer(credentials.username + ':' + credentials.password).toString('base64')
+								},
+								strictSSL : false      
+					};
+
+					request(options, function(error, response, body){
+						var ExICSData = require('./ExICSSystemData').ExICSData.getInstance();
+						if (!error && response.statusCode == 200) {
+							
+							serverUtils.log("DEBUG", body);
+
+							lastSynchronized = timeNow;
+							var examData = JSON.parse(body);
+							var exams = examData['exams'];
+
+							for (var index = 0;  index < exams.length; index++){
+								exam = {};
+								rooms = [];
+								for (var prop in exams[index]){
+									if (exams[index].hasOwnProperty(prop)){
+										if(!(prop.toLowerCase() === "room")){
+											exam[prop.toLowerCase()] = exams[index][prop];
+										} else if (typeof exams[index][prop] === "object") {
+											for (var roomNum = 0; roomNum < exams[index][prop].length; roomNum++){
+												rooms.push(exams[index][prop][roomNum]);
+											}
+										} else {
+											rooms.push(exams[index][prop]);
+										}
+									}
+								}
+								exam["running"] = false;
+								exam["paused"] = false;
+								exam["pauseTimings"] = [];
+								exam["start"] = "null";
+								exam["finish"] = "null";
+								exam["xTime"] = 0;
+								for (var roomNum = 0; roomNum < rooms.length; roomNum++){
+									var tempObj = JSON.parse(JSON.stringify(exam));
+									if(!(currentExams.hasOwnProperty(rooms[roomNum]))){
+										currentExams[rooms[roomNum]] = [];
+									}
+									tempObj["room"] = rooms[roomNum];
+									currentExams[rooms[roomNum]].push(tempObj);
+								}
+							}
+							serverUtils.log("Completed Adding Exams, added exams in " + Object.keys(currentExams).length + " rooms");
+							syncLock = false;
+							ExICSData.pushSystemState(socket);
+						} else {
+							serverUtils.log("Failed to fetch exam data information for API");
+							syncLock = false;
+							ExICSData.sendFailure(socket, "", "Failed to fetch exam data from API")
+						}
+					});
+					// syncLock = false;
+				} else {
+					serverUtils.log("Data Sync Not Necessary");
+					syncLock = false;
+					this.pushSystemState(socket);
+				}
+			} else {
+				serverUtils.log("Synchronization Already in Progress");
+				this.pushSystemState(socket);
+			}
+		},
+\end{lstlisting}
+
+\FloatBarrier
+
+\subsection{Activity Logging}
+\label{subs:exics_logging}
+
+Logging is done by the serverUtils.js class.  Singleton like with ExICSData.
+
+Creates a new log file at logs/\textless YYYY-MM-DD\textgreater/\textless JSON\_DATE\textgreater.text, into which data is logged for the duration of that server run.
+
+There are six log levels:
+
+\begin{itemize}
+
+\item VERBOSE: 0,
+\item DEBUG: 1,
+\item INFO: 2,
+\item WARN: 3,
+\item ERROR: 4,
+\item FATAL: 5
+
+\end{itemize}
+
+When singleton instance is created it initialises log to specified level.  Subsequent messages passed to the ServerUtils singleton for logging will only be writted out if the specified log level is greater than or equal to the Logger level.
+
+Log messages in the format:
+
+
+\begin{figure}[!htbp]
+	\centering
+	[2014-05-21T15:21:54.443Z][INFO] New Client Connected.  We now have 1 clients
+	\caption{Sample Log Message}
+	\label{fig:log_message}
+\end{figure}
+
+Server closed gracefully when the server is closed gracefully.  Allows identification of when server crashed.  Previous log could then be used to recreate system state.
+
+\subsection{User Authentication}
+\label{subs:exics_auth}

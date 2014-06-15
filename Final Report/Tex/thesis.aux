@@ -62,6 +62,7 @@
 \citation{nodeJS}
 \citation{understandingNodeEventLoop}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Back-End Servers}{18}{subsection.3.3.2}}
+\newlabel{subs:exics_backend_server}{{3.3.2}{18}{Back-End Servers}{subsection.3.3.2}{}}
 \citation{IOperfKiller}
 \citation{diskIOlatency}
 \citation{whichwebsocket}
@@ -73,35 +74,121 @@
 \citation{explainlikeIm5}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}System Security}{22}{subsection.3.3.4}}
 \citation{activedirectory}
+\citation{xamarin}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.5}Client Application Platform}{23}{subsection.3.3.5}}
 \citation{sepofconcerns}
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Exam Data API Wrappers}{25}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{ch:apiwrappers}{{4}{25}{Exam Data API Wrappers}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Input Data}{26}{section.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Exam Data}{26}{subsection.4.1.1}}
+\newlabel{subsec:examData}{{4.1.1}{26}{Exam Data}{subsection.4.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Sample Output from Exam Data API\relax }}{26}{figure.caption.6}}
+\newlabel{fig:exam_data_api}{{4.1}{26}{Sample Output from Exam Data API\relax }{figure.caption.6}{}}
 \citation{understandingNode}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}API Wrapper Implementation}{26}{section.4.1}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}ExICS Server}{27}{chapter.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Seating Plan Information}{27}{subsection.4.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Sample of Seating Plan Data\relax }}{27}{figure.caption.7}}
+\newlabel{fig:seating_plan_data}{{4.2}{27}{Sample of Seating Plan Data\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Exam Wrapper API Server Design}{27}{section.4.2}}
+\citation{iso8601}
+\@writefile{toc}{\contentsline {subsubsection}{Exam Data Request Handler}{29}{section*.8}}
+\newlabel{subsec:exam_data_handler}{{4.2}{29}{Exam Data Request Handler}{section*.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Code to Construct a Javascript Date Object from the Provided Examination Data\relax }}{31}{figure.caption.9}}
+\newlabel{fig:buildingDate}{{4.3}{31}{Code to Construct a Javascript Date Object from the Provided Examination Data\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Seating Plan Request Handler}{31}{section*.10}}
+\@writefile{toc}{\contentsline {subsubsection}{API Documentation Request Handler}{32}{section*.11}}
+\citation{csvVsJSON}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Output Data}{33}{subsection.4.2.1}}
+\newlabel{subfig:ExICS_view}{{4.4a}{34}{Sample Output from Exam Data API with ExICS View\relax }{figure.caption.12}{}}
+\newlabel{sub@subfig:ExICS_view}{{a}{34}{Sample Output from Exam Data API with ExICS View\relax }{figure.caption.12}{}}
+\newlabel{subfig:default_view}{{4.4b}{34}{Sample Output from Exam Data API with Default View\relax }{figure.caption.12}{}}
+\newlabel{sub@subfig:default_view}{{b}{34}{Sample Output from Exam Data API with Default View\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Sample Exam Data API Output\relax }}{34}{figure.caption.12}}
+\newlabel{fig:samp_exam_data_output}{{4.4}{34}{Sample Exam Data API Output\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Sample Output from Seating Plan API\relax }}{35}{figure.caption.13}}
+\newlabel{subfig:seating_plan}{{4.5}{35}{Sample Output from Seating Plan API\relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Documentation}{35}{subsection.4.2.2}}
+\citation{basicAuth}
+\citation{intheclear}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Screenshot of the Exam Data API Documentation Page\relax }}{36}{figure.caption.14}}
+\newlabel{fig:exam_data_apidoc}{{4.6}{36}{Screenshot of the Exam Data API Documentation Page\relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Security}{36}{section.4.3}}
+\newlabel{sec:security_wrapper}{{4.3}{36}{Security}{section.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}SSL}{36}{subsection.4.3.1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}ExICS API}{38}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:exicsserver}{{5}{27}{ExICS Server}{chapter.5}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}ExICS Client}{28}{chapter.6}}
+\newlabel{ch:exicsapi}{{5}{38}{ExICS API}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}API Design}{38}{section.5.1}}
+\newlabel{sec:api_design}{{5.1}{38}{API Design}{section.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Example Format of ExICS API Message\relax }}{39}{figure.caption.15}}
+\newlabel{fig:exics_api_example}{{5.1}{39}{Example Format of ExICS API Message\relax }{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}ExICS API Message Types}{39}{section.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}ExICS Objects}{47}{section.5.3}}
+\newlabel{sec:exics_objs}{{5.3}{47}{ExICS Objects}{section.5.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Structure of an ExICS Client Object\relax }}{48}{figure.caption.16}}
+\newlabel{fig:exics_client}{{5.2}{48}{Structure of an ExICS Client Object\relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Structure of an ExICS Exam Object\relax }}{48}{figure.caption.17}}
+\newlabel{fig:exics_exam}{{5.3}{48}{Structure of an ExICS Exam Object\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Structure of an ExICS Pause-Resume Pair\relax }}{49}{figure.caption.18}}
+\newlabel{fig:exics_pause}{{5.4}{49}{Structure of an ExICS Pause-Resume Pair\relax }{figure.caption.18}{}}
+\citation{einarosWS}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}ExICS Server}{50}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:exicsclient}{{6}{28}{ExICS Client}{chapter.6}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Evaluation}{29}{chapter.7}}
+\newlabel{ch:exicsserver}{{6}{50}{ExICS Server}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}ExICS Server Architecture}{50}{section.6.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}ExICS Logic}{50}{subsection.6.1.1}}
+\citation{jsswitch}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}ExICS System State Class - ``ExICSData''}{52}{subsection.6.1.2}}
+\newlabel{subs:exics_data}{{6.1.2}{52}{ExICS System State Class - ``ExICSData''}{subsection.6.1.2}{}}
+\citation{jsClasses}
+\@writefile{toc}{\contentsline {subsubsection}{Javascript Singleton Pattern}{53}{section*.19}}
+\newlabel{subsubs:jsSingleton}{{6.1.2}{53}{Javascript Singleton Pattern}{section*.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Instantiation of an Object in Javascript\relax }}{54}{figure.caption.20}}
+\newlabel{fig:jsObjectInst}{{6.1}{54}{Instantiation of an Object in Javascript\relax }{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Use of the Created ``Class''\relax }}{54}{figure.caption.21}}
+\newlabel{fig:usingAppleClass}{{6.2}{54}{Use of the Created ``Class''\relax }{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Singleton Pattern in Javascript (Node.JS)\relax }}{55}{figure.caption.22}}
+\newlabel{fig:nodeJSsingleton}{{6.3}{55}{Singleton Pattern in Javascript (Node.JS)\relax }{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Data Synchronisation}{57}{section*.23}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.1}Exam Data Syncronization Method}{57}{lstlisting.6.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Activity Logging}{60}{subsection.6.1.3}}
+\newlabel{subs:exics_logging}{{6.1.3}{60}{Activity Logging}{subsection.6.1.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Sample Log Message\relax }}{61}{figure.caption.24}}
+\newlabel{fig:log_message}{{6.4}{61}{Sample Log Message\relax }{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}User Authentication}{61}{subsection.6.1.4}}
+\newlabel{subs:exics_auth}{{6.1.4}{61}{User Authentication}{subsection.6.1.4}{}}
+\citation{fragments}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}ExICS Client}{62}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:exicsclient}{{7}{62}{ExICS Client}{chapter.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Initial Design Sketches}{62}{section.7.1}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {7.1}Representation of Examination Timings}{64}{lstlisting.7.1}}
+\citation{navdrawer}
+\citation{spl}
+\citation{navdrawer}
+\citation{fragments}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}ExICS Client Architecture}{68}{section.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}Software Design Patterns}{68}{subsection.7.2.1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Evaluation}{69}{chapter.8}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Self-Evaluation}{69}{section.8.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Peer Review Feedback}{69}{section.8.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Staff Invigilator Feedback}{69}{section.8.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Conclusion}{70}{chapter.9}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:conclusions}{{9}{70}{Conclusion}{chapter.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.1}Summary of Achievements}{70}{section.9.1}}
 \bibstyle{unsrt}
 \bibdata{bibliography/bibliography}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{30}{chapter.8}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:conclusions}{{8}{30}{Conclusion}{chapter.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}Summary of Thesis Achievements}{30}{section.8.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Applications}{30}{section.8.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.3}Future Work}{30}{section.8.3}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{30}{section.8.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.2}Applications}{71}{section.9.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}Future Work}{71}{section.9.3}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{71}{section.9.3}}
 \bibcite{designingChatRoomApp}{1}
 \bibcite{httpabuse}{2}
 \bibcite{lpAjax}{3}
@@ -117,11 +204,26 @@
 \bibcite{whatiskerberos}{13}
 \bibcite{explainlikeIm5}{14}
 \bibcite{activedirectory}{15}
-\bibcite{sepofconcerns}{16}
-\bibcite{understandingNode}{17}
-\@writefile{toc}{\contentsline {chapter}{Appendix}{32}{chapter*.6}}
-\newlabel{ch:appendix}{{8.3}{32}{Future Work}{chapter*.6}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{33}{chapter.1}}
+\bibcite{xamarin}{16}
+\bibcite{sepofconcerns}{17}
+\bibcite{understandingNode}{18}
+\bibcite{iso8601}{19}
+\bibcite{csvVsJSON}{20}
+\bibcite{basicAuth}{21}
+\bibcite{intheclear}{22}
+\bibcite{einarosWS}{23}
+\bibcite{jsswitch}{24}
+\bibcite{jsClasses}{25}
+\bibcite{fragments}{26}
+\bibcite{navdrawer}{27}
+\bibcite{spl}{28}
+\@writefile{toc}{\contentsline {chapter}{Appendix}{74}{chapter*.25}}
+\newlabel{ch:appendix}{{9.3}{74}{Future Work}{chapter*.25}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{75}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{sec:survey_results}{{A}{33}{Initial Web Survey Results}{chapter.1}{}}
+\newlabel{ch:survey_results}{{A}{75}{Initial Web Survey Results}{chapter.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}User Guide}{81}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:user_guide}{{B}{81}{User Guide}{chapter.2}{}}

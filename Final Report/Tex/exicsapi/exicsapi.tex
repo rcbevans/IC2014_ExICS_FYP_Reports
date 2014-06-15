@@ -1,0 +1,344 @@
+\chapter{ExICS API}
+\label{ch:exicsapi}
+
+With a functioning data API server able to provide data in a usable JSON format, it was neccessary to begin design of the ExICS API.  This is the API used for the main ExICS server and clients to communicate.
+
+\section{API Design}
+\label{sec:api_design}
+
+\FloatBarrier
+
+The ExICS API is implemented using JSON.  Messages between client and server are made up of two constituent parts, a header and a payload.
+
+The header contains details of the nature of the message packet and of the sender for verification purposes, and the payload contains the body of the message being conveyed.
+
+The header of a packet must always contain the sender, the name of the user connected to the system who is sending the message, and a message type, allowing the server and other users to identify the nature of the message being send.
+
+Upon authentication, the server stores the username that was used and successfully authenticated on that socket.  If at any point the sender specified in the header of the received packet does not match the username used to originally authenticate, the client will be assumed to be malicious and the connection closed.
+
+\begin{figure}[h]
+  \centering
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "sender": "user",
+      "type": "0",
+      "foo": "bar",
+      "lorem": "ipsum"
+    },
+    "payload": {
+      "true": false,
+      "message": "Hello World!"
+    }
+  }
+  \end{lstlisting}
+  \caption{Example Format of ExICS API Message}
+  \label{fig:exics_api_example}
+\end{figure}
+
+JSON was used as it is simple to programmatically access atributes of a JSON object and a number of basic types are supported by default such as strings, integers and booleans as seen in figure \ref{fig:exics_api_example}.
+
+The nature of the information contained in the header and payload is determined by the message header type identifier, as explained in the next section.
+
+\FloatBarrier
+
+\section{ExICS API Message Types}
+
+The ExICS API has 15 defined message types which can be sent by client or server to adjust the state of exams in the system, change connection status, or communicate between peers.
+
+The type of message is set in the message header ``type'' variable and can be selected from the following:
+
+\begin{itemize}
+
+\item PROTOCOL\_HANDSHAKE: 0\\
+  After connecting to the ExICS server, a PROTOCOL\_HANDSHAKE packet must be sent before any other.  If any other message is received by the server before the client sends a protocol handshake they are assumed to be malicious and are kicked by the server.\\
+  The PROTOCOL\_HANDSHAKE packet contains the connecting client's username and password for authentication with the Imperial College LDAP server.  The username provided and the sender paramater must match otherwise the ExICS server will kick the connecting client.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+    {
+      "header": {
+        "type": "0",
+        "sender": "username",
+      },
+      "payload": {
+        "username": "username",
+        "password": "password"
+      }
+    }
+  \end{lstlisting}
+
+\item USER\_CONNECTED: 1\\
+  The USER\_CONNECTED message is sent to connected clients by the server when a new peer successfully connects and authenticates.  This is so a message can be displayed in the user's activity log.\\
+  The packet contains the username of the new peer and their room number.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "1",
+      "sender": "'SYS'"
+    },
+    "payload": {
+      "username": "uname",
+      "room": "room"
+    }
+  }
+  \end{lstlisting}
+
+\item USER\_DISCONNECTED: 2\\
+  Similar to USER\_CONNECTED, the USER\_DISCONNECTED packet is sent when a user disconnects from the ExICS server having been successfully authenticated.\\
+  As with USER\_CONNECTED, the packet contains the username of the disconnected user, and the room they were in for logging in connected client's activity logs.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "2",
+      "sender": "'SYS'"
+    },
+    "payload": {
+      "username": "uname",
+      "room": "room"
+    }
+  }
+  \end{lstlisting}
+
+\item SYSTEM\_STATE: 3\\
+  The SYSTEM\_STATE message type is used when a change is system state is being broadcast to connected users, for example after an examination has been started, paused, resumed or stopped.  Alternatively a SYSTEM\_STATE request can be sent from client to server to request the latest status of the system.\\
+  The nature of the client and exam objects used by the ExICS system and their members can be seen in section \ref{sec:exics_objs}.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "3",
+      "sender": "'SYS'"
+    },
+    "payload": {
+      "clients": [
+        "[]"
+      ],
+      "exams": "{}"
+    }
+  }
+  \end{lstlisting}
+
+\item CHANGE\_ROOM: 4\\
+  The CHANGE\_ROOM message type is used when a client wishes to inform the server and peers that they now wish to be associated with a different room as their main location.\\
+  The messages is sent from the server to clients to inform them that a change has been made and the user identified with the message is now associated with their preference of new room.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "3",
+      "sender": "'SYS'"
+    },
+    "payload": {
+      "username": "uname",
+      "room": "room"
+    }
+  }
+  \end{lstlisting}
+
+\item EXAM\_\textless START,PAUSE,STOP\textgreater: 5,6,7\\
+  The EXAM\_START, EXAM\_PAUSE, and EXAM\_STOP messages are all structured in the same way. They contain the details of the exam which is being started/paused(/resumed)/stopped, the module code of the exam, and the room in which the exam to be modified is located.  EXAM\_PAUSE are used to both pause and resume an exam.  The action to take is determined by the current state of the requested exam.\\
+  When sent from client to server, the message is a request for the server to take the requested action and update the system.  When sent from server to client the message is a notification that the indicated exam has had the implied action taken.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "5/6/7",
+      "sender": "username"
+    },
+    "payload": {
+      "room": "room",
+      "exam": "exammodulecode"
+    }
+  }
+  \end{lstlisting}
+
+\item EXAM\_XTIME: 8\\
+  The EXAM\_XTIME message is similar to the EXAM\_START/PAUSE/STOP message, but it has an extra parameter, an integer which contains the amount of extra time (in minutes) which are to be added to the specified exam.\\
+  As with the other messages, when sent from client to server the message is a request for the specified action, and when sent from server to client, the message is notification of an action taken.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "8",
+      "sender": "'username'"
+    },
+    "payload": {
+      "room": "room",
+      "exam": "exammodulecode",
+      "time": "XtraTimeAmount"
+    }
+  }
+  \end{lstlisting}
+
+\item SEND\_MESSAGE\_ALL: 9\\
+  The SEND\_MESSAGE\_ALL message is used by clients to have the server send the requested message to all connected clients.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "9",
+      "sender": "'username'"
+    },
+    "payload": {
+      "message": "foo-bar"
+    }
+  }
+  \end{lstlisting}
+
+\item SEND\_MESSAGE\_ROOM: 10\\
+  The SEND\_MESSAGE\_ROOM message can be sent by the client to request that the included message is forwarded by the server to all clients in the indicated room.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "9",
+      "sender": "'username'"
+    },
+    "payload": {
+      "room": "room",
+      "message": "foo-bar"
+    }
+  }
+  \end{lstlisting}
+
+\item SEND\_MESSAGE\_USER: 11\\
+  The SEND\_MESSAGE\_USER message can be sent by the client to request that the server forwards the included message to the connected client specified by the username parameter.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "9",
+      "sender": "'username'"
+    },
+    "payload": {
+      "username": "uname",
+      "message": "foo-bar"
+    }
+  }  
+  \end{lstlisting}
+
+\item SUCCESS: 69\\
+  The SUCCESS message is used by the server to indicate to a client that a requested action has been successful and can provide a success message for display to the user.\\
+  The message reserved and defined for use, but is not currently utilized anywhere in the current form of ExICS.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "69",
+      "sender": "'SYS'"
+    },
+    "payload": {
+      "message": "message"
+    }
+  }
+  \end{lstlisting}
+
+\item FAILURE: -1\\
+  The FAILURE message is used by the server to indicate to a client that an action has been unsuccessful.  An example of a reason a FAILURE message would be sent is a client attempting to CHANGE\_ROOM to a room that does not currently contain any exams, or pause an exam that has not been started.\\
+  A Failure message features the original request that the client made which was unsuccessful, as well as an aditional reason string containing the servers reason for being unsuccessful in carrying out the request.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "-1",
+      "sender": "'SYS'",
+    },
+    "payload": {
+      "original_payload": {},
+      "reason": "reason"
+    }
+  }
+  \end{lstlisting}
+\item TERMINATE\_CONNECTION: -2\\
+  The TERMINATE\_CONNECTION message can be sent from a client to the server to request disconnection from the ExICS system gracefully.  It is not necessary to use this message, as the server is capable of gracefully cleaning up and removing clients even when the directly disconnect the Websocket.
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "header": {
+      "type": "-2",
+      "sender": "'username'"
+    }
+  }
+  \end{lstlisting}
+
+\end{itemize}
+
+\section{ExICS Objects}
+\label{sec:exics_objs}
+
+There are two primary object types used to define and maintain the state of the ExICS system.  These objects are held in both the ExICS server as the master copy, or locally in each ExICS client to hold the local copy of the state.
+
+After the state of the system is changed, the server pushes a new copy of the system state to all connected clients, removing the previous local state, and updating it to the latest master state.  This ensures coherency between all devices at all times.
+
+the server then sends a notification to connected clients that an action has been taken for the purposes of logging and displaying the nature of what has changed, for example ``User \textless username\textgreater has started exam \textless exam code\textgreater in room \textless room number\textgreater''.
+
+The system state objects are pushed to clients using the SYSTEM\_STATE message which as a payload contains the new system state; a JSON array of client objects and a JSON object for exams representing the system state as represented in the ExICS server.
+
+\FloatBarrier
+
+Client objects as shared by the server are very simple, containing the username of the client as authenticated with the server, and the room in which the client is associated.  The structure of a client object can be seen in figure \ref{fig:exics_client}.
+
+\begin{figure}[h]
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+    {
+      "username": "rce10",
+      "room": "219"
+    }
+  \end{lstlisting}
+  \caption{Structure of an ExICS Client Object}
+  \label{fig:exics_client}
+\end{figure}
+
+\FloatBarrier
+
+\FloatBarrier
+
+ExICS exam objects contain all of the information necessary to represent the state of an exam.  One exam object is created and held for each exam with a unique coursecode, and each room that exam is taking place in.
+
+The exam objects are stored in arrays in a system state object (the object pushed as the value for the ``exams'' key in the SYSTEM\_STATE message) under keys of which room they are taking place in.  For example, assuming there are multiple exams taking place in room 344, the state object will contain a key for room 344, containing an array of exam objects representing all exams taking place in that room during the present session.  The infomation contained in the an ExICS exam object can be seen in \ref{fig:exics_exam}
+
+\begin{figure}[h]
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "exam": "C100",
+    "title": "an exam",
+    "numqns": "4",
+    "duration": "75",
+    "date": "2014-05-02T09:00:54.308Z",
+    "running": true,
+    "paused": false,
+    "pauseTimings": [],
+    "start": "2014-05-01T09:00:54.308Z",
+    "finish": "2014-05-01T10:15:54.308Z",
+    "xTime": "0",
+    "room": "344"
+  }
+  \end{lstlisting}
+  \caption{Structure of an ExICS Exam Object}
+  \label{fig:exics_exam}
+\end{figure}
+
+The ``pauseTimings'' member of the object contains an array of pause-resume timing pairs as seen in figure \ref.  If an exam is paused, the paused member of the object is set to the time at which the exam was paused by the server (not when the request was made by a user to pause the exam), and the resumed time will be null.
+
+Upon resuming the exam, the resumed time will be set creating a complete pause-resume pair.  These times are used to calculate the amount of extra time to be added to the examination due to time spent paused.
+
+\begin{figure}[h]
+  \lstset{language=JSON}
+  \begin{lstlisting}[tabsize=2,breaklines=true]
+  {
+    "paused": "2014-05-01T09:00:54.308Z",
+    "resumed": "2014-05-01T10:15:54.308Z"
+  }
+  \end{lstlisting}
+  \caption{Structure of an ExICS Pause-Resume Pair}
+  \label{fig:exics_pause}
+\end{figure}
+
+Because JSON is used, it is very easy in both the server and client platform, to reconstruct the JSON string representation of the objects into usable instances of classes.  This means that the representation can be used to communicate system state to client application running on any platform successfully with the system state being recreated locally from the JSON string.
+
+\FloatBarrier
