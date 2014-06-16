@@ -46,21 +46,38 @@
 \contentsline {subsection}{\numberline {6.1.2}ExICS System State Class - ``ExICSData''}{52}{subsection.6.1.2}
 \contentsline {subsubsection}{Javascript Singleton Pattern}{53}{section*.19}
 \contentsline {subsubsection}{Data Synchronisation}{57}{section*.23}
-\contentsline {subsection}{\numberline {6.1.3}Activity Logging}{60}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}User Authentication}{61}{subsection.6.1.4}
-\contentsline {chapter}{\numberline {7}ExICS Client}{62}{chapter.7}
-\contentsline {section}{\numberline {7.1}Initial Design Sketches}{62}{section.7.1}
-\contentsline {section}{\numberline {7.2}ExICS Client Architecture}{68}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Software Design Patterns}{68}{subsection.7.2.1}
-\contentsline {chapter}{\numberline {8}Evaluation}{69}{chapter.8}
-\contentsline {section}{\numberline {8.1}Self-Evaluation}{69}{section.8.1}
-\contentsline {section}{\numberline {8.2}Peer Review Feedback}{69}{section.8.2}
-\contentsline {section}{\numberline {8.3}Staff Invigilator Feedback}{69}{section.8.3}
-\contentsline {chapter}{\numberline {9}Conclusion}{70}{chapter.9}
-\contentsline {section}{\numberline {9.1}Summary of Achievements}{70}{section.9.1}
-\contentsline {section}{\numberline {9.2}Applications}{71}{section.9.2}
-\contentsline {section}{\numberline {9.3}Future Work}{71}{section.9.3}
-\contentsline {chapter}{Bibliography}{71}{section.9.3}
-\contentsline {chapter}{Appendix}{74}{chapter*.25}
-\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{75}{chapter.1}
-\contentsline {chapter}{\numberline {B}User Guide}{81}{chapter.2}
+\contentsline {subsection}{\numberline {6.1.3}Activity Logging}{58}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Database Storage}{60}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}User Authentication}{61}{subsection.6.1.5}
+\contentsline {section}{\numberline {6.2}Validation}{62}{section.6.2}
+\contentsline {chapter}{\numberline {7}ExICS Client}{64}{chapter.7}
+\contentsline {section}{\numberline {7.1}Initial Design Sketches}{64}{section.7.1}
+\contentsline {section}{\numberline {7.2}ExICS Client Architecture}{70}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}System State}{70}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Websocket Manager}{72}{subsection.7.2.2}
+\contentsline {subsubsection}{Android LocalBroadCasts}{73}{section*.28}
+\contentsline {subsection}{\numberline {7.2.3}User Interface}{76}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}ExICS Client Functionality}{82}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Run Exam Session}{82}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Send Messages}{82}{subsection.7.3.2}
+\contentsline {subsubsection}{Preset Messages}{82}{section*.34}
+\contentsline {subsubsection}{Custom Messages}{82}{section*.35}
+\contentsline {subsection}{\numberline {7.3.3}View Seating Plans}{82}{subsection.7.3.3}
+\contentsline {subsection}{\numberline {7.3.4}View Exam Invigilator Checklist}{82}{subsection.7.3.4}
+\contentsline {section}{\numberline {7.4}User Interface Implementation}{82}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Sliding Chat Log}{82}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}Handling Orientation Changes}{87}{subsection.7.4.2}
+\contentsline {subsection}{\numberline {7.4.3}Wake Device on Message Received}{89}{subsection.7.4.3}
+\contentsline {subsection}{\numberline {7.4.4}Dynamic Buttons in Exam Detail}{92}{subsection.7.4.4}
+\contentsline {chapter}{\numberline {8}Evaluation}{95}{chapter.8}
+\contentsline {section}{\numberline {8.1}Self-Evaluation}{95}{section.8.1}
+\contentsline {section}{\numberline {8.2}Peer Review Feedback}{95}{section.8.2}
+\contentsline {section}{\numberline {8.3}Staff Invigilator Feedback}{95}{section.8.3}
+\contentsline {chapter}{\numberline {9}Conclusion}{96}{chapter.9}
+\contentsline {section}{\numberline {9.1}Summary of Achievements}{96}{section.9.1}
+\contentsline {section}{\numberline {9.2}Applications}{97}{section.9.2}
+\contentsline {section}{\numberline {9.3}Future Work}{97}{section.9.3}
+\contentsline {chapter}{Bibliography}{97}{section.9.3}
+\contentsline {chapter}{Appendix}{102}{chapter*.44}
+\contentsline {chapter}{\numberline {A}Initial Web Survey Results}{103}{chapter.1}
+\contentsline {chapter}{\numberline {B}User Guide}{109}{chapter.2}

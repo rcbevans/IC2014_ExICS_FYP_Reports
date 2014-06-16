@@ -20,12 +20,12 @@ In a peer-to-peer network, shown in figure \ref{subfig:peer-to-peer}, all client
 
 \begin{figure}[!htbp]
 	\centering
-	\begin{subfigure}[b]{0.4\textwidth}
+	\begin{subfigure}[b]{0.35\textwidth}
 		\includegraphics[width=\textwidth]{"System Diagram/client_server_simpler"}
 		\caption{Client-Server Model}
 		\label{subfig:client-server}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.4\textwidth}
+	\begin{subfigure}[b]{0.35\textwidth}
 		\includegraphics[width=\textwidth]{"System Diagram/peer_to_peer"}
 		\caption{Peer-to-Peer Model}
 		\label{subfig:peer-to-peer}
@@ -157,6 +157,7 @@ Having investigated all three possibilities, I found that Node.JS provided libra
 Looking through the package listings available through NPM I found activedirectory, an ldapjs client for authN (authentication) and authZ (authorization) for Microsoft Active Directory with range retrieval support for large Active Directory installations.\cite{activedirectory}  This looked like it was easy to use and offered all the functionality necessary for authenticating users with good documentation available.
 
 \subsection{Client Application Platform}
+\label{subs:exics_client_platform}
 
 As discussed in the background of this report, it was decided during the initial investigation into the requirements and specification of the project that Android would be the chosen platform for the (initial) development of the ExICS client to avoid some of the pitfalls of other implementations such as a web apps being hidden behind the invigilators other work while invigilating, and thanks to the high market penetration of the Android Operating System.
 

@@ -170,6 +170,18 @@ Stoyan Stefanov.
   2006.
 \newblock Accessed: 2014-06-15.
 
+\bibitem{mongoose}
+Matt Hernandez.
+\newblock Node.js and mongodb - getting started with mongoose.
+\newblock \url{http://mongoosejs.com/docs/guide.html}, 2013.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{jsongenerator}
+Everett~Ward Systems.
+\newblock Objgen - live json generator.
+\newblock \url{http://www.objgen.com/json}, 2014.
+\newblock Accessed: 2014-06-15.
+
 \bibitem{fragments}
 Google Inc.
 \newblock {UI} components - fragments.
@@ -192,5 +204,123 @@ Google Inc.
   \url{http://www.survivingwithandroid.com/2013/10/android-slidingpanelayout-tutorial.html},
   October 2013.
 \newblock Accessed: 2014-29-01.
+
+\bibitem{mvvm}
+Jeremy Likness.
+\newblock Model-view-viewmodel (mvvm) explained.
+\newblock
+  \url{http://www.codeproject.com/Articles/100175/Model-View-ViewModel-MVVM-Explained},
+  2010.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{dataBinding}
+Vishnujeet Kumar.
+\newblock Data binding in xaml (wpf, silverlight, windows phone or win8 app).
+\newblock
+  \url{http://www.c-sharpcorner.com/UploadFile/0b73e1/basic-of-data-binding-in-xaml/},
+  2013.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{localBroadcastAndroid}
+Jim White.
+\newblock Using localbroadcastmanager in service to activity communications.
+\newblock
+  \url{http://www.intertech.com/Blog/using-localbroadcastmanager-in-service-to-activity-communications/},
+  2012.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidIntents}
+Google Inc.
+\newblock Intent.
+\newblock
+  \url{http://developer.android.com/reference/android/content/Intent.html},
+  2014.
+\newblock Accessed: 2014-06-14.
+
+\bibitem{androidAPInums}
+Google Inc.
+\newblock Platform versions.
+\newblock
+  \url{https://developer.android.com/about/dashboards/index.html?utm_source=ausdroid.net},
+  2014.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidEditText}
+Google Inc.
+\newblock Edittext.
+\newblock
+  \url{http://developer.android.com/reference/android/widget/EditText.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{visualisefragmentlifecycle}
+G.~Blake~Meike Zigurd~Mednieks, Laird~Dornin and Masumi Nakamura.
+\newblock {\em Programming Android}.
+\newblock O'Reilly Media, Inc., 1st edition edition, 2011.
+\newblock Chapter: 11.2, Visualizing the Fragment Life Cycle.
+
+\bibitem{androidScrollView}
+Google Inc.
+\newblock Scrollview.
+\newblock
+  \url{http://developer.android.com/reference/android/widget/ScrollView.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidListView}
+Google Inc.
+\newblock Listview.
+\newblock
+  \url{http://developer.android.com/guide/topics/ui/layout/listview.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidViewDragHelper}
+Google Inc.
+\newblock Viewdraghelper.
+\newblock
+  \url{https://developer.android.com/reference/android/support/v4/widget/ViewDragHelper.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidLifecycle}
+Google Inc.
+\newblock Activity.
+\newblock
+  \url{https://developer.android.com/reference/android/app/Activity.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{norotation}
+StackOverflow.
+\newblock Android, how to not destroy the activity when i rotate the device?
+\newblock
+  \url{http://stackoverflow.com/questions/3329318/android-how-to-not-destroy-the-activity-when-i-rotate-the-device},
+  2010.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidDialogs}
+Google Inc.
+\newblock Dialogs.
+\newblock \url{http://developer.android.com/guide/topics/ui/dialogs.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{awake_and_unlock}
+StackOverflow.
+\newblock Android - wake up and unlock device.
+\newblock
+  \url{http://stackoverflow.com/questions/14741612/android-wake-up-and-unlock-device},
+  2013.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{androidToasts}
+Google Inc.
+\newblock Toasts.
+\newblock
+  \url{http://developer.android.com/guide/topics/ui/notifiers/toasts.html}.
+\newblock Accessed: 2014-06-16.
+
+\bibitem{viewheight}
+Sherif elKhatib.
+\newblock How to get width/height of a view.
+\newblock
+  \url{http://www.sherif.mobi/2013/01/how-to-get-widthheight-of-view.html},
+  January 2013.
+\newblock Accessed: 2014-06-16.
 
 \end{thebibliography}

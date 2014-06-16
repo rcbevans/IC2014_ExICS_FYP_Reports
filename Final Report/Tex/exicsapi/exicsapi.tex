@@ -323,7 +323,7 @@ The exam objects are stored in arrays in a system state object (the object pushe
   \label{fig:exics_exam}
 \end{figure}
 
-The ``pauseTimings'' member of the object contains an array of pause-resume timing pairs as seen in figure \ref.  If an exam is paused, the paused member of the object is set to the time at which the exam was paused by the server (not when the request was made by a user to pause the exam), and the resumed time will be null.
+The ``pauseTimings'' member of the object contains an array of pause-resume timing pairs as seen in figure \ref{fig:exics_pause}.  If an exam is paused, the paused member of the object is set to the time at which the exam was paused by the server (not when the request was made by a user to pause the exam), and the resumed time will be null.
 
 Upon resuming the exam, the resumed time will be set creating a complete pause-resume pair.  These times are used to calculate the amount of extra time to be added to the examination due to time spent paused.
 
