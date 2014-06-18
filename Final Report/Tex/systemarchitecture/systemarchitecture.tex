@@ -100,7 +100,7 @@ While searching for alternatives, I found a large number of websocket implementa
 
 One such platform very highly recommended for scenarios such as that of ExICS \cite{whyNodeJS} is Node.JS, a platform built on Chrome's Javascript runtime, designed for building fast, scalable network applications.  It uses an event driven non-blocking I/O model making it lightweight and efficient and perfect for data-intensive real time applications running across distributed devices.\cite{nodeJS}
 
-One of the best features of Node.JS making it perfectly suited to the problem being tackled with ExICS and its client-server design where the server is responsible for maintaining system state is it's execution model.  Node.js, being implemented entirely in Javascript, makes use of it's single-threaded event-loop design meaning the ``app'', the main server code, is only ever executed on a single thread.\cite{understandingNodeEventLoop}  In simple terms, it makes all data structures, such as exam system state, completely safe.  Unlike Apache which spawns a new thread with every connection, making any shared variables such as system state inherently dangerous, adding implementation complexity.
+One of the best features of Node.JS making it perfectly suited to the problem being tackled with ExICS and its client-server design where the server is responsible for maintaining system state is its execution model.  Node.js, being implemented entirely in Javascript, makes use of its single-threaded event-loop design meaning the ``app'', the main server code, is only ever executed on a single thread.\cite{understandingNodeEventLoop}  In simple terms, it makes all data structures, such as exam system state, completely safe.  Unlike Apache which spawns a new thread with every connection, making any shared variables such as system state inherently dangerous, adding implementation complexity.
 
 Whilst a single thread of execution is great for ensuring any shared variables are safe to access at any point, questions may be raised as to whether the performance of such a system would be sufficient to cope as the system is scaled.  At this point it was necessary to consider ExICS and its nature.  In reality, each server will serve one department or team that need to communicate; this means that, despite the potential for tens of exams to be running during a session, there is limited space and so a limited number of exams that can run concurrently.  This limits the number of concurrent users to be proportional to this limited number of concurrent exams.  Different departments will use different ExICS server hosts, keeping the load to the system sufficiently small such that the single threaded execution won't pose an issue to performance, and won't require a supercomputer to run it.
 
@@ -126,7 +126,7 @@ To test compatibility I used two tools, a Google Chrome WebApp ``Dark Websocket 
 
 With the ``ws'' library working as expected, easy to use and highly recommended, I decided that it would be a good choice moving forward.
 
-\subsection{Persistant Data Storage}
+\subsection{Persistent Data Storage}
 
 After deciding that I would proceed with developing using Node.JS for server side development, I needed to investigate a database which could be used for storing persistent data in the system, for example the details of exams which are logged after completing, or student registers taken by invigilators and notes made during examinations.
 

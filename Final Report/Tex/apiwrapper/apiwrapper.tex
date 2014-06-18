@@ -70,7 +70,7 @@ The seating plan file contains the date and time of that seating entry, the room
 
 \FloatBarrier
 
-As mentioned in chapter \ref{ch:systemarchitecture}, it was decided based upon the research done that the back-end servers of ExICS would be implemented using Node.JS thanks to it's great performance, ease to work with and great support library availability through NPM, and efficiency.\cite{understandingNode}
+As mentioned in chapter \ref{ch:systemarchitecture}, it was decided based upon the research done that the back-end servers of ExICS would be implemented using Node.JS thanks to its great performance, ease to work with and great support library availability through NPM, and efficiency.\cite{understandingNode}
 
 The Exam Data wrapper is designed to be useful to not just ExICS, but others wishing to use the data provided.  It is intended to be useful as an open API for those in the department to utilise and so features documentation of the APIs available.
 
@@ -165,7 +165,7 @@ The response object is created which contains the date the data was produced and
 
 The function then iterates over each row to build an exam data object from the data contained in each row, held in a JSON object of key-value pairs of column title and value for that seating plan row.
 
-As with the exam data ExICS view handler, a Date object is created from the information provided by the original data which can be compared to the Date formed by the sessionStart and sessionEnd parameters.  If the seating plan information is relevant for the specified time period, the function then examines room and course code for the exam and request.  If neither are set, or both are set and match the details for the seating plan information, the seating plan information object is inserted into the results object, else it is discarded.
+As with the exam data ExICS view handler, a Date object is created from the information provided by the original data which can be compared to the Date formed by the sessionStart and sessionEnd parameters.  If the seating plan information is relevant for the specified time period, the function then examines room and course code for the exam and request.  If neither, either/or/both are set and match the details for the seating plan information, the object is inserted into the results object, else it is discarded.
 
 Finally, as with the exam data API, the results object is converted into a JSON standard string and returned to the client prettyprinted under the JSON content type in the HTTP header.
 

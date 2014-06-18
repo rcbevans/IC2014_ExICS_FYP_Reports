@@ -97,3 +97,5 @@
 \contentsline {subsubsection}{API Server}{136}{section*.62}
 \contentsline {subsubsection}{ExICS Server}{137}{section*.63}
 \contentsline {section}{\numberline {C.2}For Users}{138}{section.3.2}
+\contentsline {subsection}{\numberline {C.2.1}Quick-Guide}{138}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {C.2.2}Detailed Guide}{148}{subsection.3.2.2}
