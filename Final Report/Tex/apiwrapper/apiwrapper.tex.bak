@@ -14,7 +14,7 @@ By transforming the data into JSON and using a separate API server, also impleme
 
 \section{Input Data}
 
-In order for the Exam Data API Server to process and return the data requested in the required view, it is necessary for the server to fetch the original data, provided by DoC, and process it to generate the required response for the user.
+In order for the Exam Data API Server to process and return the data requested in the required view, it is necessary for the server to fetch the original data, provided by DoC, and process it to generate the required respose for the user.
 
 \subsection{Exam Data}
 \label{subsec:examData}
@@ -76,9 +76,9 @@ The Exam Data wrapper is designed to be useful to not just ExICS, but others wis
 
 The Exam Data API Server node.js "app" features two servers which run simultaneously on different ports.  One server is HTTP, with the other HTTPS.  Beyond the difference in the connection protocol, both servers offer the same functionality to the connecting user.
 
-When a request is received, the server logs the event onto the console and checks the request header for authorisation parameters; these will be explained in more detail in section \ref{sec:security_wrapper}.  If the request does not contain authorisation parameters in the header the server issues a response with HTTP status code 401 meaning that authentication is required, prompting the users' browser to display a login dialog requesting their Imperial credentials.  Should the user choose not to enter credentials, the browser will display a simple error message stating that authentication is required to access the resource.
+When a request is received, the server logs the event onto the console and checks the request header for authorization parameters; these will be explained in more detail in section \ref{sec:security_wrapper}.  If the request does not contain authorization parameters in the header the server issues a response with HTTP status code 401 meaning that authentication is required, prompting the users' browser to display a login dialog requesting their Imperial credentials.  Should the user choose not to enter credentials, the browser will display a simple error message stating that authentication is required to access the resource.
 
-Once the received request contains authorisation headers, the request URL is parsed to break it down into its query path and the following get request variables.  These parameters are then passed to a query router which decides which component of the server is required to handle the request being made.
+Once the received request contains authorisation headers, the request url is parsed to break it down into its query path and the following get request variables.  These parameters are then passed to a query router which decides which component of the server is required to handle the request being made.
 
 The request router contains a map of request path names to functions implemented to serve the request to the path.  When a request is passed to it to be routed, the path of the resource trying to be accessed by the user making the request is analysed and the router verifies that a function to deal with the request exists.  If the path attempted to be accessed does not have a handle to serve it, the user is served a HTTP code 404 saying that the requested resource cannot be found on the server, otherwise, the function to handle the request is invoked.
 
@@ -100,8 +100,8 @@ The Exam Data API request handler contains a map of five data converting functio
 \item Date View\\
 	In this view examinations are grouped according to the date on which they occur.
 
-\item Year group View\\
-	In this view, examinations are grouped by the year group taking them, as identified by the course code of the examination.
+\item Yeargroup View\\
+	In this view, examinations are grouped by the yeargroup taking them, as identified by the course code of the examination.
 
 \item Room View\\
 	In this view, examinations are grouped by the room in which the exam is being taken.
@@ -115,15 +115,15 @@ The Exam Data API request handler contains a map of five data converting functio
 
 \end{itemize}
 
-Each data view returns a JSON string, pretty-printed to be human readable for if accessed by a client using a browser rather than programmatically.
+Each data view returns a JSON string, prettyprinted to be human readable for if accessed by a client using a browser rather than programmatically.
 
-To generate the users response, the handler function first makes a HTTPS get request to the exam data URL shown in section \ref{subsec:examData}.  For this request, the server uses the authorisation header provided when the user connected as authorisation for the DoC API.
+To generate the users response, the handler function first makes a HTTPS get request to the exam data URL shown in section \ref{subsec:examData}.  For this request, the server uses the authorization header provided when the user connected as authorization for the DoC API.
 
-If the server receives a HTTP response status code other than 200, Success, the likelihood is that the credentials provided to the server upon connection were rejected by the DoC API and so the user is sent a response with HTTP code 403: Forbidden.  If the request from data is successful, then the server receives the CSV data ready for processing.  This data is then passed to the view handler associated with the requested or default view to generate the data output.
+If the server receives a HTTP response status code other than 200, Success, the likelihood is that the credentials provided to the server upon connection were rejected by the DoC API and so the user is sent a response with HTTP code 403: Forbidden.  If the request from data is successful, then the server receives the csv data ready for processing.  This data is then passed to the view handler associated with the requested or default view to generate the data output.
 
-To generate the JSON data output which will be returned the view handling function first processes the exam information headers to extract the information about when the data was produced by the DoC API, the exam session and headers for the main body of data.  A response object is then created, containing the information about when the data was produced, the view being returned and academic year information with a key containing another JavaScript object which will hold the exam data itself.
+To generate the JSON data output which will be returned the view handling function first processes the exam information headers to extract the information about when the data was produced by the DoC API, the exam session and headers for the main body of data.  A response object is then created, containing the information about when the data was produced, the view being returned and academic year information with a key containing another Javascript object which will hold the exam data itself.
 
-The function then walks the data line by line, building a JavaScript ``Exam'' object which contains key-value pairs of column header and value for that exam.  The function then decides, based upon the view being returned, the structure of what the exam data response should look like, and inserts the exam object into the final result.
+The function then walks the data line by line, building a Javascript ``Exam'' object which contains key-value pairs of column header and value for that exam.  The function then decides, based upon the view being returned, the stucture of what the exam data response should look like, and inserts the exam object into the final result.
 
 More complicated is the ExICS view function which has to build a Date-Time object representing when the exam will take place by manipulating the strings of data such as academic year and date provided by the original API.  Code performing the operation is shown in figure \ref{fig:buildingDate}.  In the code snippet shown, examTime is the time given in the time column of the exam row, examDate is from the date column and examYears[0] is the start year of the academic year the data is from.
 
@@ -145,7 +145,7 @@ examObj[headers[datePosition]] = examDateTime.toJSON();
 
 The date object is created using the parse method of the Date class, which parses a string of the form `\textless time \textgreater \, \textless month \textgreater \, \textless date \textgreater \, \textless year \textgreater', e.g (12:31 Jun 6 2014).  Once in date form, the date and time of the exam can be compared to the Date object created by parsing the ISO8601 date passed in for session start and or end to establish if the exam begins within the specified period, and if so the exam object is pushed to the response object.
 
-Finally, the response object constructed is stringified using the `JSON.stringify()' and pushed to the user with a HTTP code 200: OK under a content-type of JSON specified in the response header.
+Finally, the response object constructed is stringified using the `JSON.stringify()' and pushed to the user with a HTTP code 200: OK under a content-type of json specified in the response header.
 
 \FloatBarrier
 
@@ -153,7 +153,7 @@ Finally, the response object constructed is stringified using the `JSON.stringif
 
 The seating plan response handler works slightly differently to the exam data handler as explained in section \ref{subsec:exam_data_handler} on account of the data being stored in a file locally on the server.
 
-To keep authorisation permissions for the seating plan data the same as the exam data, the handler makes a request to the DoC exam data API, as the exam data handler does, with a HTTP 403: Forbidden being sent to the user if an error occurs making the request.  If the request is successful however, the response is discarded and the seating plan file is read from disk and passed to the seating plan data converted function to be processed.
+To keep authorization permissions for the seating plan data the same as the exam data, the handler makes a request to the DoC exam data API, as the exam data handler does, with a HTTP 403: Forbidden being sent to the user if an error occurs making the request.  If the request is sucessful however, the response is discarded and the seating plan file is read from disk and passed to the seating plan data converted function to be processed.
 
 The seating plan API can take four parameters in the query, sessionStart and sessionEnd, as with the ExICS view of the exam data, but also a room and course parameter.
 
@@ -161,21 +161,21 @@ By default, as with the exam data API, sessionStart and sessionEnd are set to en
 
 The date produced is extracted from the header line of the data from the file, and since headers are not provided in the file, they are hardcoded into an array mapping to the order data is stored in each seating plan information row.
 
-The response object is created which contains the date the data was produced and utilised sessionStart and sessionEnd in ISO8601 form.  There is then a Seating Plan key holding an object which contains the seating plan information being returned.
+The response object is created which contains the date the data was produced and utilized sessionStart and sessionEnd in ISO8601 form.  There is then a Seating Plan key holding an object which contains the seating plan information being returned.
 
 The function then iterates over each row to build an exam data object from the data contained in each row, held in a JSON object of key-value pairs of column title and value for that seating plan row.
 
 As with the exam data ExICS view handler, a Date object is created from the information provided by the original data which can be compared to the Date formed by the sessionStart and sessionEnd parameters.  If the seating plan information is relevant for the specified time period, the function then examines room and course code for the exam and request.  If neither, either/or/both are set and match the details for the seating plan information, the object is inserted into the results object, else it is discarded.
 
-Finally, as with the exam data API, the results object is converted into a JSON standard string and returned to the client pretty-printed under the JSON content type in the HTTP header.
+Finally, as with the exam data API, the results object is converted into a JSON standard string and returned to the client prettyprinted under the JSON content type in the HTTP header.
 
 \subsubsection{API Documentation Request Handler}
 
 The API Documentation request handler is much simpler than the API handlers and both the handler for exam data documentation and seating plan documentation work very similarly.
 
-When a request is made for API documentation, the relevant handler is invoked by the router, as with the APIs above.  The handler then makes a request to the DoC exam data API using the authorisation header from the request as authorisation to the request to the DoC API. As with the seating plan API above, if the request is unsuccessful, the user is served a HTTP 403: Forbidden response, otherwise the response from the API is discarded.
+When a request is made for API documentation, the relevant handler is invoked by the router, as with the APIs above.  The handler then makes a request to the DoC exam data API using the authorization header from the request as authorization to the request to the DoC APS. As with the seating plan API above, if the request is unsuccessful, the user is served a HTTP 403: Forbidden response, otherwise the response from the API is discarded.
 
-If successful, the API server loads a HTML page containing the API documentation and sends it to the user under the HTTP header content type text/html.
+If successful, the API server loads a html page containing the API documentation and sends it to the user under the HTTP header content type text/html.
 
 \subsection{Output Data}
 
@@ -185,7 +185,7 @@ The Exam Data API server is designed to wrap the existing exam information and s
 
 Whilst CSV format has the advantage that it can be approximately half the size of its JSON counterpart, due to the repeated inclusion of header information in JSON \cite{csvVsJSON}, JSON data has the advantage that it can be very simply parsed by JSON libraries to instantiate objects or directly access elements and properties by name.  It means that data can change in order, with more added and existing functionality will remain unbroken.
 
-The form of the data returned by requests depends upon the type of data requested, exam data, or seating plan information.  With exam data, different data views which are structured differently can be requested by the user, and customised with additional request parameters in the case of ExICS view, see figure \ref{fig:samp_exam_data_output}.
+The form of the data returned by requests depends upon te type of data requested, exam data, or seating plan information.  With exam data, different data views which are structured differently can be requested by the user, and customised with additional request parameters in the case of ExICS view, see figure \ref{fig:samp_exam_data_output}.
 
 \begin{figure}[h]
 	\begin{subfigure}[b]{0.9\textwidth}

@@ -11,7 +11,7 @@ With ExICS I have taken a completely undirected, open-ended project and done the
 
 A framework has been implemented which can easily allow for extension and improvement of the current system, allowing new functionality to be added making the system even more useful to those using it.
 
-I have shown Node.JS to be a great choice of platform for small scale distributed systems thanks to its quick development process, predictable behaviour and reliability.  As well as Node.JS, I have proved Websockets to be an excellent protocol on which to build simple and efficient real-time communication systems.
+I have shown Node.JS to be a great choice of platform for small scale distributed systems thanks to its quick development process, predictable behaviour and reliablility.  As well as Node.JS, I have proved websockets to be an excellent protocol on which to build simple and efficient real-time communication systems.
 
 The simple ExICS API for client-server communication would allow for simple development of additional client applications on any platform with Websockets protocol support, including web-apps.
 
@@ -38,9 +38,9 @@ There are a number of areas in which I feel the existing functionality offered b
 
 \item Add the option in settings to have the device vibrate when messages are received in case the user isn't able to directly see the screen.
 
-\item Add additional preset messages and replies to the system and allow the send message dialog to default to a suggested recipient when certain messages are selected.
+\item Add addional preset messages and replies to the system and allow the send message dialog to default to a suggested recipient when certain messages are selected.
 
-\item Add the ability to dismiss message dialogs on other clients when a user replies positively to avoid over-servicing requests.  Also allow the sender of messages to see status of how many users have seen and dismissed messages so that they know when no-one is left to respond.
+\item Add the ability to dismiss message dialogs on other clients when a user replies positively to avoid overservicing requests.  Also allow the sender of messages to see status of how many users have seen and dismissed messages so that they know when no-one is left to respond.
 
 \item Add additional granularity and groupings to system users so that, for example, messages requesting a toilet escort can be sent to the staff on duty to escort students.
 

@@ -116,7 +116,7 @@ In the case that the project progresses in good time ahead of schedule, first gr
 \item Include information for each examination, including the examiner responsible for asking each question of a paper.
 \item Include critical contact numbers for each exam paper.
 \item Provide student seating plans mapping student names to numbers, and vice versa.
-\item The ability to customise notification methods, e.g. Toggle device vibration on message received.
+\item The ability to customize notification methods, e.g. Toggle device vibration on message received.
 \end{itemize}
 
 \item Less Important
@@ -148,7 +148,7 @@ CSG (Computer support group) at Imperial offer the cloudstack virtual server ser
 
 After the provisioning, the user has full root access to the server to customise as required.
 
-For this project I have used a Cloudstack instance running Ubuntu 12.04 (64-bit), with a 1GHz CPU and 1GB RAM.
+For this project I have used a CloudStack instance running Ubuntu 12.04 (64-bit), with a 1GHz CPU and 1Gb RAM.
 
 \subsection{Network Communication}
 
@@ -158,8 +158,8 @@ The Department of Computing is already fitted with a widely accessible wireless 
 
 Given the nature of the information to be made available in the exam invigilator communication system, it is necessary that the system features restricted access to only authorised members of the college faculty involved with the invigilation or examination of the papers.
 
-Imperial offers two authentication services, LDAP (Lightweight Directory Access Protocol) Active Directory which supports single sign-on via Kerberos.  Having discussed with the college ICT Service Desk, it will be possible to make use of these authentication methods to authenticate client access to the system back-end server.  It will be possible to create a system access alias against which any connecting clients can be checked.
+Imperial offers two authentication services, LDAP (Lightweight Directory Access Protocol) Active Directory which supports single signon via Kerberos.  Having discussed with the college ICT Service Desk, it will be possible to make use of these authentication methods to authenticate client access to the system backend server.  It will be possible to create a system access alias against which any connecting clients can be checked.
 
-The downside of this approach is that any invigilator or examiner must be added to this alias before the system will grant them access, however, this is unavoidable and much preferred to the overhead of implementing a security policy within the back-end system itself.  ICT have indicated that given some criteria, it would be possible to create a policy rule which will automatically populate the user list from corporate data, keeping it up to date.
+The downside of this approach is that any invigilator or examiner must be added to this alias before the system will grant them access, however, this is unavoidable and much preferred to the overhead of implementing a security policy within the backend system itself.  ICT have indicated that given some criteria, it would be possible to create a policy rule which will automatically populate the user list from corporate data, keeping it up to date.
 
 Kerberos and LDAP are widely supported authentication standards and so implementation of either with a major web server distribution should be highly feasible.

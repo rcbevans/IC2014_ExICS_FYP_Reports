@@ -1,7 +1,7 @@
 \chapter{ExICS API}
 \label{ch:exicsapi}
 
-With a functioning data API server able to provide data in a usable JSON format, it was necessary to begin design of the ExICS API.  This is the API used for the main ExICS server and clients to communicate.
+With a functioning data API server able to provide data in a usable JSON format, it was neccessary to begin design of the ExICS API.  This is the API used for the main ExICS server and clients to communicate.
 
 \section{API Design}
 \label{sec:api_design}
@@ -37,7 +37,7 @@ Upon authentication, the server stores the username that was used and successful
   \label{fig:exics_api_example}
 \end{figure}
 
-JSON was used as it is simple to programmatically access attributes of a JSON object and a number of basic types are supported by default such as strings, integers and booleans as seen in figure \ref{fig:exics_api_example}.
+JSON was used as it is simple to programmatically access atributes of a JSON object and a number of basic types are supported by default such as strings, integers and booleans as seen in figure \ref{fig:exics_api_example}.
 
 The nature of the information contained in the header and payload is determined by the message header type identifier, as explained in the next section.
 
@@ -53,7 +53,7 @@ The type of message is set in the message header ``type'' variable and can be se
 
 \item PROTOCOL\_HANDSHAKE: 0\\
   After connecting to the ExICS server, a PROTOCOL\_HANDSHAKE packet must be sent before any other.  If any other message is received by the server before the client sends a protocol handshake they are assumed to be malicious and are kicked by the server.\\
-  The PROTOCOL\_HANDSHAKE packet contains the connecting client's username and password for authentication with the Imperial College LDAP server.  The username provided and the sender parameter must match otherwise the ExICS server will kick the connecting client.
+  The PROTOCOL\_HANDSHAKE packet contains the connecting client's username and password for authentication with the Imperial College LDAP server.  The username provided and the sender paramater must match otherwise the ExICS server will kick the connecting client.
   \lstset{language=JSON}
   \begin{lstlisting}[tabsize=2,breaklines=true]
     {
@@ -222,7 +222,7 @@ The type of message is set in the message header ``type'' variable and can be se
 
 \item SUCCESS: 69\\
   The SUCCESS message is used by the server to indicate to a client that a requested action has been successful and can provide a success message for display to the user.\\
-  The message reserved and defined for use, but is not currently utilised anywhere in the current form of ExICS.
+  The message reserved and defined for use, but is not currently utilized anywhere in the current form of ExICS.
   \lstset{language=JSON}
   \begin{lstlisting}[tabsize=2,breaklines=true]
   {
@@ -238,7 +238,7 @@ The type of message is set in the message header ``type'' variable and can be se
 
 \item FAILURE: -1\\
   The FAILURE message is used by the server to indicate to a client that an action has been unsuccessful.  An example of a reason a FAILURE message would be sent is a client attempting to CHANGE\_ROOM to a room that does not currently contain any exams, or pause an exam that has not been started.\\
-  A Failure message features the original request that the client made which was unsuccessful, as well as an additional reason string containing the servers reason for being unsuccessful in carrying out the request.
+  A Failure message features the original request that the client made which was unsuccessful, as well as an aditional reason string containing the servers reason for being unsuccessful in carrying out the request.
   \lstset{language=JSON}
   \begin{lstlisting}[tabsize=2,breaklines=true]
   {
@@ -299,7 +299,7 @@ Client objects as shared by the server are very simple, containing the username 
 
 ExICS exam objects contain all of the information necessary to represent the state of an exam.  One exam object is created and held for each exam with a unique coursecode, and each room that exam is taking place in.
 
-The exam objects are stored in arrays in a system state object (the object pushed as the value for the ``exams'' key in the SYSTEM\_STATE message) under keys of which room they are taking place in.  For example, assuming there are multiple exams taking place in room 344, the state object will contain a key for room 344, containing an array of exam objects representing all exams taking place in that room during the present session.  The information contained in the an ExICS exam object can be seen in \ref{fig:exics_exam}
+The exam objects are stored in arrays in a system state object (the object pushed as the value for the ``exams'' key in the SYSTEM\_STATE message) under keys of which room they are taking place in.  For example, assuming there are multiple exams taking place in room 344, the state object will contain a key for room 344, containing an array of exam objects representing all exams taking place in that room during the present session.  The infomation contained in the an ExICS exam object can be seen in \ref{fig:exics_exam}
 
 \begin{figure}[h]
   \lstset{language=JSON}

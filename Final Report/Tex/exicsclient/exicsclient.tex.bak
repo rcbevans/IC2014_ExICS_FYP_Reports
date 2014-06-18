@@ -12,7 +12,7 @@ The client application designs are based upon the screen size and resolution of 
 
 The main overview page for the application will consist of a dual pane android layout using fragments.  2/3 of the screen will be dedicated to overview information, with the remaining 1/3 containing the log of most recent system communication activity.
 
-The main overview content will be divided again roughly in two.  The top panel will contain a horizontally scrollable list of the rooms currently containing examinations, the invigilators/examiners currently linked to that room, and the rooms status; OK, stopped, or pending help, along with a traffic light icon reflecting the status.  The rooms are selectable, shown by highlighting which updates the information shown in the lower panel.
+The main overview content will be divided again roughly in two.  The top panel will contain a horizontally scrollable list of the rooms currently containing examinations, the invigilators/examiners currently linked to that room, and the rooms status; ok, stopped, or pending help, along with a traffic light icon reflecting the status.  The rooms are selectable, shown by highlighting which updates the information shown in the lower panel.
 
 The initial concept for the lower panel of the main overview content is that it will contain another horizontally scrollable panel containing an entry for each exam taking place in that room.  Each entry will show the name of the room, and timing information depending upon the state of the exam.  Before the exam is started, the scheduled start time will be shown, with this changing to show the actual start time, time remaining, finish time, and extra time finish time.  If an exams time is extended, this can be reflected also, by appending an extra time flag to the finish time, for example
 
@@ -82,7 +82,7 @@ It was therefore necessary to implement some of the features manually to achieve
 
 			public static mySingleton getInstance() {
 					synchronized (mySingleton.class) {
-						//If Instance has not been Instantiated
+						//If Instance has not been Instaciated
 							if (instance == null) {
 									instance = new mySingleton();
 							}
@@ -98,7 +98,7 @@ It was therefore necessary to implement some of the features manually to achieve
 
 The ExICSData class contains the local information about the client and the state of the system.  As with the ExICS server, the state of the current exam sessions, and the exams taking place, as well as the clients connected to the system.
 
-The exams running in the current session are stored in a Hashmap where an integer, the room number exams are taking place in, map to an ArrayList of Exam objects implemented using the schema defined in section \ref{sec:exics_objs}.
+The exams running in the current session are stored in a HashMap where an integer, the room number exams are taking place in, map to an ArrayList of Exam objects implemented using the schema defined in section \ref{sec:exics_objs}.
 
 The users currently connected to the system are also stored in a HashMap data structure which maps Strings, the username of the peer, to a Client object containing the username and room of the client.
 
@@ -110,31 +110,31 @@ The ExICSSystemData class also features a large number of methods which can be u
 
 \subsection{Websocket Manager}
 
-As with the ExICSSystem Data Class, the wsCommunicationManager class used in the ExICS client application is implemented using a lazily instantiated singleton object.  This allows only one instance of the WebSocket to be created which can be accessed from any other class, including both interactive, such as Android Fragments and utility, like ExICSSystemData.
+As with the ExICSSystemData Class, the wsCommunicationManager class used in the ExICS client application is implemented using a lazily instantiated singleton object.  This allows only one instance of the websocket to be created which can be accessed from any other class, including both interactive, such as Android Fragments and utility, like ExICSSystemData.
 
-The wsCommunicationManager class is implemented making use of the Autobahn Android WebSocket library, as explained in section \ref{subs:exics_client_platform}.  The object contains a WebSocketConnection object as provided by the Autobahn Android library which offers a simple to use interface of methods which can be used to establish, utilise and manage the WebSocket connection.
+The wsCommunicationManager class is implemented making use of the Autobahn Android websocket library, as explained in section \ref{subs:exics_client_platform}.  The object contains a WebSocketConnection object as provided by the Autobahn Android library which offers a simple to use interface of methods which can be used to establish, utilize and manage the websocket connection.
 
-The wsCommunicationManager offers a number of methods which can be used by other classes to manage and use the WebSocket connection once made to the server, for example the connectToServer method which takes a String, hostname, and Integer, port, and establishes a connection to the hostname on the specified port with the WebSocketConnection object.
+The wsCommunicationManager offers a number of methods which can be used by other classes to manage and use the websocket connection once made to the server, for example the connectToServer method which takes a String, hostname, and Integer, port, and establishes a connection to the hostname on the specified port with the WebSocketConnection object.
 
-The Autobahn Android WebSocket library is used in a very similar way to the Node.JS WebSocket packages.  Callback handlers are assigned to different WebSocket events exposed by the Autobahn library, such as ``onTextMessage'', which are invoked when the specified event takes place.
+The Autobahn Android websocket library is used in a very similar way to the Node.JS websocket packages.  Callback handlers are assigned to different websocket events exposed by the Autobahn libary, such as ``onTextMessage'', which are invoked when the specified event takes place.
 
 When a new text message is received from the server, it is handled in much the same was as on the ExICS server.  The message header type is used in a switch statement where the case for each ExICS message type, as defined in section \ref{sec:api_design}, contains the code to handle the message.
 
 If a SYSTEM\_STATE message is received for example, the current state of the system, contained by the ExICSSystemData object, is cleared, and the processSystemData method is called and passed the payload of the received message.  This method extracts the JSONArray containing the current clients connected to the system and the JSONObject containing the current exam state.  These objects can then be iterated over by the addUsers and addExams methods which reconstruct Java objects from the JSON representations and store them in the ExICSSystemData object for use by the rest of the client application.
 
-\subsubsection{Android LocalBroadcasts}
+\subsubsection{Android LocalBroadCasts}
 
 When the wsCommunicationManager class handles a message received from the server, it means something in the system state has changed.  Whether that is a new message received from a peer, or an exam that has been started/paused/stopped etc.  When these changes occur, it is therefore necessary for any system state representation on the user interface to be refreshed to ensure that it is showing the current state of the system.
 
 In WindowsPhone and Windows, the operating system features data binding from XAML user interface components.  When a user interface component is bound to a data source, the operating system automatically generates the glue between the View and ViewModel such that when the data in the ViewModel is changed programmatically, the UI (User Interface) View automatically refreshes to reflect the changes.  Similarly, if the UI View is interacted with by the user to modify the representation of the data, the underlying data will also be mutated.
 
-With Android, however, this functionality does not exist and so it was necessary to implement it manually.  Implementing update of the underlying data when the UI View is interacted with was a simple task.  When a UI view is interacted with, clicked, toggled, selected, an event listener callback calls a method on the ExICSSystemData class which mutates the underlying data or calls the wsCommunicationManager to request a state change from the server.
+With Android, however, this functionality does not exist and so it was necessary to implement it manually.  Implementing update of the underlying data when the UI View is interacted with was a simple task.  When a UI view is interacted with, clicked, toggled, selected, an event listener callback calls a method on the ExICSSystemDataClass which mutates the underlying data or calls the wsCommunicationManager to request a state change from the server.
 
-Reflecting underlying state changes in the UI View when changed however, is not as simple.  There are a number of ways of implementing such behaviours such as each UI View element registering a callback function with the ExICSSystemData class that can be called to trigger a UI refresh etc.  This involves a level of complexity, however, where connected listeners must be handled carefully; registered correctly when a View is instantiated, and unregistered when destroyed to avoid any errors in the code such as NullPointer Exceptions, where a referenced object no longer exists, or the reference is null and doesn't actually point to an object (In java, there are no explicit pointer types, all references to objects are implicitly pointers).
+Reflecting underlying state changes in the UI View when changed however, is not as simple.  There are a number of ways of implementing such behaviours such as each UI View element registering a callback function with the ExICSSystemData class that can be called to trigger a UI refresh etc.  This involves a level of complexity, however, where connected listeners must be handled carefully; registered correctly when a View is instanciated, and unregistered when destroyed to avoid any errors in the code such as NullPointer Exceptions, where a referenced object no longer exists, or the reference is null and doesn't actually point to an object (In java, there are no explicit pointer types, all references to objects are implicity pointers).
 
 Instead, the ExICS client app makes use of a built-in Android functionality which build upon the Android Intent System using LocalBroadCastManager\cite{localBroadcastAndroid}.  The LocalBroadcastManager allows components of the application system, in this case the wsCommunicationManager, to send messages which are carried by Android and can be listened for by other components of the application.
 
-The messages sent are Android Intent objects\cite{androidIntents} which can contain information, or simply be designed to trigger events in application components when received, as they are used in the ExICS client.
+The messages sent are Android Intent objects\cite{androidIntents} which can contain information, or simply be designed to trigger events in application components when receieved, as they are used in the ExICS client.
 
 There are six broadcasts that are used by the ExICS client:
 
@@ -147,7 +147,7 @@ There are six broadcasts that are used by the ExICS client:
 	This broadcast is sent after a SYSTEM\_STATE message is received from the server and is used to trigger listening UI components to refresh Views populated from the ExICSSystemData ViewModel.
 
 \item CONNECTION\_CLOSED\\
-	The CONNECTION\_CLOSED broadcast is made when the WebSocket connection to the server is closed.  This is used such the the application can attempt to reconnect to the server if the connection drops.
+	The CONNECTION\_CLOSED broadcast is made when the websocket connection to the server is closed.  This is used such the the application can attempt to reconnect to the server if the connection drops.
 
 \item FAILURE\_OCCURRED\\
 	This broadcast is made when a FAILURE message is received from the server and contains the reason provided by the server.  This is so that the UI can notify the user of the failure and the reason.
@@ -229,7 +229,7 @@ All activities in the ExICS client are designed such that they are usable on any
 
 \FloatBarrier
 
-The second Activity is the main ExICS Activity which allows all of the main system functionality to be accessed, once the client has connected to the ExICS server.  This activity uses an android DrawerLayout\cite{navdrawer} which provides a menu which inflates when either the application icon in the top left of the activity is clicked, or when the user swipes right from the left edge of the screen.  This navigation draw exposes a ListView of ``labels'' which can be clicked to select, which allows the application to change the content shown on the screen to that of the type selected by the user.  The activity showing the navigation drawer can be seen in figure \ref{fig:phone_nav_drawer}.
+The second Activity is the main ExICS Activity which allows all of the main system functionality to be accessed, once the client has connected to the ExICS server.  This activity uses an android DrawerLayout\cite{navdrawer} which provides a menu which inflates when either the application icon in the top left of the activity is clicked, or when the user swipes right from the left edge of the screen.  This navigation draw exposes a listview of ``labels'' which can be clicked to select, which allows the application to change the content shown on the screen to that of the type selected by the user.  The activity showing the navigation drawer can be seen in figure \ref{fig:phone_nav_drawer}.
 
 \begin{figure}
 	\centering
@@ -273,7 +273,7 @@ The idea of supporting different device configurations such as screen orientatio
 \section{ExICS Client Functionality}
 \label{sec:ExICSfunctionality}
 
-This section outlines the functionality provided by the ExICS client Android app.  The functionality is provided by the user interface built upon the wsCommunicationManager and ExICSSystemData classes which handle the storing of system state and communication with the ExICS server.  The application uses a navigation drawer for navigation between different sections of the application as be can seen in figure \ref{fig:nav_drawer_phone}.
+This section outlines the functionality provided by the ExICS client Android app.  The functionality is provided by the userinterface built upon the wsCommunicationManager and ExICSSystemData classes which handle the storing of system state and communication with the ExICS server.  The application uses a navigation drawer for navigation between different sections of the application as be can seen in figure \ref{fig:nav_drawer_phone}.
 
 \FloatBarrier
 
@@ -290,7 +290,7 @@ The main functionality of the application, as accessible through each header in 
 
 \subsection{Overview}
 
-The ExICS app gives an overview of all exams taking place during the current exam period.  The section uses a three view hierarchy which can be navigated as shown in figure \ref{fig:overview_flowchart}.
+The ExICS app gives an overview of all exams taking place during the current exam period.  The section uses a three view heirarchy which can be navigated as shown in figure \ref{fig:overview_flowchart}.
 
 \FloatBarrier
 
@@ -333,7 +333,7 @@ When ``Stop Exam'' is selected, a warning confirmation is displayed to the user 
 
 The ExICS log screen is displayed to the right of all content displayed in the app.  In landscape mode, it is physically on screen to the right of the main content, or in portrait it can be reached by using a swiping gesture to the left.  Once displayed in portrait, the main content of the app can be shown by using a right swipe gesture.  The gesture implementation and details can be seen in section \ref{subs:chat_log_sliding}.
 
-The ExICS log features two main components, the activity log itself, and an action button area below it as seen in figure \ref{fig:exics_log_phone_portrait}.  The activity log is a TextView housed within a ScrollView container which allows the user to scroll back through the activity history.  Each message has a time-stamp for when the event occurred for reference.  Whenever a new event occurs in the system, a new event is added to the log and the ScrollView container is scrolled to display it at the bottom of the activity log.  The means to achieve this auto-scrolling is covered in section \ref{subs:log_autoscroll}.
+The ExICS log features two main components, the activity log itself, and an action button area below it as seen in figure \ref{fig:exics_log_phone_portrait}.  The activity log is a TextView housed within a ScrollView container which allows the user to scroll back through the activity history.  Each message has a timestamp for when the event occurred for reference.  Whenever a new event occurrs in the system, a new event is added to the log and the ScrollView container is scrolled to display it at the bottom of the activity log.  The means to achieve this autoscrolling is covered in section \ref{subs:log_autoscroll}.
 
 \FloatBarrier
 
@@ -361,11 +361,11 @@ Below the activity log is a button which allows the user to send a message to ot
 
 Once the message is finalised, the wsCommunicationManager sends the message to the ExICS server which then forwards the message onto the intended recipients specified by their room or username.
 
-When messages are received by the recipient, a dialog is displayed alerting them to the new message which gives details about the sender and their room, and gives the option for the recipient to reply to the original sender as shown in figure \ref{fig:message_screen}.
+When messages are recieved by the recipient, a dialog is displayed alerting them to the new message which gives details about the sender and their room, and gives the option for the recipient to reply to the original sender as shown in figure \ref{fig:message_screen}.
 
 \subsection{Seating Plans}
 
-The ExICS client allows the users to view seating plans for the rooms currently hosting exams.  It consists of a room selector at the top of the screen, with a scrollable ListView of seating information for students taking exams in the room shown below, as seen in figure \ref{fig:spv}.
+The ExICS client allows the users to view seating plans for the rooms currently hosting exams.  It consistes of a room selector at the top of the screen, with a scrollable ListView of seating information for students taking exams in the room shown below, as seen in figure \ref{fig:spv}.
 
 The seating plan information displays all of the information made available by the data source I was provided with by the department which is somewhat limited.  It consists of the seat number, the student taking the exam in that seats CID (College Identification) number, and the exam which they are sitting.  There is a wide array of information I would wish to display is addition to this, however given the timescale of the project and issues with data confidentiality, I was unable to obtain additional information such as student names and images as I would have wished.  These future development improvements and extensions are discussed further in section \ref{sec:future_work}.
 
@@ -394,7 +394,7 @@ This section will briefly outline some of the more interesting points of the ExI
 \subsection{Sliding Chat Log}
 \label{subs:chat_log_sliding}
 
-When the device is in Portrait more and the screen is more tall than wide, having the activity log visible on screen alongside the main content doesn't make sense.  The content of the screen would be too small, at best bringing a poor UX, and at worst, rendering the entire application unusable.
+When the device is in Portrait more and the screen is more tall than wide, having the activity log visible on screen alongside the main content doesn't make sense.  The content of the screen would be too small, at best bringing a poor UX, and at worst, rendering the entire appliation unusable.
 
 It was therefore necessary to have only one fragment visible on the screen at any time.  It is important however to have both the main content of the app, and the activity log easily accessible and so decided to implement a swipe gesture which shows and hides the Activity Log as shown in figure \ref{fig:swipe_flowchart}.  When the main content of the application is showing, the user presses their finger onto the screen (1), moves it left (2) then lifts their finger in a left swipe gesture.  This triggers a fade animation in which the main content on the device screen is replaced with the ExICS log.  When the ExICS log is showing, the user then repeats the same gesture; start by pressing the screen (3), but instead of swiping their finger left, they swipe it right (4). This causes the same fade animation in which the main content screen of the application replaces the activity log and the user is back in the same position as they started.
 
@@ -413,7 +413,7 @@ It was therefore necessary to have only one fragment visible on the screen at an
 
 To implement this swipe gesture, the main activity layout for the portrait orientation contains three elements, the navigation drawer which is to the left of the screen, hidden offscreen to be displayed when triggered, and two fragment containers which occupy the same space on the screen and are of the same dimensions.  The main content fragment has its visibility set to View.VISIBLE, and that of the activity log fragment is set to View.GONE.  This means that, to the user it is as though there is only one fragment even present in the activity.
 
-In the main activity Java code, a custom class, ``OnSwipeTouchListener'' is attached to the fragment containers which can recognise horizontal swipes and trigger a callback depending if the swipe detected is left or right as shown in figure \ref{fig:ostl}.  The gesture detector can be configured to tweak the length a swipe must be if the code is to be triggered and the velocity necessary for the swipe to be recognised.
+In the main activity Java code, a custom class, ``OnSwipeTouchListener'' is attached to the fragment containers which can recognize horizontal swipes and trigger a callback depending if the swipe detected is left or right as shown in figure \ref{fig:ostl}.  The gesture detector can be configured to tweak the length a swipe must be if the code is to be triggered and the velocity necessary for the swipe to be recognised.
 
 \begin{figure}[!htpb]
 	\centering
@@ -516,9 +516,9 @@ The showChatLog and hideChatLog methods are responsible for updating the user in
 
 Whilst this code works well for simple fragments containing no scrollable views, in fragments with interactive view components such as ScrollViews\cite{androidScrollView} or ListViews\cite{androidListView} I experienced a problem.  When the user attempts to make a swipe gesture in the fragment, and the starting position is a scrollable view, the scrollable view consumes the gesture such that the gesture detector listening on the parent fragment container did not detect them.
 
-I spent a large amount of time trying to work around this problem in a nice way.  I attempted to intercept touches in the view hierarchy and to override the scrollable view's default behaviour such that the touch is passed back up the view hierarchy.  I also attempted to implement a ViewDragHelper\cite{androidViewDragHelper} which (seems to be) designed for this kind of purpose, however suffered greatly at the lack of guidance and documentation on how the class works and so was unable to solve the issue this way.
+I spent a large amount of time trying to work around this problem in a nice way.  I attempted to intercept touches in the view heirarchy and to override the scrollable view's default behaviour such that the touch is passed back up the view heirarchy.  I also attempted to implement a ViewDragHelper\cite{androidViewDragHelper} which (seems to be) designed for this kind of purpose, however suffered greatly at the lack of guidance and documention on how the class works and so was unable to solve the issue this way.
 
-As a work around, I implemented an interface between the child fragment and the parent activity with methods that can be called by the child fragment.  In the fragments, I simply attached OnSwipeTouchListeners to all scrollable components, overriding their ``onSwipeLeft'' and ``onSwipeRight'' methods such that when triggered by the gesture detector, they manually pass the event back to the parent activity using the defined interface.  This solution does work, and it works well, however, it is not as clean or sophisticated as I think could be possible, and so, given more time I would wish to implement a better means of intercepting and detecting gestures, even on fragments with scrollable view widgets.
+As a work around, I implemented an interface between the child fragment and the parent activity with methods that can be called by the child fragment.  In the fragments, I simply attached OnSwipeTouchListeners to all scrollable components, overriding their ``onSwipeLeft'' and ``onSwipeRight'' methods such that when triggered by the gesture detector, they manually pass the event back to the parent activity using the defined interface.  This solution does work, and it works well, however, it is not as clean or sophisticated as I think could be possible, and so, given more time I would wish to implement a better means of intercepting and detecting gestures, even on fragments with scollable view widgets.
 
 \FloatBarrier
 
@@ -577,9 +577,9 @@ Whilst losing the content of EditText Views is annoying, it is not necessarily a
 
 To deal with the problem cleanly, the ExICS client takes advantage of an override method provided by the Android Activity class, ``onSaveInstanceState''.  This method is called just before an Activity is destroyed due to configuration changes and produces an Android Bundle which can contain primitives such as Strings, and serialisable or parcelable objects.
 
-The onSaveInstanceState method is overridden and populated with activity state data, such as a serialised instance of the ArrayList containing current messages held in the Activity, and booleans for dialogs that are created ready to be displayed when triggered.
+The onSaveInstanceState method is overriden and populated with activity state data, such as a serialised instance of the ArrayList containing current messages held in the Activity, and booleans for dialogs that are created ready to be displayed when triggered.
 
-In the ``onCreate'' method of the Android lifecycle, a Bundle of existing instance state is passed in.  This Bundle is null if the activity is being created for the first time, i.e the activity has just been launched by the user.  If the Activity is being recreated following an orientation change, however, the ``outState'' Bundle created in ``onSaveInstanceState'' before the Activity was previously destroyed is passed to the new Activity instance.  At this point, application logic can be used to recreate system state, for example, reinstating the message ArrayList from the serialised version passed in the Bundle, or redisplaying Dialogs that were previously showing.
+In the ``onCreate'' method of the Android lifecycle, a Bundle of existing instance state is passed in.  This Bundle is null if the activity is being created for the first time, i.e the activity has just been launched by the user.  If the Activity is being recreated following an orientation change, however, the ``outState'' Bundle created in ``onSaveInstanceState'' before the Activity was previously destroyed is passed to the new Activity instance.  At this point, application logic can be used to recreate system state, for example, reinstatiating the message ArrayList from the serialised version passed in the Bundle, or redisplaying Dialogs that were previously showing.
 
 \subsection{Wake Device on Message Received}
 
@@ -632,7 +632,7 @@ When the Activity is created, the ``createWakeLocks'' method is called which reg
 
 When it is required to awaken the device while it is sleeping, the Activity can call the ``wakeDevice'' method which acquires a full wakelock which is registered to awaken the device when acquired in the ``createWakeLocks'' method.  This causes the device to awaken, and then disables the keyguard, unlocking the screen, and causing the Activity to be displayed.
 
-This functionality is used whenever the MESSAGE\_RECEIVED broadcast is received by the application.  The message is extracted from the broadcast intent, and added to the ArrayList of messages. If the message dialog is not already showing, it is recreated displaying the newly received message and shown.  The ``wakeDevice'' method is then called, causing the device to wake up and reveal the application.  When the device awakens, the bright white message dialog is displayed in the centre of the devices screen on a darkened background, as shown in figure \ref{fig:message_screen}.  If a message was already displaying, the screen is still woken, but a Toast\cite{androidToasts} with a long display duration is shown to alert the user that a new message has been received.
+This functionality is used whenever the MESSAGE\_RECEIVED broadcast is received by the application.  The message is extracted from the broadcast intent, and added to the ArrayList of messages. If the message dialog is not already showing, it is recreated displaying the newly received message and shown.  The ``wakeDevice'' method is then called, causing the device to wake up and reveal the application.  When the device awakens, the bright white message dialog is displayed in the center of the devices screen on a darkened background, as shown in figure \ref{fig:message_screen}.  If a message was already displaying, the screen is still woken, but a Toast\cite{androidToasts} with a long display duration is shown to alert the user that a new message has been received.
 
 \FloatBarrier
 
@@ -648,7 +648,7 @@ This functionality is used whenever the MESSAGE\_RECEIVED broadcast is received 
 \subsection{Dynamic Buttons in Exam Detail}
 \label{subs:exam_detail_buttons}
 
-The exam detail screen reached by selecting an exam room, then an exam features an action area at the bottom of the screen with buttons, dynamically added to the view based upon exam state.  The buttons are dynamically generated based upon button type in the ExamDetailFragment to be dynamically sized height at 7/10ths of the height of the action bar.  This is to improve the aesthetics of the fragment view.
+The exam detail screen reached by selecting an exam room, then an exam features an action area at the bottom of the screen with buttons, dynamically added to the view based upon exam state.  The buttons are dynamically generated based upon button type in the ExamDetailFragment to be dynamically sized height at 7/10ths of the height of the action bar.  This is to improve the aestetics of the fragment view.
 
 It is possible to dynamically inflate views in Android at runtime, especially when using inbuilt dimension directives such as WRAP\_CONTENT or FILL\_PARENT as android can evaluate them whenever required to render the view.  What I was trying to do, however, was try and inflate the view to a specific dimension calculated as a function of the parent view's height, as shown in figure \ref{fig:actionButtons}.
 

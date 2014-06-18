@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {3.3}Available Implementation Technologies}{17}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Network Communication Channels}{17}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Back-End Servers}{18}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Persistant Data Storage}{21}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.3}Persistent Data Storage}{21}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}System Security}{22}{subsection.3.3.4}
 \contentsline {subsection}{\numberline {3.3.5}Client Application Platform}{23}{subsection.3.3.5}
 \contentsline {chapter}{\numberline {4}Exam Data API Wrappers}{25}{chapter.4}
@@ -44,7 +44,7 @@
 \contentsline {section}{\numberline {6.1}ExICS Server Architecture}{50}{section.6.1}
 \contentsline {subsection}{\numberline {6.1.1}ExICS Logic}{50}{subsection.6.1.1}
 \contentsline {subsection}{\numberline {6.1.2}ExICS System State Class - ``ExICSData''}{52}{subsection.6.1.2}
-\contentsline {subsubsection}{Javascript Singleton Pattern}{53}{section*.19}
+\contentsline {subsubsection}{JavaScript Singleton Pattern}{53}{section*.19}
 \contentsline {subsubsection}{Data Synchronisation}{57}{section*.23}
 \contentsline {subsection}{\numberline {6.1.3}Activity Logging}{58}{subsection.6.1.3}
 \contentsline {subsection}{\numberline {6.1.4}Database Storage}{60}{subsection.6.1.4}
@@ -55,7 +55,7 @@
 \contentsline {section}{\numberline {7.2}ExICS Client Architecture}{70}{section.7.2}
 \contentsline {subsection}{\numberline {7.2.1}System State}{70}{subsection.7.2.1}
 \contentsline {subsection}{\numberline {7.2.2}Websocket Manager}{72}{subsection.7.2.2}
-\contentsline {subsubsection}{Android LocalBroadCasts}{73}{section*.28}
+\contentsline {subsubsection}{Android LocalBroadcasts}{73}{section*.28}
 \contentsline {subsection}{\numberline {7.2.3}User Interface}{76}{subsection.7.2.3}
 \contentsline {section}{\numberline {7.3}ExICS Client Functionality}{82}{section.7.3}
 \contentsline {subsection}{\numberline {7.3.1}Overview}{83}{subsection.7.3.1}

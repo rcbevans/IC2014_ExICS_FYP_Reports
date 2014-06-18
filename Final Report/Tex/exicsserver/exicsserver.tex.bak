@@ -2,7 +2,7 @@
 
 \label{ch:exicsserver}
 
-Having designed a the API to be used to communicate between server and client, and implemented the API server capable of providing the exam status and seating plan information, it was necessary to begin implementing the main ExICS server.
+Having designed a the API to be used to communicate between server and client, and implemented the API server capable of providing the exam status and seating plan information, it was neccesary to begin implementing the main ExICS server.
 
 \section{ExICS Server Architecture}
 
@@ -10,19 +10,19 @@ The design of the ExICS server is relatively simple with four main components; T
 
 \subsection{ExICS Logic}
 
-The ExICS server uses the ``ws'' Node.JS package\cite{einarosWS} to provide the fundamental low-level Websockets used to communicate between server and clients.
+The ExICS server uses the ``ws'' Node.JS package\cite{einarosWS} to provide the fundemental low-level websockets used to communicate between server and clients.
 
-When the ExICS server ``app'' is run, a Websockets server is started and a callback function to be executed by Node when a client connects is assigned.
+When the ExICS server ``app'' is run, a websockets server is started and a callback function to be executed by Node when a client connects is assigned.
 
-Node.JS, built on Chrome's JavaScript runtime means that it makes full use of the event driven callback design of JavaScript, requiring and enabling full use of closures in the code.
+Node.JS, built on Chrome's JavaScript runtime means that it makes full use of the event driven callback design of javascript, requiring and enabling full use of closures in the code.
 
-The callback function registered for callback upon connection of a client to the WebSocket server, when called, creates a closure capturing the state of that connection, allowing all variables used, such as the ``authenticated'' boolean and string holding the username that was authenticated can be accessed seamlessly within the closure and modified safely, as they are unique to that specific client's callback closure and inaccessible from other client code.
+The callback function registered for callback upon connection of a client to the websocket server, when called, creates a closure capturing the state of that connection, allowing all variables used, such as the ``authenticated'' boolean and string holding the username that was authenticated can be accessed seamlessly within the closure and modified safely, as they are unique to that specific client's callback closure and inaccessible from other client code.
 
-The ``onConnection'' callback function for each client connection contains a number of members, the ``auth'' boolean as well as a string containing the authenticated user's username.  It also overrides the WebSocket server methods, ``onMessage'' and ``onClose''.
+The ``onConnection'' callback function for each client connection contains a number of members, the ``auth'' boolean as well as a string containing the authenticated user's username.  It also overrides the websocket server methods, ``onMessage'' and ``onClose''.
 
 When a user first connects, the closure defining ``their'' callbacks is created by Node.JS creating the context for all future interactions with that user.  Initially ``auth'' is false and there is no string for the users authorised username, and the event is logged in the ExICS system log, explained in section \ref{subs:exics_logging}.
 
-When the user sends a message to the server over the established socket, the ``onMessage'' callback is invoked to process the message.  If the user is not authenticated, i.e ``auth'' is false, the message's header and the type parameter is checked.  The only valid message to be received when not authorised is a PROTOCOL\_HANDSHAKE message, as defined in section \ref{sec:api_design}.  If any other message type, or an unknown message type is received, the server forcibly closes the WebSocket connection, disconnecting the user.
+When the user sends a message to the server over the established socket, the ``onMessage'' callback is invoked to process the message.  If the user is not authenticated, i.e ``auth'' is false, the message's header and the type parameter is checked.  The only valid message to be received when not authorised is a PROTOCOL\_HANDSHAKE message, as defined in section \ref{sec:api_design}.  If any other message type, or an unknown message type is received, the server forcibly closes the websocket connection, disconnecting the user.
 
 If the received message is a PROTOCOL\_HANDSHAKE message, the server executes the ``ldapAuthenticate'' function with the provided credentials, as explained in section \ref{subs:exics_auth}.  Providing authentication of credentials with the college LDAP server is successful, the server updates the connection's closure's ``auth'' and username variables to reflect the successful authentication.  Should authentication fail, the server closes the connection to the user.
 
@@ -37,7 +37,7 @@ The ``ExICSData'' class of the ExICS server is used to store and manipulate the 
 
 As a result, it is necessary to store all data which is shared between all clients, the state of the overall system in a globally accessible way, such that all client contexts can read from and modify it.
 
-For this reason, the system state of ExICS is stored in a standalone ``singleton'' instance which can be fetched and mutated from anywhere, by any connection context.  Each ``onConnection'' instance belonging to a client's socket on the server obtains a reference to the ExICSData object, and so when a change is made, it is visible to all other connection contexts.  The JavaScript singleton pattern differs substantially from other language implementations such as Java or C++, and is explained in more detail in section \ref{subsubs:jsSingleton}.
+For this reason, the system state of ExICS is stored in a standalone ``singleton'' instance which can be fetched and mutated from anywhere, by any connection context.  Each ``onConnection'' instance belonging to a client's socket on the server obtains a reference to the ExICSData object, and so when a change is made, it is visible to all other connection contexts.  The Javascript singleton pattern differs substantially from other language implementations such as Java or C++, and is explained in more detail in section \ref{subsubs:jsSingleton}.
 
 The ExICSData singleton object contains all the members necessary to represent and allow manipulation of the system state.
 
@@ -45,20 +45,20 @@ There is a ``clientsConnected'' counter which holds the integer value of the num
 
 In order to send data to all connected clients, there is an object representing connected clients.  The object features key value pairs, where the client's username is the key and the value is another object holding the socket instance through which data can be pushed, and the room in which the user is based.
 
-JavaScript objects behave much as a Hashmap or Map object in other languages such as Java behave, where the key is a hashable object itself, such as an int or string, mapping to a value object which could be an array, string, int etc., or another object itself.
+Javascript objects behave much as a Hashmap or Map object in other languages such as Java behave, where the key is a hashable object itself, such as an int or string, mapping to a value object which could be an array, string, int etc., or another object itself.
 
-Examinations scheduled for the current exam session period, the morning or afternoon of the day are stored in a JavaScript object.  The room numbers exams are taking place in act as the keys with an array of exam objects, as explained in section \ref{sec:exics_objs}, as the value.
+Examinations scheduled for the current exam session period, the morning or afternoon of the day are stored in a Javascript object.  The room numbers exams are taking place in act as the keys with an array of exam objects, as explained in section \ref{sec:exics_objs}, as the value.
 
 The objects and variables holding the state of the system are private members of the singleton object, along with some private methods used in maintaining the system state and for debugging purposes such as generating static date objects.
 
 The singleton then offers a large number of publicly callable methods which can be called to perform actions upon the system state such as to start and exam, find the number of connected clients in a particular room, or invoke a system data refresh.
 
-\subsubsection{JavaScript Singleton Pattern}
+\subsubsection{Javascript Singleton Pattern}
 \label{subsubs:jsSingleton}
 
 \FloatBarrier
 
-Whilst JavaScript is an incredibly flexible and dynamic object oriented language, it is class-less meaning that ``classes'' in a traditional sense cannot be defined and instantiated.
+Whilst Javascript is an incredibly flexible and dynamic object oriented language, it is class-less meaning that ``classes'' in a traditional sense cannot be defined and instantiated.
 
 Everything is in object and so can behave as if it was the instance of a class, and yet nothing is instantiated from class definitions.  Whilst it is not possible to define a ``class'' per-se, it is possible to create objects which \textit{behave} as you would expect a traditional class, with callable methods\cite{jsClasses}.
 
@@ -75,7 +75,7 @@ Due to the flexibility of the language there are many ways to create such object
 			}
 	}
 	\end{lstlisting}
-	\caption{Instantiation of an Object in JavaScript}
+	\caption{Instantiation of an Object in Javascript}
 	\label{fig:jsObjectInst}
 \end{figure}
 
@@ -91,7 +91,7 @@ Due to the flexibility of the language there are many ways to create such object
 	\label{fig:usingAppleClass}
 \end{figure}
 
-Objects such as this apple are also known as a singleton; only one instance of this ``class'' can ever exist.  You can't create more of them without redefining a whole new instance as with figure \ref{fig:jsObjectInst}.  With JavaScript having no classes, the notion of singleton's no longer makes sense, as everything is inherently a singleton to begin with.
+Objects such as this apple are also known as a singleton; only one instance of this ``class'' can ever exist.  You can't create more of them without redefining a whole new instance as with figure \ref{fig:jsObjectInst}.  With Javascript having no classes, the notion of singleton's no longer makes sense, as everything is inherently a singleton to begin with.
 
 With the method shown in figure \ref{fig:jsObjectInst}, everything defined is accessible though; for example the ``colour'' property of the apple can be changed by directly accessing the property and assigning it.  This is not good object-oriented design as the property of abstraction and encapsulation are violated.  As a result, a different design pattern, as shown in figure \ref{fig:nodeJSsingleton}, can be used to instantiate an object, accessible from anywhere which has both public and private members.
 
@@ -136,7 +136,7 @@ With the method shown in figure \ref{fig:jsObjectInst}, everything defined is ac
 	\label{fig:nodeJSsingleton}
 \end{figure}
 
-This design pattern makes use of JavaScript's closure and variable scoping properties to generate what would be recognised as a traditional ``class'' as found in other programming languages in the way it behaves.
+This design pattern makes use of Javascript's closure and variable scoping properties to generate what would be recognised as a traditional ``class'' as found in other programming languages in the way it behaves.
 
 \FloatBarrier
 
@@ -189,9 +189,9 @@ switch (parseInt(parsedMessage["header"]["type"])) {
 
 \FloatBarrier
 
-Private members such as the data structures holding the state information are not accessible due to the JavaScript scoping restrictions, but \textit{are} accessible from within the code defining the public methods themselves.
+Private members such as the data structures holding the state information are not accessible due to the Javascript scoping restrictions, but \textit{are} accessible from within the code defining the public methods themselves.
 
-Due to the single-threaded execution model used by Node.JS, it is not necessary to define thread-safe state mutators such as start or stop exam, as the execution model makes all data structures inherently safe, as explained in section \ref{subs:exics_backend_server}.
+Due to the single-threaded execution model used by Node.JS, it is not neccessary to define threadsafe state mutators such as start or stop exam, as the execution model makes all data structures inherently safe, as explained in section \ref{subs:exics_backend_server}.
 
 \subsubsection{Data Synchronisation}
 
@@ -203,9 +203,9 @@ It is necessary for the ExICS server to determine whether the state data represe
 
 Whenever a client connects to the ExICS server and sends a PROTOCOL\_HANDSHAKE message, the server attempts to authenticate the user against using the College LDAP server, as explained in section \ref{subs:exics_auth}.  If the authentication is successful, the callback executed with the result of the authentication attempt triggers the ExICSData object to synchronise the server state.
 
-The ExICSData object holds a time-stamp of when the last successful synchronisation took place which is used to determine if a synchronisation is necessary.  The current system is based upon the DoC examination schedule, with the day divided into two distinct exam periods.  The morning session is defined as being from midnight the previous day and finishing at 1.30pm that day, and the afternoon is from 1.30pm until midnight that night.  With these periods defined, it is possible to compare the last synchronisation time and current time to these markers and determine if a synchronisation should be carried out.
+The ExICSData object holds a timestamp of when the last successful synchronisation took place which is used to determine if a synchronisation is necessary.  The current system is based upon the DoC examination schedule, with the day divided into two distinct exam periods.  The morning session is defined as being from midnight the previous day and finishing at 1.30pm that day, and the afternoon is from 1.30pm until midnight that night.  With these periods defined, it is possible to compare the last synchronisation time and current time to these markers and determine if a synchronisation should be carried out.
 
-If the last synchronisation point was before the start of the morning session, it is a new day and synchronisation \textit{is} required.  Similarly, if the last synchronisation time was between the start and end of the morning session, and the current time is \textit{after} the end of the morning session, the afternoon session has begun and again, a synchronisation is required.
+If the last synchronisation point was before the start of the morning session, it is a new day and synchronisation \textit{is} required.  Similarly, if the last synchronisation time was between the start and end of the morning session, and the current time is \textit{after} the end of the morning session, the afternoon session has begun and again, a synchonisation is required.
 
 If a synchronisation is needed, the server makes a request to the exam data API server for the exams taking place in the current period, the beginning and end timestamps are already known.  The request is made to the ExICS view of the examData API, as explained in section \ref{subsec:examData}, which returns a JSON response containing the exams running in the requested time period.
 
@@ -237,7 +237,7 @@ There are six log levels:
 
 \end{itemize}
 
-When singleton instance is created it initialises log to specified level.  Subsequent messages passed to the ServerUtils singleton for logging will only be written out if the specified log level is greater than or equal to the Logger level.
+When singleton instance is created it initialises log to specified level.  Subsequent messages passed to the ServerUtils singleton for logging will only be writted out if the specified log level is greater than or equal to the Logger level.
 
 Log messages in the format:
 
@@ -288,15 +288,15 @@ To ensure the log file is gracefully closed when the server is terminated, even 
 
 \FloatBarrier
 
-As well as providing logging capabilities, the serverUtils ``class'' also provides methods for interfacing with the mongoDB engine running on the server for persistent storage.
+As well as providing logging capabilities, the serverUtils ``class'' also provides methods for interfacing with the mongodb engine running on the server for persistent storage.
 
-Mongoose\cite{mongoose} is used as a wrapper for mongoDB making the CRUD (Create, Read, Update, Delete) operations on mongoDB databases simple.  When the serverUtils object is first instantiated, a connection is made, via mongoose, to the completedExams database of the mongoDB engine running on the server.
+Mongoose\cite{mongoose} is used as a wrapper for mongoDB making the CRUD (Create, Read, Update, Delete) operations on mongoDB databases simple.  When the serverUtils object is first instantiated, a connection is made, via mongoose, to the completedExams database of the mongodb engine running on the server.
 
 The ``exam'' object is specified as a Mongoose Schema\cite{mongooseSchemas}, and compiled into a model.  The structure of the model exactly matches the exam object model used by the ExICS server for storing system state in the ExICSData object and so allows direct instantiation of the Mongoose model from the exam state object.
 
 The serverUtils object exposes a public method, ``commitExam'' which simply creates an exam object from the object passed to the method and saves it to the mongoDB completedExams database in the exams collection.
 
-Once commited, the exam details including start time, time spent paused and finish time are stored and accessible through the mongo command line shell, see figure \ref{fig:exics_mongo_shell}, or through any other connection made to the mongoDB engine.  The objects can be searched, modified or removed through these means.
+Once commited, the exam details including start time, time spent paused and finish time are stored and accessible through the mongo command line shell, see figure \ref{fig:exics_mongo_shell}, or through any other connection made to the mongodb engine.  The objects can be searched, modified or removed through these means.
 
 \begin{figure}
 	\centering
@@ -305,7 +305,7 @@ Once commited, the exam details including start time, time spent paused and fini
 	\label{fig:exics_mongo_shell}
 \end{figure}
 
-The use of mongoDB and Mongoose makes it very easy to store a wide array of JavaScript objects with no effort for logging and administrative reasons.  The data stored can be accessed remotely through mongo's HTTP GET API, allowing other tools and systems to connect and make use of data created and stored by ExICS.
+The use of mongoDB and Mongoose makes it very easy to store a wide array of javascript objects with no effort for logging and administrative reasons.  The data stored can be accessed remotely though Mongo's HTTP GET API, allowing other tools and systems to connect and make use of data created and stored by ExICS.
 
 Currently, all that are stored in mongoDB are completed exam objects, however, the simple interface makes it easy to add extra functionality quickly and easily.
 
@@ -318,9 +318,9 @@ The ExICS server uses LDAP authentication to determine whether a connecting user
 
 After connecting the user must send a PROTOCOL\_HANDSHAKE message to the server which provides the username and password to be used when authenticating the user with the LDAP server.  The provided username in the message header \textbf{must} match the username provided in the payload to be authenticated.  If the usernames provided do not agree, the connection is closed by the server.
 
-To do the LDAP authentication, the server uses the ``activedirectory'' Node.JS package\cite{activedirectory}.  To authenticate, the server binds to the LDAP server using valid credentials, the base domain name, ``dc=ic,dc=ac,dc=uk'', and the URL of the Imperial LDAP server.  These parameters are stored in an importable file, AD\_CONFIG.js, and currently the username and password bound against are my own college credentials.  This is due to the issues around obtaining ``extra'' accounts from college IT.
+To do the LDAP authentication, the server uses the ``activedirectory'' Node.JS package\cite{activedirectory}.  To authenticate, the server binds to the LDAP server using valid credentials, the base domain name, ``dc=ic,dc=ac,dc=uk'', and the url of the Imperial LDAP server.  These parameters are stored in an importable file, AD\_CONFIG.js, and currently the username and password bound against are my own college credentials.  This is due to the issues around obtaining ``extra'' accounts from college IT.
 
-With this bound connection, a request is made to LDAP checking if the username and password provided are correct for a member of College.  Having obtained the results of the authentication request, a callback is made to the main server code stating whether the authentication request was successful or not so that the correct response can be made.
+With this bound connection, a request is made to LDAP checking if the username and password provided are correct for a member of College.  Having obtained the results of the authenticatin request, a callback is made to the main server code stating whether the authentication request was successful or not so that the correct response can be made.
 
 Currently, no other checks are made against the connection user other than if they are a valid member of Imperial College.  Were the system to be used for examinations with real data, the system can, and would check further information, such as, is the user, who is a valid member of college, a member of the DoC Staff usergroup.  With this information it would be possible to decline access to those, for example, who are not members of staff, or part if the ``exam invigilators'' UNIX usergroup etc.
 
@@ -328,4 +328,4 @@ Currently, no other checks are made against the connection user other than if th
 
 Throughout the course of development, extensive use was made of tools such as the ``Dark Websocket Terminal'' Google Chrome web-app to mock user interaction with the server.  Using the terminal I would establish a connection to the ExICS server and send it messages to verify and validate the server behaviour.
 
-Messages were generated quickly an easily from the templates defined for the ExICS API using the ObjGen Live JSON Generator\cite{jsongenerator}.  This allowed JSON messages to be generated and then copied in JSON form into the WebSocket terminal where they could be sent.  This massively accelerated development rate as it avoided JSON syntax errors which would naturally cause errors to occur on the ExICS server when attempting to parse the messages.
+Messages were generated quickly an easily from the templates defined for the ExICS API using the ObjGen Live JSON Generator\cite{jsongenerator}.  This allowed JSON messages to be generated and then copied in JSON form into the websocket terminal where they could be sent.  This massively accelerated development rate as it avoided JSON syntax errors which would naturally cause errors to occur on the ExICS server when attemping to parse the messages.
