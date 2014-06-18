@@ -7,34 +7,72 @@ A number of ways in which the current system could be expanded and extended in f
 
 \section{Summary of Achievements}
 
-Managed to make a system that fulfills all of the expected goals of the project.
+With ExICS I have taken a completely undirected, open-ended project and done the research and implementation of a system capable of facilitating simple and reliable communication between exam invigilators as well as sharing of exam state.
 
-Showed Node.JS is a great choice from small scale distributed systems of this, massively simplifying implementation as shared data is naturally safe to access from anywhere in scope.  No concurrency issues.
+A framework has been implemented which can easily allow for extension and improvement of the current system, allowing new functionality to be added making the system even more useful to those using it.
 
-Showed Websockets to be a stable and reliable protocol for use in even mobile real-time distributed systems.
+I have shown Node.JS to be a great choice of platform for small scale distributed systems thanks to its quick development process, predictable behaviour and reliablility.  As well as Node.JS, I have proved websockets to be an excellent protocol on which to build simple and efficient real-time communication systems.
 
-Implemented a simple API on top of Websockets using JSON which could easily be shared enabling third party developers to create their own apps which plug into the system.  This could speed up cross-platform availability.
-
-Allows simple, reliable communication of messages and exam state information between users.
-
-Remote control of system from client devices with instant update reflected in peer clients.
+The simple ExICS API for client-server communication would allow for simple development of additional client applications on any platform with Websockets protocol support, including web-apps.
 
 \section{Applications}
 
-Any small scale cross-platfrom real-time distributed system.
+This project and its implementation shows the usefulness and ease of development of real-time distributed systems using Node.JS with Websockets and lays a foundation as a proof of concept for the tools to be used in future development of such systems.
 
 \section{Future Work}
+\label{sec:future_work}
 
-Make server more customizable.  For example use a config file, possibly formatted in JSON to specify number of sessions, session start, stop times, URL of data sources etc.
+As discussed in the evaluation, section \ref{ch:eval}, there are a number of areas in which I think future work could greatly enhance the functionality and usefulness of ExICS.
 
-Implement means to take seating register and submit to system, eliminating the existing paper recording and later submission.  Potentially add barcode scanning support so they system will automatically deal with the checking process with minimal user oversight.
+\subsection{Improvements to Current Functionality}
 
-Ability to submit all necessary ``paperwork'' through the app.
+There are a number of areas in which I feel the existing functionality offered by ExICS could be improved to make for an even better user experience.  In the time between submitting this report and the final code submission I will attempt to implement some of the improvements mentioned here.
 
-Add cross-platform support from both iOS and Windows Phone so users aren't restricted to just Android.
+\begin{itemize}
 
-Add new data sources for head examiner of exam etc, so they can be contacted for example if there is a question about a paper.
+\item Display the navigation drawer whenever the main activity is opened to inform users of its presence.  Also show a hint to swipe to access the ExICS log when the device is in portrait mode.
 
-Implement ability for server to recover from crashes by recreated state from last incomplete log.
+\item Add the ability to switch rooms once in the main application, rather then having to reconnect and select a different room.
 
-Add extra accessibility features, changing font size based upon setting etc.
+\item Fix some of the rendering issues where text is missing or partially obscured on action buttons etc.
+
+\item Add the option in settings to have the device vibrate when messages are received in case the user isn't able to directly see the screen.
+
+\item Add addional preset messages and replies to the system and allow the send message dialog to default to a suggested recipient when certain messages are selected.
+
+\item Add the ability to dismiss message dialogs on other clients when a user replies positively to avoid overservicing requests.  Also allow the sender of messages to see status of how many users have seen and dismissed messages so that they know when no-one is left to respond.
+
+\item Add additional granularity and groupings to system users so that, for example, messages requesting a toilet escort can be sent to the staff on duty to escort students.
+
+\item Add examination title to the room overview, rather than just the exam course code.  Also add a countdown timer to the exam detail view and the ability for the device to alert the user when an exam is nearly finished.
+
+\item Have the seating plan view default to show the seating information for the room with which the user is associated.
+
+\end{itemize}
+
+\subsection{Additional Functionality}
+
+There are a number of additional functionalities which if added to the system could massively improve its usefulness.
+
+\begin{itemize}
+
+	\item Integrate other existing administrative systems currently used allowing centralised administration for exams.\\
+		\begin{itemize}
+
+			\item Allow post exam reports to be completed and submitted to the MongoDB database.
+
+			\item Allow student register to be recorded and submitted using the ExICS client.
+
+		\end{itemize}
+
+	\item Provide cross-platform support; implement an iOS, Mac, WindowsPhone and Windows version of the ExICS client.
+
+	\item Provide additional data sources, for example phone numbers of important contacts in case of emergency.
+
+	\item Add additional sources of information for seating plans such as student names and student images.  Also the ability to sort the seating plan lists by student name as well as seat number.  It would also be useful to have the seating plan able to display extra time information for students.
+
+	\item Add additional exam information such as head examiner so that in case of questions the correct person can be contacted.  Perhaps if clicked a send message dialog could automatically opened so a custom message can be typed.
+
+	\item Add configuration files for the ExICS and Exam Data servers which would allow any configurable options to be modified in one place.
+
+\end{itemize}

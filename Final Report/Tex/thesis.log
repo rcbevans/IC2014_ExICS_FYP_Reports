@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.6.12)  16 JUN 2014 22:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.6.12)  18 JUN 2014 12:35
 entering extended mode
 **C:/Users/Rich/Documents/FYP/FYP-Reports/Final*Report/Tex/thesis.tex
 ("C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/thesis.tex"
@@ -462,7 +462,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\thesis.toc" [6
 
-] [7] [8])
+] [7] [8] [9])
 \tf@toc=\write4
 
 ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\introduction/introdu
@@ -500,13 +500,13 @@ Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
 [13
 
-] <"System Diagram/client_server_simpler".png, id=474, 564.1075pt x 666.49pt>
+] <"System Diagram/client_server_simpler".png, id=525, 564.1075pt x 666.49pt>
 File: "System Diagram/client_server_simpler".png Graphic file (type png)
 <use "System Diagram/client_server_simpler".png>
 Package pdftex.def Info: "System Diagram/client_server_simpler".png used on inp
 ut line 24.
 (pdftex.def)             Requested size: 169.29684pt x 200.01973pt.
-<"System Diagram/peer_to_peer".png, id=476, 587.19376pt x 575.14874pt>
+<"System Diagram/peer_to_peer".png, id=527, 587.19376pt x 575.14874pt>
 File: "System Diagram/peer_to_peer".png Graphic file (type png)
 <use "System Diagram/peer_to_peer".png>
 Package pdftex.def Info: "System Diagram/peer_to_peer".png used on input line 2
@@ -515,7 +515,7 @@ Package pdftex.def Info: "System Diagram/peer_to_peer".png used on input line 2
 [14 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/System Diagram/cl
 ient_server_simpler.png> <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/
 Tex/System Diagram/peer_to_peer.png>] [15] <"System Diagram/exics_system_diagra
-m".png, id=490, 862.22125pt x 792.9625pt>
+m".png, id=541, 862.22125pt x 792.9625pt>
 File: "System Diagram/exics_system_diagram".png Graphic file (type png)
 <use "System Diagram/exics_system_diagram".png>
 Package pdftex.def Info: "System Diagram/exics_system_diagram".png used on inpu
@@ -539,36 +539,36 @@ Underfull \vbox (badness 3646) has occurred while \output is active []
 
 [28] [29] [30]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 133.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 145.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 134.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 146.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 145.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 146.
 [31] [32]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 194
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 195
 .
-LaTeX Font Info:    No file OMScmtt.fd. on input line 194.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 195.
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 194.
+(Font)              for symbol `textbraceleft' on input line 195.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33] [34] <"screenshots/Exam Data API".png, id=691, 1463.4675pt x 761.09344pt>
+[33] [34] <"screenshots/Exam Data API".png, id=742, 1463.4675pt x 761.09344pt>
 File: "screenshots/Exam Data API".png Graphic file (type png)
 <use "screenshots/Exam Data API".png>
-Package pdftex.def Info: "screenshots/Exam Data API".png used on input line 297
+Package pdftex.def Info: "screenshots/Exam Data API".png used on input line 298
 .
 (pdftex.def)             Requested size: 435.32422pt x 226.39037pt.
 [35
 
 ]
-Overfull \hbox (27.28265pt too wide) in paragraph at lines 309--310
+Overfull \hbox (27.28265pt too wide) in paragraph at lines 310--311
 []\OT1/cmr/m/n/12 Basic HTTP au-then-ti-ca-tion in-volves send-ing a base-64 en
 -coded string of ``\OML/cmm/m/it/12 <\OT1/cmr/m/n/12 user-name\OML/cmm/m/it/12 
 >\OT1/cmr/m/n/12 :\OML/cmm/m/it/12 <\OT1/cmr/m/n/12 password\OML/cmm/m/it/12 >\
@@ -606,7 +606,7 @@ Chapter 6.
 LaTeX Warning: Citation `mongooseSchemas' on page 60 undefined on input line 29
 5.
 
-[60] <"screenshots/mongo".png, id=1133, 1451.4225pt x 788.9475pt>
+[60] <"screenshots/mongo".png, id=1184, 1451.4225pt x 788.9475pt>
 File: "screenshots/mongo".png Graphic file (type png)
 <use "screenshots/mongo".png>
 Package pdftex.def Info: "screenshots/mongo".png used on input line 303.
@@ -616,7 +616,7 @@ Package pdftex.def Info: "screenshots/mongo".png used on input line 303.
 ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\exicsclient/exicscli
 ent.tex" [62] [63]
 Chapter 7.
-<"GUI Sketches/Main Overview Cropped".png, id=1153, 428.3202pt x 350.2686pt>
+<"GUI Sketches/Main Overview Cropped".png, id=1204, 428.3202pt x 350.2686pt>
 File: "GUI Sketches/Main Overview Cropped".png Graphic file (type png)
 <use "GUI Sketches/Main Overview Cropped".png>
 Package pdftex.def Info: "GUI Sketches/Main Overview Cropped".png used on input
@@ -631,7 +631,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 in Overview Cropped.png>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 20.
-<"GUI Sketches/Side Menu View Cropped".png, id=1164, 403.7484pt x 343.5234pt>
+<"GUI Sketches/Side Menu View Cropped".png, id=1215, 403.7484pt x 343.5234pt>
 File: "GUI Sketches/Side Menu View Cropped".png Graphic file (type png)
 <use "GUI Sketches/Side Menu View Cropped".png>
 Package pdftex.def Info: "GUI Sketches/Side Menu View Cropped".png used on inpu
@@ -639,7 +639,7 @@ t line 32.
 (pdftex.def)             Requested size: 483.69687pt x 411.57079pt.
 [66 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/GUI Sketches/Side
  Menu View Cropped.png>]
-<"GUI Sketches/Help Request Window Cropped".png, id=1178, 405.6756pt x 350.2686
+<"GUI Sketches/Help Request Window Cropped".png, id=1229, 405.6756pt x 350.2686
 pt>
 File: "GUI Sketches/Help Request Window Cropped".png Graphic file (type png)
 <use "GUI Sketches/Help Request Window Cropped".png>
@@ -648,7 +648,7 @@ Package pdftex.def Info: "GUI Sketches/Help Request Window Cropped".png used on
 (pdftex.def)             Requested size: 483.69687pt x 417.64789pt.
 [67 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/GUI Sketches/Help
  Request Window Cropped.png>]
-<"GUI Sketches/Message Notification Cropped".png, id=1186, 401.8212pt x 343.041
+<"GUI Sketches/Message Notification Cropped".png, id=1237, 401.8212pt x 343.041
 6pt>
 File: "GUI Sketches/Message Notification Cropped".png Graphic file (type png)
 <use "GUI Sketches/Message Notification Cropped".png>
@@ -656,8 +656,8 @@ Package pdftex.def Info: "GUI Sketches/Message Notification Cropped".png used o
 n input line 42.
 (pdftex.def)             Requested size: 483.69687pt x 412.94597pt.
 [68 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/GUI Sketches/Mess
-age Notification Cropped.png>] <"GUI Sketches/Seating Plan Cropped".png, id=119
-2, 408.5664pt x 342.078pt>
+age Notification Cropped.png>] <"GUI Sketches/Seating Plan Cropped".png, id=124
+4, 408.5664pt x 342.078pt>
 File: "GUI Sketches/Seating Plan Cropped".png Graphic file (type png)
 <use "GUI Sketches/Seating Plan Cropped".png>
 Package pdftex.def Info: "GUI Sketches/Seating Plan Cropped".png used on input 
@@ -673,13 +673,13 @@ File: lstlang1.sty 2014/03/04 1.5c listings language file
 ) [71] [72] [73] [74]
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
-[75] <"screenshots/default_login".png, id=1264, 1084.05pt x 1927.2pt>
+[75] <"screenshots/default_login".png, id=1315, 1084.05pt x 1927.2pt>
 File: "screenshots/default_login".png Graphic file (type png)
 <use "screenshots/default_login".png>
 Package pdftex.def Info: "screenshots/default_login".png used on input line 182
 .
 (pdftex.def)             Requested size: 169.29684pt x 300.94781pt.
-<"screenshots/login_show_pass".png, id=1265, 1084.05pt x 1927.2pt>
+<"screenshots/login_show_pass".png, id=1316, 1084.05pt x 1927.2pt>
 File: "screenshots/login_show_pass".png Graphic file (type png)
 <use "screenshots/login_show_pass".png>
 Package pdftex.def Info: "screenshots/login_show_pass".png used on input line 1
@@ -693,12 +693,12 @@ Underfull \hbox (badness 1072) in paragraph at lines 188--188
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[76] <"screenshots/about".png, id=1275, 1084.05pt x 1927.2pt>
+[76] <"screenshots/about".png, id=1326, 1084.05pt x 1927.2pt>
 File: "screenshots/about".png Graphic file (type png)
 <use "screenshots/about".png>
 Package pdftex.def Info: "screenshots/about".png used on input line 208.
 (pdftex.def)             Requested size: 169.29684pt x 300.94781pt.
-<"screenshots/login_settings".png, id=1276, 1084.05pt x 1927.2pt>
+<"screenshots/login_settings".png, id=1327, 1084.05pt x 1927.2pt>
 File: "screenshots/login_settings".png Graphic file (type png)
 <use "screenshots/login_settings".png>
 Package pdftex.def Info: "screenshots/login_settings".png used on input line 21
@@ -707,7 +707,7 @@ Package pdftex.def Info: "screenshots/login_settings".png used on input line 21
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<"screenshots/login_landscape".png, id=1277, 1927.2pt x 1084.05pt>
+<"screenshots/login_landscape".png, id=1328, 1927.2pt x 1084.05pt>
 File: "screenshots/login_landscape".png Graphic file (type png)
 <use "screenshots/login_landscape".png>
 Package pdftex.def Info: "screenshots/login_landscape".png used on input line 2
@@ -722,7 +722,7 @@ hots/login_show_pass.png>] [78 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final R
 eport/Tex/screenshots/about.png> <C:/Users/Rich/Documents/FYP/FYP-Reports/Final
  Report/Tex/screenshots/login_settings.png> <C:/Users/Rich/Documents/FYP/FYP-Re
 ports/Final Report/Tex/screenshots/login_landscape.png>] <"screenshots/phone_po
-rtrait_nav_drawer".png, id=1292, 1084.05pt x 1927.2pt>
+rtrait_nav_drawer".png, id=1343, 1084.05pt x 1927.2pt>
 File: "screenshots/phone_portrait_nav_drawer".png Graphic file (type png)
 <use "screenshots/phone_portrait_nav_drawer".png>
 Package pdftex.def Info: "screenshots/phone_portrait_nav_drawer".png used on in
@@ -730,20 +730,20 @@ put line 236.
 (pdftex.def)             Requested size: 169.29684pt x 300.94781pt.
 [79
 
-] <"screenshots/phone_portrait_room_list".png, id=1303, 1084.05pt x 1927.2pt>
+] <"screenshots/phone_portrait_room_list".png, id=1354, 1084.05pt x 1927.2pt>
 File: "screenshots/phone_portrait_room_list".png Graphic file (type png)
 <use "screenshots/phone_portrait_room_list".png>
 Package pdftex.def Info: "screenshots/phone_portrait_room_list".png used on inp
 ut line 252.
 (pdftex.def)             Requested size: 169.29684pt x 300.94781pt.
 
-<"screenshots/phone_portrait_activity_log".png, id=1304, 1084.05pt x 1927.2pt>
+<"screenshots/phone_portrait_activity_log".png, id=1355, 1084.05pt x 1927.2pt>
 File: "screenshots/phone_portrait_activity_log".png Graphic file (type png)
 <use "screenshots/phone_portrait_activity_log".png>
 Package pdftex.def Info: "screenshots/phone_portrait_activity_log".png used on 
 input line 257.
 (pdftex.def)             Requested size: 169.29684pt x 300.94781pt.
-<"screenshots/tablet_main_landscape".png, id=1305, 1927.2pt x 1204.5pt>
+<"screenshots/tablet_main_landscape".png, id=1356, 1927.2pt x 1204.5pt>
 File: "screenshots/tablet_main_landscape".png Graphic file (type png)
 <use "screenshots/tablet_main_landscape".png>
 Package pdftex.def Info: "screenshots/tablet_main_landscape".png used on input 
@@ -757,53 +757,173 @@ _portrait_nav_drawer.png>] [81 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final R
 eport/Tex/screenshots/phone_portrait_room_list.png> <C:/Users/Rich/Documents/FY
 P/FYP-Reports/Final Report/Tex/screenshots/phone_portrait_activity_log.png> <C:
 /Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/tablet_main_
-landscape.png>] [82
+landscape.png>]
+File: "screenshots/phone_portrait_nav_drawer".png Graphic file (type png)
+<use "screenshots/phone_portrait_nav_drawer".png>
+Package pdftex.def Info: "screenshots/phone_portrait_nav_drawer".png used on in
+put line 282.
+(pdftex.def)             Requested size: 241.84843pt x 429.92546pt.
+[82
 
-] <"screenshots/flowchart".png, id=1323, 1102.3584pt x 544.434pt>
+] <"screenshots/overview_flowchart".png, id=1374, 1083.5682pt x 542.025pt>
+File: "screenshots/overview_flowchart".png Graphic file (type png)
+<use "screenshots/overview_flowchart".png>
+Package pdftex.def Info: "screenshots/overview_flowchart".png used on input lin
+e 299.
+(pdftex.def)             Requested size: 483.69687pt x 241.94885pt.
+[83 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/overv
+iew_flowchart.png>] <"screenshots/exam_state_flowchart".png, id=1384, 1069.1142
+pt x 665.8476pt>
+File: "screenshots/exam_state_flowchart".png Graphic file (type png)
+<use "screenshots/exam_state_flowchart".png>
+Package pdftex.def Info: "screenshots/exam_state_flowchart".png used on input l
+ine 316.
+(pdftex.def)             Requested size: 483.69687pt x 301.24408pt.
+[84 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/exam_
+state_flowchart.png
+
+pdfTeX warning: pdflatex (file C:/Users/Rich/Documents/FYP/FYP-Reports/Final Re
+port/Tex/screenshots/exam_state_flowchart.png): large interlaced PNG might caus
+e out of memory (use non-interlaced PNG to fix this)
+>] [85]
+File: "screenshots/phone_portrait_activity_log".png Graphic file (type png)
+<use "screenshots/phone_portrait_activity_log".png>
+Package pdftex.def Info: "screenshots/phone_portrait_activity_log".png used on 
+input line 342.
+(pdftex.def)             Requested size: 241.84843pt x 429.92546pt.
+[86]
+<"screenshots/send_message_flowchart".png, id=1404, 1133.1936pt x 1154.8746pt>
+File: "screenshots/send_message_flowchart".png Graphic file (type png)
+<use "screenshots/send_message_flowchart".png>
+Package pdftex.def Info: "screenshots/send_message_flowchart".png used on input
+ line 355.
+(pdftex.def)             Requested size: 483.69687pt x 492.93866pt.
+[87 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/send_
+message_flowchart.png
+
+pdfTeX warning: pdflatex (file C:/Users/Rich/Documents/FYP/FYP-Reports/Final Re
+port/Tex/screenshots/send_message_flowchart.png): large interlaced PNG might ca
+use out of memory (use non-interlaced PNG to fix this)
+>] <"screenshots/t_p_sp".png, id=1414, 1204.5pt x 1927.2pt>
+File: "screenshots/t_p_sp".png Graphic file (type png)
+<use "screenshots/t_p_sp".png>
+Package pdftex.def Info: "screenshots/t_p_sp".png used on input line 376.
+(pdftex.def)             Requested size: 241.84843pt x 386.93292pt.
+[88] [89 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/
+t_p_sp.png>] [90] <"screenshots/flowchart".png, id=1432, 1102.3584pt x 544.434p
+t>
 File: "screenshots/flowchart".png Graphic file (type png)
 <use "screenshots/flowchart".png>
-Package pdftex.def Info: "screenshots/flowchart".png used on input line 320.
+Package pdftex.def Info: "screenshots/flowchart".png used on input line 405.
 (pdftex.def)             Requested size: 483.69687pt x 238.8871pt.
-[83 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/flowc
+[91 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/flowc
 hart.png
 
 pdfTeX warning: pdflatex (file C:/Users/Rich/Documents/FYP/FYP-Reports/Final Re
 port/Tex/screenshots/flowchart.png): large interlaced PNG might cause out of me
 mory (use non-interlaced PNG to fix this)
->] [84] [85] [86] <"screenshots/android_lifecycle".png, id=1432, 514.92375pt x 
-665.48625pt>
+>] [92] [93] [94] [95] <"screenshots/android_lifecycle".png, id=1548, 514.92375
+pt x 665.48625pt>
 File: "screenshots/android_lifecycle".png Graphic file (type png)
 <use "screenshots/android_lifecycle".png>
 Package pdftex.def Info: "screenshots/android_lifecycle".png used on input line
- 449.
+ 567.
 (pdftex.def)             Requested size: 241.84843pt x 312.55518pt.
-[87 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/andro
-id_lifecycle.png>] [88] [89] [90]
-<"screenshots/tablet_portrait_message_roomlist".png, id=1498, 1204.5pt x 1927.2
+[96]
+Underfull \vbox (badness 3568) has occurred while \output is active []
+
+[97 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/andro
+id_lifecycle.png>] [98] [99]
+<"screenshots/tablet_portrait_message_roomlist".png, id=1628, 1204.5pt x 1927.2
 pt>
 File: "screenshots/tablet_portrait_message_roomlist".png Graphic file (type png
 )
 <use "screenshots/tablet_portrait_message_roomlist".png>
 Package pdftex.def Info: "screenshots/tablet_portrait_message_roomlist".png use
-d on input line 523.
+d on input line 641.
 (pdftex.def)             Requested size: 338.58632pt x 541.72961pt.
+[100] [101 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshot
+s/tablet_portrait_message_roomlist.png>] [102] [103])
+("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\evaluation/evaluatio
+n.tex" [104]
+Chapter 8.
+[105
+
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[106] <"evaluation/graphs/student_responses".png, id=1709, 737.75626pt x 481.8p
+t>
+File: "evaluation/graphs/student_responses".png Graphic file (type png)
+<use "evaluation/graphs/student_responses".png>
+Package pdftex.def Info: "evaluation/graphs/student_responses".png used on inpu
+t line 64.
+(pdftex.def)             Requested size: 483.69687pt x 315.87904pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[91 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/screenshots/table
-t_portrait_message_roomlist.png>] [92] [93])
-("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\evaluation/evaluatio
-n.tex" [94]
-Chapter 8.
-)
+[107 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/evaluation/graph
+s/student_responses.png>]
+Underfull \vbox (badness 2443) has occurred while \output is active []
+
+[108] [109] <"evaluation/graphs/staff_responses".png, id=1730, 737.75626pt x 48
+3.30562pt>
+File: "evaluation/graphs/staff_responses".png Graphic file (type png)
+<use "evaluation/graphs/staff_responses".png>
+Package pdftex.def Info: "evaluation/graphs/staff_responses".png used on input 
+line 133.
+(pdftex.def)             Requested size: 483.69687pt x 316.86618pt.
+
+Underfull \vbox (badness 5652) has occurred while \output is active []
+
+[110 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/evaluation/graph
+s/staff_responses.png>] [111] [112] <"evaluation/graphs/mixed_responses".png, i
+d=1751, 739.26187pt x 484.05844pt>
+File: "evaluation/graphs/mixed_responses".png Graphic file (type png)
+<use "evaluation/graphs/mixed_responses".png>
+Package pdftex.def Info: "evaluation/graphs/mixed_responses".png used on input 
+line 208.
+(pdftex.def)             Requested size: 483.69687pt x 316.71713pt.
+[113]
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
+
+ []
+
+[114 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/evaluation/graph
+s/mixed_responses.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
+
+ []
+
+) [115]
 ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\conclusion/conclusio
-n.tex" [95
-
-]
+n.tex" [116]
 Chapter 9.
-[96
+[117
 
-]) ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\thesis.bbl" [97]
+] [118]
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+
+ []
+
+[119]) ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\thesis.bbl" [
+120]
 Missing character: There is no Ã in font cmr12!
 Missing character: There is no ¤ in font cmr12!
 
@@ -823,7 +943,7 @@ $\OT1/cmtt/m/n/12 finding-[]the-[]right-[]node-[]js-[]websocket-[]implementatio
 n-[]b63bfca0539$[][]\OT1/cmr/m/n/12 , Jan-uary
  []
 
-[98
+[121
 
 ]
 Underfull \hbox (badness 3601) in paragraph at lines 80--85
@@ -865,13 +985,13 @@ $\OT1/cmtt/m/n/12 ?CSV-[]vs-[]XML-[]vs-[]JSON-[]-[]-[]Which-[]is-[]the-[]Best-[
 ]Response-[]Data-[]Format ? &id = 4073117$[][]\OT1/cmr/m/n/12 ,
  []
 
-[99]
+[122]
 Underfull \hbox (badness 1320) in paragraph at lines 149--153
 []\OT1/cmr/m/n/12 W3C Con-sor-tium.  Pass-words in the clear.  [][]$\OT1/cmtt/m
 /n/12 http : / / www . w3 . org / 2001 / tag / doc /$
  []
 
-[100]
+[123]
 Underfull \hbox (badness 10000) in paragraph at lines 217--223
 []\OT1/cmr/m/n/12 Vishnujeet Ku-mar.  Data bind-ing in xaml (wpf, sil-verlight,
  win-dows
@@ -901,7 +1021,7 @@ $\OT1/cmtt/m/n/12 using-[]localbroadcastmanager-[]in-[]service-[]to-[]activity-
 []communications/$[][]\OT1/cmr/m/n/12 , 2012.
  []
 
-[101]
+[124]
 Underfull \hbox (badness 10000) in paragraph at lines 290--296
 []\OT1/cmr/m/n/12 StackOverflow.  An-droid, how to not de-stroy the ac-tiv-ity 
 when i ro-
@@ -921,14 +1041,14 @@ i-[]rotate-[]the-[]device$[][]\OT1/cmr/m/n/12 , 2010.
 
 )
 ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\appendix/appendix.te
-x" [102]pdfTeX warning (ext4): destination with the same identifier (name{chapt
+x" [125]pdfTeX warning (ext4): destination with the same identifier (name{chapt
 er.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.4 \chapter{Initial Web Survey Results}
                                         
 Appendix A.
-<surveyresults/surveyResult.pdf, id=1671, 597.55246pt x 845.07718pt>
+<surveyresults/surveyResult.pdf, id=1890, 597.55246pt x 845.07718pt>
 File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf>
 Package pdftex.def Info: surveyresults/surveyResult.pdf used on input line 9.
@@ -937,9 +1057,9 @@ File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf>
 Package pdftex.def Info: surveyresults/surveyResult.pdf used on input line 9.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-[103
+[126
 
-] <surveyresults/surveyResult.pdf, id=1678, page=1, 597.55246pt x 845.07718pt>
+] <surveyresults/surveyResult.pdf, id=1897, page=1, 597.55246pt x 845.07718pt>
 File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf, page 1>
 Package pdftex.def Info: surveyresults/surveyResult.pdf, page1 used on input li
@@ -965,8 +1085,8 @@ File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 Package pdftex.def Info: surveyresults/surveyResult.pdf, page1 used on input li
 ne 9.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-[104 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
-rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1708, page=2, 597.55246pt 
+[127 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
+rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1927, page=2, 597.55246pt 
 x 845.07718pt>
 File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf, page 2>
@@ -983,8 +1103,8 @@ File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 Package pdftex.def Info: surveyresults/surveyResult.pdf, page2 used on input li
 ne 9.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-[105 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
-rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1715, page=3, 597.55246pt 
+[128 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
+rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1934, page=3, 597.55246pt 
 x 845.07718pt>
 File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf, page 3>
@@ -1001,8 +1121,8 @@ File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 Package pdftex.def Info: surveyresults/surveyResult.pdf, page3 used on input li
 ne 9.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-[106 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
-rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1721, page=4, 597.55246pt 
+[129 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
+rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1940, page=4, 597.55246pt 
 x 845.07718pt>
 File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf, page 4>
@@ -1019,8 +1139,8 @@ File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 Package pdftex.def Info: surveyresults/surveyResult.pdf, page4 used on input li
 ne 9.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-[107 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
-rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1727, page=5, 597.55246pt 
+[130 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
+rveyResult.pdf>] <surveyresults/surveyResult.pdf, id=1946, page=5, 597.55246pt 
 x 845.07718pt>
 File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 <use surveyresults/surveyResult.pdf, page 5>
@@ -1037,25 +1157,107 @@ File: surveyresults/surveyResult.pdf Graphic file (type pdf)
 Package pdftex.def Info: surveyresults/surveyResult.pdf, page5 used on input li
 ne 9.
 (pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
-[108 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
+[131 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/surveyresults/su
 rveyResult.pdf>]pdfTeX warning (ext4): destination with the same identifier (na
 me{chapter.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.12 \chapter{User Guide}
-                         
+l.11 \chapter{Evaluation Session Form}
+                                      
 Appendix B.
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 47.
-[109
+<evaluation/peer_eval.pdf, id=1952, 597.55246pt x 845.07718pt>
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf>
+Package pdftex.def Info: evaluation/peer_eval.pdf used on input line 16.
+(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf>
+Package pdftex.def Info: evaluation/peer_eval.pdf used on input line 16.
+(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
+[132
+
+] <evaluation/peer_eval.pdf, id=1959, page=1, 597.55246pt x 845.07718pt>
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 1>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page1 used on input line 16.
+
+(pdftex.def)             Requested size: 597.551pt x 845.07512pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 1>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page1 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 1>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page1 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 1>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page1 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 1>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page1 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+[133 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/evaluation/peer_
+eval.pdf>] <evaluation/peer_eval.pdf, id=1979, page=2, 597.55246pt x 845.07718p
+t>
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 2>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page2 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 2>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page2 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: evaluation/peer_eval.pdf Graphic file (type pdf)
+<use evaluation/peer_eval.pdf, page 2>
+Package pdftex.def Info: evaluation/peer_eval.pdf, page2 used on input line 16.
+
+(pdftex.def)             Requested size: 597.57834pt x 845.1138pt.
+[134 <C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/evaluation/peer_
+eval.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{cha
+pter.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.18 \chapter{User Guide}
+                         
+Appendix C.
+pdfTeX warning (ext4): destination with the same identifier (name{section.3.1})
+ has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.23 \section{For System Administrators}
+                                         [135
 
 ]
+Overfull \hbox (17.57666pt too wide) in paragraph at lines 62--63
+\OT1/cmr/m/n/12 To use the Ex-ICS server, first a file must be cre-ated with th
+e other source files called AD[]CONFIG.js
+ []
+
+[136]pdfTeX warning (ext4): destination with the same identifier (name{section.
+3.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.88 \section{For Users}
+                        
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[137] [138])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 47.
+[139]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 47.
 ("C:\Users\Rich\Documents\FYP\FYP-Reports\Final Report\Tex\thesis.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 47.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 47.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: BAF9837864E773FA5969533DB982F7B3;4933.
+(rerunfilecheck)             Checksum: F84752A801164356705F5529A67C01AF;5628.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1065,10 +1267,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 47.
  ) 
 Here is how much of TeX's memory you used:
- 11524 strings out of 493921
- 179898 string characters out of 3147285
- 371591 words of memory out of 3000000
- 13765 multiletter control sequences out of 15000+200000
+ 11696 strings out of 493921
+ 183331 string characters out of 3147285
+ 372955 words of memory out of 3000000
+ 13845 multiletter control sequences out of 15000+200000
  12669 words of font info for 49 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  41i,18n,76p,1503b,1892s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1083,9 +1285,9 @@ fonts/cm/cmsl12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 Output written on "C:/Users/Rich/Documents/FYP/FYP-Reports/Final Report/Tex/the
-sis.pdf" (119 pages, 3690189 bytes).
+sis.pdf" (150 pages, 5478386 bytes).
 PDF statistics:
- 1939 PDF objects out of 2073 (max. 8388607)
- 794 named destinations out of 1000 (max. 500000)
- 735 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2248 PDF objects out of 2487 (max. 8388607)
+ 876 named destinations out of 1000 (max. 500000)
+ 875 words of extra memory for PDF output out of 10000 (max. 10000000)
 

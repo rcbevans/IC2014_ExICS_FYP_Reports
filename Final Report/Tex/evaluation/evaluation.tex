@@ -1,11 +1,249 @@
 \chapter{Evaluation}
+\label{ch:eval}
 
 To evaluate the success of the system, I met and conducted evaluation interviews with a number of individuals involved with the exam invigilation process but removed from the system development to reflect upon both the functionality of the system and the user experience from the position of someone potentially using it.
 
+\section{ExICS Evaluation Sessions}
+
+\subsection{Interview Technique}
+
+To evaluate ExICS, I conducted a range of interviews with both peers and staff in the faculty of Electronic and Electrical Engineering.  I devised a simple exercise for the user to follow which can be found in appendix \ref{ch:exics_eval_doc}.
+
+The exercise puts the person giving feedback in a hypothetical situation where they are a member of staff who has just been asked to invigilate DoC exams taking place is room 344.  The person being tested is given a Nexus 7 tablet with the ExICS client preinstalled and then asked to complete 7 tasks listed on the feedback form.  Each task then has a difficulty rating for the user to complete, and space for feedback to be given to explain any positive or negative points experienced whilst completing the task.
+
+There were then a short number of follow-up questions to be completed giving overall feedback on ExICS and the client app such as overall UI design quality and ease of use.
+
+All ratings were given as a rating, 1-5 where 1 is the best and 5 the worst.  This allowed me to process the results to calculate average feedback values.  The number of respondents giving a question a particular quality value was multiplied by the value of that response and the total across all responses calculated.  This total could then be divided by the total number of respondents to compute the average rating for each question.
+
+With the method of calculating average values, a perfect area of design would be equal to \((1*n)/n = 1\), and worst case would be \((5*n)/n = 5\).  This provides quantifiable results which can be analysed giving an overall feedback for the difficulty of each task for the users to complete or quality of each aspect of the system.
+
+Once results were calculated, graphs were produced as seen in figures \ref{fig:student_responses} and \ref{fig:staff_responses}.  Results of staff and student responses were first considered separately, and then combined to produce the results in figure \ref{fig:mixed_responses}.  Averages could then be calculated of the overall system ease of used as the average of difficulty across all tasks and the same could be done for quality of the application based upon the scores from the followup questions.
+
+\subsection{Peer Interviews}
+
+Due to the time of year, many students are desparately trying to complete their own projects in time for deadlines.  Each feedback session lasted approximately fifteen minutes in total and therefore I was limited in the number of students able to assist me with providing feedback, and the number of interviews I was able to complete myself given that this report needed completing.
+
+In total I completed 8 interviews with student peers.  Only students with no previous exposure to the ExICS client application were chosen to avoid bias introduced by those who already knew how the application was structured and how to access features of the system.  The results of the interviews are shown in table \ref{tab:stud_results}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|ll|}
+\hline
+Student Responses & \multicolumn{9}{l}{Response}                     \\
+\hline
+Question          & 1        & 2 & 3 & 4 & 5 & Average &  &             &   \\
+\hline
+1                 & 5        & 3 & 0 & 0 & 0 & 1.375   &  &             &   \\
+2                 & 6        & 1 & 0 & 1 & 0 & 1.5     &  &             &   \\
+3                 & 6        & 1 & 0 & 1 & 0 & 1.5     &  &             &   \\
+4                 & 4        & 2 & 2 & 0 & 0 & 1.75    &  &             &   \\
+5                 & 6        & 0 & 2 & 0 & 0 & 1.5     &  &             &   \\
+6                 & 1        & 1 & 2 & 1 & 3 & 3.5     &  &             &   \\
+7                 & 8        & 0 & 0 & 0 & 0 & 1       &  &             &   \\
+\hline
+                  &          &   &   &   & Overall  & 1.732142857  &  &    &   \\
+\hline
+Orientation P/L   & 7        & 1 &   &   &   &         &  &             &   \\
+Use \& Nav        & 3        & 3 & 2 & 0 & 0 & 1.875   &  &             &   \\
+UI Quality        & 4        & 1 & 2 & 1 & 0 & 2       &  &             &   \\
+App Layout        & 4        & 3 & 1 & 0 & 0 & 1.625   &  &             &   \\
+Likelihood of Use & 5        & 2 & 0 & 0 & 1 & 1.75    &  &             &   \\
+Improvement       & 5        & 2 & 0 & 0 & 1 & 1.75    &  & Respondents & 8 \\
+\hline
+                  &          &   &   &   & Overall  &  1.8 &  &     &   \\
+\hline
+\end{tabular}
+\caption{Student ExICS Feedback Session Results}
+\label{tab:stud_results}
+\end{table}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{"evaluation/graphs/student_responses"}
+	\caption{Student Feedback}
+	\label{fig:student_responses}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Task Difficulty}
+
+Looking at the results of table \ref{tab:stud_results}, and the graph plotted in figure \ref{fig:student_responses}, it can be clearly seen that by far the most ``difficult'' task to complete was task 6, to send a message to all ``delocalised'' users requesting assistance with a student that needs the bathroom.  3 out of 8 students rated the difficulty of completing the task the maximum difficulty of 5.  The difficulty of task 5 averages across all users to give a difficulty rating of 3.5 which is worse than the middle score of 3.  This represents a major flaw in the usability of the application, particularly when the task focuses on communication; the core functionality of the system.
+
+Aside from task 6, all other tasks have an average difficulty of less than 2 with 1 being the best possible score.  The average of the task difficulty metrics gives a total score of 1.73, representing a great success in the ease of use and usability of the client application, at least when being used by student peers.
+
+\subsubsection{Overall System Feedback}
+
+In the followup questions asked of those interviewed a similar result can be seen.  All quality metrics bar one give an average score of less than 2, where 1 is the best attainable.  The only metric that doesn't is UI quality which is asking about the users perception of the aestetic quality of the application.  It is understandable that this aspect of the application would be perceived most negatively, as the focus of development throughout has been on usability and functionality rather than beautification and UI polish.  That said, even the UI quality of the application had an average rating of 2.
+
+Overall, the metrics giving overall system feedback was incredibly positive with an average of 1.8.  I feel these feedback ratings reflect the amount of effort that has been directed towards consideration of user experience, not just pure implementation of as much as possible in the time given.
+
+\subsubsection{Feedback Comments}
+
+From the follow up information provided by respondents it is interesting to note the use of the tablet device given to those interviewed.  Out of 8 interviewed, only 1 of the 8 students naturally started using the tablet in Landscape orientation.  Use of the ExICS app in Landscape means that the activity log and so the ``Send Message'' button are visible on screen at all times.  It is this one student who gave task 6 the lowest difficulty rating.  With other students, those who gave relatively low difficulty ratings for the task explained that trying to swipe left to see the activity log was tried due to other apps using a swipe left for messaging design, and another was just swiping in all directions and accidently found the activity log screen.  Following the task, all students who were using the device in portrait mode provided feedback that sending the message once on the log screen was simple, but that there should be a feedback hint somewhere on screen telling them that they can swipe left to reveal the log and messaging capabilities in the first place.
+
+Another student who found accessing the ``Invigilation Plan'' screen difficult initially gave feedback that the navigation drawer should be shown when the main activity is opened to indicate the existence of the navigation drawer as, being an iPhone user, they weren't familiar with the Android application design principles used.
+
+Another common point of feedback is that more functionality relating to rooms should be available from the room overview screen, for example, starting all exams in one click, seeing invigilators in a particular room, or being able to jump straight to that rooms seating plan.
+
+\subsection{Staff Interviews}
+
+Whilst it was difficulty finding enough time and a lot of students with whom to conduct interviews for feedback about the implemented system, it was even more difficult to find staff as they are all incredibly busy with report marking and examinations.
+
+As a result I was only able to conduct two interviews with the ExICS feedback questionaire in time to be included in this evaluation.  The results of these two interviews can be seen in table \ref{tab:staff_results} and are represented graphically in figure \ref{fig:staff_responses}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|ll|}
+\hline
+Staff Responses   & \multicolumn{9}{l}{Response}                     \\
+\hline
+Question          & 1 & 2 & 3 & 4 & 5 & Average &  &             &   \\
+\hline
+1                 & 2 & 0 & 0 & 0 & 0 & 1       &  &             &   \\
+2                 & 1 & 0 & 0 & 0 & 1 & 3       &  &             &   \\
+3                 & 0 & 2 & 0 & 0 & 0 & 2       &  &             &   \\
+4                 & 1 & 1 & 0 & 0 & 0 & 1.5     &  &             &   \\
+5                 & 0 & 2 & 0 & 0 & 0 & 2       &  &             &   \\
+6                 & 0 & 0 & 1 & 1 & 0 & 3.5     &  &             &   \\
+7                 & 2 & 0 & 0 & 0 & 0 & 1       &  &             &   \\
+\hline
+                  &   &   &   &   & Overall  & 2 &  &             &   \\
+\hline
+Orientation P/L   & 0 & 2 &   &   &   &         &  &             &   \\
+Use \& Nav        & 0 & 2 & 0 & 0 & 0 & 2       &  &             &   \\
+UI Quality        & 1 & 1 & 0 & 0 & 0 & 1.5     &  &             &   \\
+App Layout        & 2 & 0 & 0 & 0 & 0 & 1       &  &             &   \\
+Likelihood of Use & 0 & 1 & 1 & 0 & 0 & 2.5     &  &             &   \\
+Improvement       & 0 & 1 & 0 & 1 & 0 & 3       &  & Respondents & 2 \\
+\hline
+                  &   &   &   &   & Overall  & 2 &  &             &   \\
+\hline
+\end{tabular}
+\caption{Staff ExICS Feedback Session Results}
+\label{tab:staff_results}
+\end{table}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{"evaluation/graphs/staff_responses"}
+	\caption{Staff Feedback Results}
+	\label{fig:staff_responses}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Task Difficulty}
+
+As with the student results, the task difficulty values are quite positive from the staff feedback.  Overall the application difficulty to carry out fundemental tasks is 2 with a majority of the tasks being rated between 1 and 3.  As with the student feedback, the difficulty of task 6 was the highest with 3.5.
+
+It is difficult to judge the wider success of the system amongst staff who are perhaps less familiar with mobile applications from only two respondants but the initial quantified difficulty values for the tasks do not suggest that the staff interviewed found the required tasks substantially more difficult than the students.  An example of the issue with this is task 2 in which one respondent rated the difficulty of finding the Invigilation Plan page 1, whilst the other rated it 5 giving an average of 3.
+
+In order to truly gauge the difficulty of the system for use by staff, it would be necessary to increase the number of interviews carried out.
+
+\subsubsection{Overall System Feedback}
+
+The staff reviews of the system overall were also very positive with an overall rating of 2 with none rated higher than 3.  The ratings were, however, higher and so worse across most categories with staff rating the potential improvement to the current exam situation much worse than with students.
+
+This must be taken into consideration as it is the staff body who are the target demographics for the system.  Interestingly, the app layout and UI quality ratings were the best given by the staff giving feedback with scores of 1.5 and 1 respectively.
+
+A possible outlier in the data is the app layout rating given by one of the staff.  Despite giving a 1 for app layout and a 2 for app navigation, they earlier reported the difficulty of navigating to the invigilation plan as 5.  This may be because one they knew about the navigation drawers existence, the layout made sense to them.  It does, however, support the need for more interviews to be carried out if more meaningul quantifiable data is to be obtained.
+
+It is also interesting to look at the orientation of the device when used by staff.  Unlike the students where only 1 used the device in landscape mode, both staff spoken to naturally started using the tablet in landscape mode.  Neither of the staff spoken to rated the difficulty of task 6, sending the message which involved clicking ``Send Message'' on the ExICS log.  This could be because in landscape, the ExICS log is always visible and so can be easily accessed.
+
+The reported difficulties in sending the message in task 6 were related to the difficulty in finding the send to delocalised as selected by choosing recipient type ``room'', then room as delocalised.  It seemed that students when trying to complete the tasks were more happy to click and explore to try and find the desired option whereas the staff wanted to be able to see the desired functionality on the page, rather than access it through menus.
+
+\subsubsection{Feedback Comments}
+
+General feedback provided by the staff related to UI bugs such as text not rendering properly on the screen when the tablet was in landscape mode or an inability to see certain detail in the overview such as the exam title as well as the exam course code in the list of exams in a room.
+
+One piece of feedback received that was new to me was the suggestion of more levels of granularity in message recipients, such as grouping users into more groups than all, or all in a room, and to allow the application to assist the user with recipient selection.  For example, if a message to request more paper is sent, the default recipient should be used to send it (in EEE (Electrical and Electronic Engineering)) to the Undergraduate office who deal with that kind of request, or for toilet breaks, the staff on duty to escort students to the bathroom.
+
+Another concern raised was the ability of the application to grab the attention of staff who are moving around and not necessarily looking at or near the device as they do so.  Simply turning the screen on in these situations, for example, when the device was in the users pocket would not attract their attention and so an additional means may be necessary as a future development, such as vibration if enabled.
+
+\subsection{Overall Feedback}
+
+Overall the feedback of the staff and student responses combined is incredibly positive with overall task difficulty rated at 1.79 and overall system feedback of 1.84.  The combined results for the interviews can be seen in table \ref{tab:combined_results} and figure \ref{fig:mixed_responses}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|ll|}
+\hline
+Combined Results  & \multicolumn{9}{l}{Response}                       \\
+\hline
+Question          & 1  & 2 & 3 & 4 & 5 & Average &  &             &    \\
+\hline
+1                 & 7  & 3 & 0 & 0 & 0 & 1.3     &  &             &    \\
+2                 & 7  & 1 & 0 & 1 & 1 & 1.8     &  &             &    \\
+3                 & 6  & 3 & 0 & 1 & 0 & 1.6     &  &             &    \\
+4                 & 5  & 3 & 2 & 0 & 0 & 1.7     &  &             &    \\
+5                 & 6  & 2 & 2 & 0 & 0 & 1.6     &  &             &    \\
+6                 & 1  & 1 & 3 & 2 & 3 & 3.5     &  &             &    \\
+7                 & 10 & 0 & 0 & 0 & 0 & 1       &  &             &    \\
+\hline
+                  &   &   &   &   & Overall  & 1.785714286 &  &   &   \\
+\hline
+Orientation P/L   & 7  & 3 & 0 & 0 & 0 &         &  &             &    \\
+Use \& Nav        & 3  & 5 & 2 & 0 & 0 & 1.9     &  &             &    \\
+UI Quality        & 5  & 2 & 2 & 1 & 0 & 1.9     &  &             &    \\
+App Layout        & 6  & 3 & 1 & 0 & 0 & 1.5     &  &             &    \\
+Likelihood of Use & 5  & 3 & 1 & 0 & 1 & 1.9     &  &             &    \\
+Improvement       & 5  & 3 & 0 & 1 & 1 & 2       &  & Respondents & 10 \\
+\hline
+                  &   &   &   &   & Overall  & 1.84 &  &          &   \\
+\hline
+\end{tabular}
+\caption{Combines Student and Staff ExICS Feedback Session Results}
+\label{tab:combined_results}
+\end{table}
+
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{"evaluation/graphs/mixed_responses"}
+	\caption{Staff and Student Results Combined}
+	\label{fig:mixed_responses}
+\end{figure}
+
+Feedback provided by both students and staff are agreed in some aspects.  In portrait mode, there should be a hint as to the existence of the ExICS log view that suggests they can swipe to reveal it and that it could be made more apparent that the navigation drawer is present.
+
+Feedback of improvements of enhancements, as well as new functionality suggested during the interviews will be discussed in chapter \ref{sec:future_work}.
+
+\FloatBarrier
+
 \section{Self-Evaluation}
 
-It's amazing. I should definitely get a 1st.
+In this section I will briefly self evaluate the project, reflecting upon the feedback obtained during feedback sessions and on my own impressions of the system, both client and server components.
 
-\section{Peer Review Feedback}
+At the beginning of this project I did research to establish a number of objectives which it was necessary to achieve in order to consider the project a success.
 
-\section{Staff Invigilator Feedback}
+These objectives are listed in more detail in section \ref{ch:background}, but briefly they were:
+
+\begin{itemize}
+\item Ease of Use\\
+\item Security\\
+\item Reliability\\
+\item Discretion\\
+\item Functionality\\
+\begin{itemize}
+\item Show at a glance which room(s) need assistance.
+\item Allow an invigilator to notify others when the exam(s) in their room have started or stopped.
+\item Request an examiner come to their room, for example to answer a student's question.
+\item Request assistance from another invigilator, for example to escort a student to the bathroom.
+\item The requesting invigilator is able to see that someone is on the way to help, however, it is important that this information is shared such that a room is not over-serviced.
+\item Broadcast an announcement to be made in all rooms of a certain exam, with acknowledgement of receipt.
+\end{itemize}
+\end{itemize}
+
+Reflecting upon these objectives, I feel that ExICS does a good job of honouring these objectives and fundemental functionalities in an intelligent and efficient way.
+
+Of all core functionalities, only the final, to be able to broadcast an announcement and receive an acknowledgement of reciept was not accomplished by the end of the project.  This was due to the amount of time spent considering the system and API designs, not jumping straight into implementation and making it up as I went along.
+
+I feel that the benefits of this considered approach are clear in the logical, simple structure of the server and client software which is written in an easily extendable and maintainable way providing a good foundation for what could, with time and effort, be an incredibly useful system at the heart of the university examination system.
+
+I believe that the feedback provided by those interviewed suggests that the system exhibits an ease of use expected by a system which may be used only a couple of times a year by users with little to know training in how it works and offers a reliable and discrete platform which invigilators can use simplify and improve the examination process for both themselves, and the students that they are invigilating.

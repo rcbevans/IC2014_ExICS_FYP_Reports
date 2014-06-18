@@ -50,24 +50,34 @@
 \BOOKMARK [2][-]{subsection.7.2.2}{Websocket Manager}{section.7.2}% 50
 \BOOKMARK [2][-]{subsection.7.2.3}{User Interface}{section.7.2}% 51
 \BOOKMARK [1][-]{section.7.3}{ExICS Client Functionality}{chapter.7}% 52
-\BOOKMARK [2][-]{subsection.7.3.1}{Run Exam Session}{section.7.3}% 53
-\BOOKMARK [2][-]{subsection.7.3.2}{Send Messages}{section.7.3}% 54
-\BOOKMARK [2][-]{subsection.7.3.3}{View Seating Plans}{section.7.3}% 55
-\BOOKMARK [2][-]{subsection.7.3.4}{View Exam Invigilator Checklist}{section.7.3}% 56
+\BOOKMARK [2][-]{subsection.7.3.1}{Overview}{section.7.3}% 53
+\BOOKMARK [2][-]{subsection.7.3.2}{ExICS Log}{section.7.3}% 54
+\BOOKMARK [2][-]{subsection.7.3.3}{Seating Plans}{section.7.3}% 55
+\BOOKMARK [2][-]{subsection.7.3.4}{Invigilation Plan}{section.7.3}% 56
 \BOOKMARK [1][-]{section.7.4}{User Interface Implementation}{chapter.7}% 57
 \BOOKMARK [2][-]{subsection.7.4.1}{Sliding Chat Log}{section.7.4}% 58
-\BOOKMARK [2][-]{subsection.7.4.2}{Handling Orientation Changes}{section.7.4}% 59
-\BOOKMARK [2][-]{subsection.7.4.3}{Wake Device on Message Received}{section.7.4}% 60
-\BOOKMARK [2][-]{subsection.7.4.4}{Dynamic Buttons in Exam Detail}{section.7.4}% 61
-\BOOKMARK [0][-]{chapter.8}{Evaluation}{}% 62
-\BOOKMARK [1][-]{section.8.1}{Self-Evaluation}{chapter.8}% 63
-\BOOKMARK [1][-]{section.8.2}{Peer Review Feedback}{chapter.8}% 64
-\BOOKMARK [1][-]{section.8.3}{Staff Invigilator Feedback}{chapter.8}% 65
-\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 66
-\BOOKMARK [1][-]{section.9.1}{Summary of Achievements}{chapter.9}% 67
-\BOOKMARK [1][-]{section.9.2}{Applications}{chapter.9}% 68
-\BOOKMARK [1][-]{section.9.3}{Future Work}{chapter.9}% 69
-\BOOKMARK [0][-]{section.9.3}{Bibliography}{}% 70
-\BOOKMARK [0][-]{chapter*.44}{Appendix}{}% 71
-\BOOKMARK [0][-]{chapter.1}{Initial Web Survey Results}{}% 72
-\BOOKMARK [0][-]{chapter.2}{User Guide}{}% 73
+\BOOKMARK [2][-]{subsection.7.4.2}{ExICS Log Autoscroll}{section.7.4}% 59
+\BOOKMARK [2][-]{subsection.7.4.3}{Handling Orientation Changes}{section.7.4}% 60
+\BOOKMARK [2][-]{subsection.7.4.4}{Wake Device on Message Received}{section.7.4}% 61
+\BOOKMARK [2][-]{subsection.7.4.5}{Dynamic Buttons in Exam Detail}{section.7.4}% 62
+\BOOKMARK [0][-]{chapter.8}{Evaluation}{}% 63
+\BOOKMARK [1][-]{section.8.1}{ExICS Evaluation Sessions}{chapter.8}% 64
+\BOOKMARK [2][-]{subsection.8.1.1}{Interview Technique}{section.8.1}% 65
+\BOOKMARK [2][-]{subsection.8.1.2}{Peer Interviews}{section.8.1}% 66
+\BOOKMARK [2][-]{subsection.8.1.3}{Staff Interviews}{section.8.1}% 67
+\BOOKMARK [2][-]{subsection.8.1.4}{Overall Feedback}{section.8.1}% 68
+\BOOKMARK [1][-]{section.8.2}{Self-Evaluation}{chapter.8}% 69
+\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 70
+\BOOKMARK [1][-]{section.9.1}{Summary of Achievements}{chapter.9}% 71
+\BOOKMARK [1][-]{section.9.2}{Applications}{chapter.9}% 72
+\BOOKMARK [1][-]{section.9.3}{Future Work}{chapter.9}% 73
+\BOOKMARK [2][-]{subsection.9.3.1}{Improvements to Current Functionality}{section.9.3}% 74
+\BOOKMARK [2][-]{subsection.9.3.2}{Additional Functionality}{section.9.3}% 75
+\BOOKMARK [0][-]{subsection.9.3.2}{Bibliography}{}% 76
+\BOOKMARK [0][-]{chapter*.61}{Appendix}{}% 77
+\BOOKMARK [0][-]{chapter.1}{Initial Web Survey Results}{}% 78
+\BOOKMARK [0][-]{chapter.2}{Evaluation Session Form}{}% 79
+\BOOKMARK [0][-]{chapter.3}{User Guide}{}% 80
+\BOOKMARK [1][-]{section.3.1}{For System Administrators}{chapter.3}% 81
+\BOOKMARK [2][-]{subsection.3.1.1}{ExICS Servers}{section.3.1}% 82
+\BOOKMARK [1][-]{section.3.2}{For Users}{chapter.3}% 83

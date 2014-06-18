@@ -273,34 +273,118 @@ The idea of supporting different device configurations such as screen orientatio
 \section{ExICS Client Functionality}
 \label{sec:ExICSfunctionality}
 
-\subsection{Run Exam Session}
+This section outlines the functionality provided by the ExICS client Android app.  The functionality is provided by the userinterface built upon the wsCommunicationManager and ExICSSystemData classes which handle the storing of system state and communication with the ExICS server.  The application uses a navigation drawer for navigation between different sections of the application as be can seen in figure \ref{fig:nav_drawer_phone}.
 
-\subsection{Send Messages}
+\FloatBarrier
 
-\subsubsection{Preset Messages}
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"screenshots/phone_portrait_nav_drawer"}
+	\caption{ExICS Client's Main Navigation Feature - The Navigation Drawer}
+	\label{fig:nav_drawer_phone}
+\end{figure}
 
-\subsubsection{Custom Messages}
+\FloatBarrier
 
-\subsection{View Seating Plans}
+The main functionality of the application, as accessible through each header in the navigation drawer will be outlined below.
 
-\subsection{View Exam Invigilator Checklist}
+\subsection{Overview}
 
-%TO DO --------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------
+The ExICS app gives an overview of all exams taking place during the current exam period.  The section uses a three view heirarchy which can be navigated as shown in figure \ref{fig:overview_flowchart}.
 
+\FloatBarrier
 
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=\textwidth]{"screenshots/overview_flowchart"}
+	\caption{Flow of Navigation Through the Overview Screens}
+	\label{fig:overview_flowchart}
+\end{figure}
 
+\FloatBarrier
 
+The first screen shown is a list of rooms in which exams are taking place.  The number of invigilators in the room and the number of examinations running or paused are shown.  There is a home icon shown on the left of the ListView entry for the room in which the user is currently based.  On the right there is a status ``light'' for the room.  A red light means that one or more of the exams in the room are stopped, amber means that the exams in the room are all running but one or more needs attention as it is paused, and a green light means that all exams in the room are running as expected.
 
+When a room row is selected in the room overview as shown with action one in figure \ref{fig:overview_flowchart}, that room is selected and the screen updates to show a list of exams taking place in that room.  This screen shows an entry for each exam taking place in the room during that session and gives a brief overview of the exam; its course code, scheduled start if stopped, actual start if running, the exam's duration and the scheduled end if stopped, or estimated end if running.  There is also a status light showing the status of the examination, red for stopped, yellow for paused and green for running.
 
+When an exam is selected in the exam in room overview screen, as shown by action two in figure \ref{fig:overview_flowchart}, the application shows a detail page for the examination.  This page gives the details available about the current exam including number of questions, the exam's title and amount of extra time added to the exam.  As with the other views, it features a status ``light'' showing the state of the room.  At the bottom of the screen is the action bar which is dynamically modified depending upon the state of the room as shown in figure \ref{fig:exam_state_flow}.
 
+\FloatBarrier
 
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=\textwidth]{"screenshots/exam_state_flowchart"}
+	\caption{Examination State Flow}
+	\label{fig:exam_state_flow}
+\end{figure}
 
+\FloatBarrier
 
+When the exam is paused, the status light is red.  The action bar contains only the action to start the examination.  When the exam is started a request is made, via the wsCommunicationManager, to the server which will attempt to start the selected exam.  If successful, the new system state with the exam started will be pushed to all connected clients which will trigger a STATE\_UPDATED broadcast to be made causing all views to be refreshed.  This will cause the exam detail page to update, with its status light changing to green.
 
+When the exam is running, there are three actions which can be taken, pause the exam, add extra time, or stop the exam.  When clicked, these buttons trigger the appropriate request to be made by the wsCommunicationManager and, if successful, will cause the view to be updated.  When paused, the ``Pause Exam'' button is replaced with a ``Resume Exam'' button, and the status light changes to yellow.
 
+When ``Add Extra Time'' is clicked, a dialog asking how much extra time is to be added is displayed to the user with a scrollable selector which when confirmed sends the request to the server to have the extra time added.  If successful, again, the server pushes the new system state to clients triggering the view to refresh, updating the ``Extra Time Added'' value, and recalculating the expected finish time.
 
+When ``Stop Exam'' is selected, a warning confirmation is displayed to the user that the action cannot be undone, and if confirmed, the exam state is changed to complete, stored in the MongoDB database of completed exams, and the exam is removed from the system.  This causes all references to it in the overview screens to disappear.  If the exam was the only exam in the room it was located for example, the room will no longer appear in the room list, and users joining the system, or moving rooms once connected can no longer select to be based in that room.
+
+\subsection{ExICS Log}
+\label{subs:exics_log_expl}
+
+The ExICS log screen is displayed to the right of all content displayed in the app.  In landscape mode, it is physically on screen to the right of the main content, or in portrait it can be reached by using a swiping gesture to the left.  Once displayed in portrait, the main content of the app can be shown by using a right swipe gesture.  The gesture implementation and details can be seen in section \ref{subs:chat_log_sliding}.
+
+The ExICS log features two main components, the activity log itself, and an action button area below it as seen in figure \ref{fig:exics_log_phone_portrait}.  The activity log is a TextView housed within a ScrollView container which allows the user to scroll back through the activity history.  Each message has a timestamp for when the event occurred for reference.  Whenever a new event occurrs in the system, a new event is added to the log and the ScrollView container is scrolled to display it at the bottom of the activity log.  The means to achieve this autoscrolling is covered in section \ref{subs:log_autoscroll}.
+
+\FloatBarrier
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"screenshots/phone_portrait_activity_log"}
+	\caption{ExICS Log displayed in Portrait Mode on a Phone}
+	\label{fig:exics_log_phone_portrait}
+\end{figure}
+
+\FloatBarrier
+
+Below the activity log is a button which allows the user to send a message to other clients connected to the ExICS system.  When clicked, a dialog is displayed asking the user which kind of message they would like to send, a preset message, or a custom typed message.  Depending the type selected, the choice dialog is replaced with the dialog for creating the kind of message wanted.  The message recipients for both types of message can be customised and can be sent to all users, those in a specific room (including those who are ``delocalised'', staff moving between rooms or not directly based in a room invigilating such as admin staff), or to an individual.  If room or individual recipients are selected in the recipient type, a new drop down menu of the available rooms or recipients is displayed, allowing the user to choose.
+
+\FloatBarrier
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=\textwidth]{"screenshots/send_message_flowchart"}
+	\caption{Flowchart to Send a Message}
+	\label{fig:send_message_flowchart}
+\end{figure}
+
+\FloatBarrier
+
+Once the message is finalised, the wsCommunicationManager sends the message to the ExICS server which then forwards the message onto the intended recipients specified by their room or username.
+
+When messages are recieved by the recipient, a dialog is displayed alerting them to the new message which gives details about the sender and their room, and gives the option for the recipient to reply to the original sender as shown in figure \ref{fig:message_screen}.
+
+\subsection{Seating Plans}
+
+The ExICS client allows the users to view seating plans for the rooms currently hosting exams.  It consistes of a room selector at the top of the screen, with a scrollable ListView of seating information for students taking exams in the room shown below, as seen in figure \ref{fig:spv}.
+
+The seating plan information displays all of the information made available by the data source I was provided with by the department which is somewhat limited.  It consists of the seat number, the student taking the exam in that seats CID (College Identification) number, and the exam which they are sitting.  There is a wide array of information I would wish to display is addition to this, however given the timescale of the project and issues with data confidentiality, I was unable to obtain additional information such as student names and images as I would have wished.  These future development improvements and extensions are discussed further in section \ref{sec:future_work}.
+
+\FloatBarrier
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"screenshots/t_p_sp"}
+	\caption{Seating Plan View}
+	\label{fig:spv}
+\end{figure}
+
+\FloatBarrier
+
+\subsection{Invigilation Plan}
+
+The final section of the activity of the ExICS client is the invigilation plan.  This screen simply consists of a checklist of action required to be carried out by the invigilator before, during and after the examination.  This information is not persisted between restarts and is simply intended to guide new invigilators or refresh the minds of experienced ones and allow them to tick of actions as they are completed.
+
+In future it would be nice to add the ability to complete administrative tasks, such as post exam reports through the ExICS client which can they be pushed and stored in the MongoDB database for audit purposes amongst other things which will be discussed in more detail in the future work section of this report, \ref{sec:future_work}.
 
 \section{User Interface Implementation}
 \label{sec:UIimplementation}
@@ -308,6 +392,7 @@ The idea of supporting different device configurations such as screen orientatio
 This section will briefly outline some of the more interesting points of the ExICS Client Application Implementation.
 
 \subsection{Sliding Chat Log}
+\label{subs:chat_log_sliding}
 
 When the device is in Portrait more and the screen is more tall than wide, having the activity log visible on screen alongside the main content doesn't make sense.  The content of the screen would be too small, at best bringing a poor UX, and at worst, rendering the entire appliation unusable.
 
@@ -436,6 +521,39 @@ I spent a large amount of time trying to work around this problem in a nice way.
 As a work around, I implemented an interface between the child fragment and the parent activity with methods that can be called by the child fragment.  In the fragments, I simply attached OnSwipeTouchListeners to all scrollable components, overriding their ``onSwipeLeft'' and ``onSwipeRight'' methods such that when triggered by the gesture detector, they manually pass the event back to the parent activity using the defined interface.  This solution does work, and it works well, however, it is not as clean or sophisticated as I think could be possible, and so, given more time I would wish to implement a better means of intercepting and detecting gestures, even on fragments with scollable view widgets.
 
 \FloatBarrier
+
+\subsection{ExICS Log Autoscroll}
+\label{subs:log_autoscroll}
+
+With the activity log visible in the ExICS log section of the ExICS client application, as explained in section \ref{subs:exics_log_expl}, the contents are updated whenever a new event takes place such as messages being received, or exam states changing.  It is therefore desirable behaviour that the log would display the latest events visible in the log as they occur without the user having to scroll to the bottom of a log which is ever increasing in size.
+
+The ScrollView containing in which the log, a TextView exists, is unaware of its own contents, and therefore does not provide any default functionality to allow such behaviour.  It was therefore necessary to find a way to implement this behaviour programmatically myself.
+
+This is done with the code shown in figure \ref{fig:exics_log_update}.  Whenever the broadcast is received by the parent activity that the activity log has been updated, the parent invokes the refresh method on each child fragment.  In the case of the ExICS log fragment, this calls the ``updateLogText'' method.  This method refreshes the content of the activity log and then proceeds to programmatically scroll the containing ScrollView to the bottom of the log ensuring that the latest event is visible in the activity log.
+
+\begin{figure}[!htpb]
+	\centering
+	\lstset{language=Java}
+	\begin{lstlisting}[tabsize=2,breaklines=true]
+	private void updateLogText() {
+		if (logText != null) {
+			logText.setText(exICSData.getChatLog());
+			if (logScrollView != null) {
+				logScrollView.post(new Runnable() {
+					@Override
+					public void run() {
+							logScrollView.scrollTo(0, logText.getBottom());
+					}
+				});
+			}
+		}
+	}
+	\end{lstlisting}
+	\caption{ExICS Log Update Method}
+	\label{fig:exics_log_update}
+\end{figure}
+
+The scrolling of the ScrollView is done by posting a runnable task to the ScrollView which utilises the ScrollView's scrollTo method to scroll it to the bottom of the TextView it contains.  This code \textit{must} be executed as a runnable for compatibility reasons as \textit{some} implementations of Android, depending on device, will either not work, or crash the application if the main UI thread attempts to do the scrolling itself.  I found this whilst developing when the Nexus 7 device, provided by College and running pure Google Android, would allow the view to be scrolled directly, without the runnable, but my HTC One M7 with HTC Sense, would not.
 
 \subsection{Handling Orientation Changes}
 \label{subs:handling_orientation_changes}
